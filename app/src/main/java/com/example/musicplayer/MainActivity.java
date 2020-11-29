@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     protected void onResume() {
         super.onResume();
         if (paused) {
-            setController();
+//            setController();
             paused = false;
         }
     }
