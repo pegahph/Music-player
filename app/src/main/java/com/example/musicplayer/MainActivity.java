@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private boolean musicBound = false;
     private MusicController controller;
     private boolean paused=false, playbackPaused=false;
+    private int lastCurrentPos = 0;
+    private int lastDuration = 0;
 
 
     // Overriding onCreate function :)
@@ -163,12 +165,13 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 //        Toast.makeText(musicService, "Hello", Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, view.getTag().toString(), Toast.LENGTH_SHORT).show();
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
+        musicService.setMusicController(controller);
         musicService.playSong();
         if (playbackPaused) {
-            setController();
+//            setController();
             playbackPaused = false;
         }
-        controller.show(0);
+//        controller.show(0);
     }
 
     @Override
@@ -192,20 +195,21 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     @Override
     public int getDuration() {
         if (musicService != null && musicBound && musicService.isPng())
-            return musicService.getDur();
-        else return 0;
+            lastDuration = musicService.getDur();
+        return lastDuration;
     }
 
     @Override
     public int getCurrentPosition() {
         if (musicService != null && musicBound && musicService.isPng())
-            return musicService.getPos();
-        else return 0;
+            lastCurrentPos = musicService.getPos();
+        return lastCurrentPos;
     }
 
     @Override
     public void seekTo(int pos) {
         musicService.seek(pos);
+        lastCurrentPos = pos;
     }
 
     @Override
@@ -265,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             setController();
             playbackPaused = false;
         }
-        controller.show(0);
+//        controller.show(0);
     }
     private void playPrev() {
         musicService.playPrev();
@@ -273,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             setController();
             playbackPaused = false;
         }
-        controller.show(0);
+//        controller.show(0);
     }
 
 }
