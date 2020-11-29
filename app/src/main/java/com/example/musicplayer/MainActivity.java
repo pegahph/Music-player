@@ -42,29 +42,27 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private ArrayList<Song> songList;
     // and we are gonna show them in a ListView.
     private ListView songView;
+
     private MusicService musicService;
     private Intent playIntent;
     private boolean musicBound = false;
     private MusicController controller;
     private boolean paused=false, playbackPaused=false;
-    String permissions[] = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
+    private int lastCurrentPos = 0;
+    private int lastDuration = 0;
+
 
     // Overriding onCreate function :)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//      permissions
-        if(checkAndRequestPermissions()){
-            startApp();
-        }
 
-    }
-
-    private void startApp(){
         songView = (ListView) findViewById(R.id.songList);
         songList = new ArrayList<>();
+
         getSongList();
+
         // sort the data
         Collections.sort(songList, new Comparator<Song>() {
             @Override
@@ -72,83 +70,12 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
                 return s1.getTitle().compareTo(s2.getTitle());
             }
         });
+
         SongAdapter songAdapter = new SongAdapter(this, songList);
         songView.setAdapter(songAdapter);
+
         setController();
     }
-
-    private boolean checkAndRequestPermissions() {
-        List<String> permissionsNeeded = new ArrayList<String>();
-        for (String permission: permissions){
-            if(ContextCompat.checkSelfPermission(this,permission)!=PackageManager.PERMISSION_GRANTED){
-                permissionsNeeded.add(permission);
-            }
-        }
-        if(permissionsNeeded.size()!=0){
-            ActivityCompat.requestPermissions(this, permissionsNeeded.toArray(new String[permissionsNeeded.size()]), 10);
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == 10){
-            HashMap<String,Integer> permissionDenieds = new HashMap<>();
-            int deniedCount = 0;
-            for(int i=0;i<grantResults.length;i++){
-                if(grantResults[i] == PackageManager.PERMISSION_DENIED){
-                    permissionDenieds.put(permissions[i],grantResults[i]);
-                    deniedCount++;
-                }
-            }
-            if(deniedCount == 0){
-                startApp();
-            } else{
-                for (Map.Entry<String,Integer> entry :permissionDenieds.entrySet()){
-                    String permName = entry.getKey();
-                    if(ActivityCompat.shouldShowRequestPermissionRationale(this,permName)) {
-                        new AlertDialog.Builder(this).setTitle("Permission Needed!").setMessage("This app needs to have these permissions to be able to work!")
-                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        dialogInterface.dismiss();
-                                        checkAndRequestPermissions();
-                                    }
-                                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                                System.exit(0);
-                            }
-                        }).create().show();
-                    }else {
-                        new AlertDialog.Builder(this).setTitle("Permission Needed!").setMessage("You have denied some permissions. Allow all permissions at [Setting] > [Permissions]")
-                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        dialogInterface.dismiss();
-                                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,Uri.fromParts("package",getPackageName(),null));
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(intent);
-                                        System.exit(0);
-                                    }
-                                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                                System.exit(0);
-                            }
-                        }).create().show();
-
-                    }
-                }
-            }
-        }
-
-    }
-
 
     private ServiceConnection musicConnection = new ServiceConnection() {
         @Override
@@ -251,12 +178,13 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 //        Toast.makeText(musicService, "Hello", Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, view.getTag().toString(), Toast.LENGTH_SHORT).show();
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
+        musicService.setMusicController(controller);
         musicService.playSong();
         if (playbackPaused) {
-            setController();
+//            setController();
             playbackPaused = false;
         }
-        controller.show(0);
+//        controller.show(0);
     }
 
     @Override
@@ -280,20 +208,21 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     @Override
     public int getDuration() {
         if (musicService != null && musicBound && musicService.isPng())
-            return musicService.getDur();
-        else return 0;
+            lastDuration = musicService.getDur();
+        return lastDuration;
     }
 
     @Override
     public int getCurrentPosition() {
         if (musicService != null && musicBound && musicService.isPng())
-            return musicService.getPos();
-        else return 0;
+            lastCurrentPos = musicService.getPos();
+        return lastCurrentPos;
     }
 
     @Override
     public void seekTo(int pos) {
         musicService.seek(pos);
+        lastCurrentPos = pos;
     }
 
     @Override
@@ -353,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             setController();
             playbackPaused = false;
         }
-        controller.show(0);
+//        controller.show(0);
     }
     private void playPrev() {
         musicService.playPrev();
@@ -361,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             setController();
             playbackPaused = false;
         }
-        controller.show(0);
+//        controller.show(0);
     }
 
 }
