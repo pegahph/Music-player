@@ -21,9 +21,9 @@ import java.util.Random;
 
 public class MusicService extends Service
         implements MediaPlayer.OnPreparedListener,
-            MediaPlayer.OnErrorListener,
-            MediaPlayer.OnCompletionListener,
-            AudioManager.OnAudioFocusChangeListener {
+        MediaPlayer.OnErrorListener,
+        MediaPlayer.OnCompletionListener,
+        AudioManager.OnAudioFocusChangeListener {
 
     private static final int NOTIFY_ID = 1;
     private MediaPlayer player;
@@ -34,6 +34,11 @@ public class MusicService extends Service
     private String songTitle = "";
     private boolean shuffle = false;
     private Random rand;
+
+    private MusicController musicController;
+    public void setMusicController(MusicController musicController) {
+        this.musicController = musicController;
+    }
 
     @Override
     public void onCreate() {
@@ -61,6 +66,7 @@ public class MusicService extends Service
     public void onPrepared(MediaPlayer mp) {
         // start playback
         mp.start();
+        musicController.show(0);
         Intent notIntent = new Intent(this, MainActivity.class);
         notIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendInt = PendingIntent.getActivity(this, 0, notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -78,10 +84,11 @@ public class MusicService extends Service
     }
     @Override
     public void onCompletion(MediaPlayer mp) {
-    // this method will fire when a track ends.
+        // this method will fire when a track ends.
         if (player.getCurrentPosition() > 0) {
             mp.reset();
             playNext();
+            //
         }
     }
     @Override
