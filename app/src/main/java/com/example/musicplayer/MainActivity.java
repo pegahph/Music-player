@@ -1,17 +1,24 @@
 package com.example.musicplayer;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +27,10 @@ import android.widget.MediaController.MediaPlayerControl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.example.musicplayer.MusicService.MusicBinder;
 
 
@@ -29,14 +40,15 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private ArrayList<Song> songList;
     // and we are gonna show them in a ListView.
     private ListView songView;
-
     private MusicService musicService;
     private Intent playIntent;
     private boolean musicBound = false;
     private MusicController controller;
     private boolean paused=false, playbackPaused=false;
+
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
+    String permissions[] = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
 
 
     // Overriding onCreate function :)
@@ -44,12 +56,17 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//      permissions
+        if(checkAndRequestPermissions()){
+            startApp();
+        }
 
+    }
+
+    private void startApp(){
         songView = (ListView) findViewById(R.id.songList);
         songList = new ArrayList<>();
-
         getSongList();
-
         // sort the data
         Collections.sort(songList, new Comparator<Song>() {
             @Override
@@ -57,12 +74,83 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
                 return s1.getTitle().compareTo(s2.getTitle());
             }
         });
-
         SongAdapter songAdapter = new SongAdapter(this, songList);
         songView.setAdapter(songAdapter);
-
         setController();
     }
+
+    private boolean checkAndRequestPermissions() {
+        List<String> permissionsNeeded = new ArrayList<String>();
+        for (String permission: permissions){
+            if(ContextCompat.checkSelfPermission(this,permission)!=PackageManager.PERMISSION_GRANTED){
+                permissionsNeeded.add(permission);
+            }
+        }
+        if(permissionsNeeded.size()!=0){
+            ActivityCompat.requestPermissions(this, permissionsNeeded.toArray(new String[permissionsNeeded.size()]), 10);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 10){
+            HashMap<String,Integer> permissionDenieds = new HashMap<>();
+            int deniedCount = 0;
+            for(int i=0;i<grantResults.length;i++){
+                if(grantResults[i] == PackageManager.PERMISSION_DENIED){
+                    permissionDenieds.put(permissions[i],grantResults[i]);
+                    deniedCount++;
+                }
+            }
+            if(deniedCount == 0){
+                startApp();
+            } else{
+                for (Map.Entry<String,Integer> entry :permissionDenieds.entrySet()){
+                    String permName = entry.getKey();
+                    if(ActivityCompat.shouldShowRequestPermissionRationale(this,permName)) {
+                        new AlertDialog.Builder(this).setTitle("Permission Needed!").setMessage("This app needs to have these permissions to be able to work!")
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                        checkAndRequestPermissions();
+                                    }
+                                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                System.exit(0);
+                            }
+                        }).create().show();
+                    }else {
+                        new AlertDialog.Builder(this).setTitle("Permission Needed!").setMessage("You have denied some permissions. Allow all permissions at [Setting] > [Permissions]")
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,Uri.fromParts("package",getPackageName(),null));
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                        System.exit(0);
+                                    }
+                                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                System.exit(0);
+                            }
+                        }).create().show();
+
+                    }
+                }
+            }
+        }
+
+    }
+
 
     private ServiceConnection musicConnection = new ServiceConnection() {
         @Override

@@ -21,9 +21,9 @@ import java.util.Random;
 
 public class MusicService extends Service
         implements MediaPlayer.OnPreparedListener,
-            MediaPlayer.OnErrorListener,
-            MediaPlayer.OnCompletionListener,
-            AudioManager.OnAudioFocusChangeListener {
+        MediaPlayer.OnErrorListener,
+        MediaPlayer.OnCompletionListener,
+        AudioManager.OnAudioFocusChangeListener {
 
     private static final int NOTIFY_ID = 1;
     private MediaPlayer player;
