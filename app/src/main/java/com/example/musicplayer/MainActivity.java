@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private boolean musicBound = false;
     private MusicController controller;
     private boolean paused=false, playbackPaused=false;
-
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
     String permissions[] = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
@@ -77,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         SongAdapter songAdapter = new SongAdapter(this, songList);
         songView.setAdapter(songAdapter);
         setController();
+        if (playIntent == null) {
+            playIntent = new Intent(this, MusicService.class);
+            bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
+            startService(playIntent);
+        }
     }
 
     private boolean checkAndRequestPermissions() {
@@ -143,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
                                 System.exit(0);
                             }
                         }).create().show();
-
                     }
                 }
             }
@@ -172,11 +175,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     @Override
     protected void onStart() {
         super.onStart();
-        if (playIntent == null) {
-            playIntent = new Intent(this, MusicService.class);
-            bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
-            startService(playIntent);
-        }
+
     }
     @Override
     protected void onPause() {
