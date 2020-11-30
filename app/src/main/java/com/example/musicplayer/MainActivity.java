@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
-    String permissions[] = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
+    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
 
 
     // Overriding onCreate function :)
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
                 permissionsNeeded.add(permission);
             }
         }
-        if(permissionsNeeded.size()!=0){
+        if(permissionsNeeded.size()!=0) {
             ActivityCompat.requestPermissions(this, permissionsNeeded.toArray(new String[permissionsNeeded.size()]), 10);
             return false;
         }
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     protected void onResume() {
         super.onResume();
         if (paused) {
-            setController();
+//            setController();
             paused = false;
         }
     }
@@ -333,7 +333,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     }
 
     private void setController(){
-        controller = new MusicController(this);
+        if (controller == null)
+            controller = new MusicController(this);
         controller.setPrevNextListeners(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -354,7 +355,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private void playNext() {
         musicService.playNext();
         if (playbackPaused) {
-            setController();
+//            setController();
             playbackPaused = false;
         }
 //        controller.show(0);
@@ -362,7 +363,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private void playPrev() {
         musicService.playPrev();
         if (playbackPaused) {
-            setController();
+//            setController();
             playbackPaused = false;
         }
 //        controller.show(0);
