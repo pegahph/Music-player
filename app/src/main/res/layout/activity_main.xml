@@ -53,13 +53,12 @@
             android:text="Spotify" />
     </com.google.android.material.tabs.TabLayout>
 
-    <ListView
-        android:id="@+id/songList"
+    <fragment
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabs" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/main_fragment"
+        android:name="com.example.musicplayer.MainFragment" />
 
 
 

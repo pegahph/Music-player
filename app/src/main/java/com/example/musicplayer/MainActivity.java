@@ -5,25 +5,41 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.Manifest;
 import android.content.ComponentName;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.MediaController.MediaPlayerControl;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -39,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     // we are using this ArrayList to store the Songs.
     private ArrayList<Song> songList;
     // and we are gonna show them in a ListView.
-    private ListView songView;
+    private RecyclerView songRV;
     private MusicService musicService;
     private Intent playIntent;
     private boolean musicBound = false;
@@ -63,7 +79,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     }
 
     private void startApp(){
-        songView = (ListView) findViewById(R.id.songList);
+//        songView = (ListView) findViewById(R.id.songList);
+        songRV = (RecyclerView) findViewById(R.id.song_recycler_view);
         songList = new ArrayList<>();
         getSongList();
         // sort the data
@@ -73,8 +90,9 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
                 return s1.getTitle().compareTo(s2.getTitle());
             }
         });
-        SongAdapter songAdapter = new SongAdapter(this, songList);
-        songView.setAdapter(songAdapter);
+        SongAdapter songAdapter = new SongAdapter(songList);
+        songRV.setAdapter(songAdapter);
+        songRV.setLayoutManager(new LinearLayoutManager(this));
         setController();
         if (playIntent == null) {
             playIntent = new Intent(this, MusicService.class);
@@ -86,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private boolean checkAndRequestPermissions() {
         List<String> permissionsNeeded = new ArrayList<String>();
         for (String permission: permissions){
-            if(ContextCompat.checkSelfPermission(this,permission)!=PackageManager.PERMISSION_GRANTED){
+            if(ContextCompat.checkSelfPermission(this,permission)!= PackageManager.PERMISSION_GRANTED){
                 permissionsNeeded.add(permission);
             }
         }
@@ -230,22 +248,75 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             int titleColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int idColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media._ID);
             int artistColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+//            int albumIdColumn = musicCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID);
 
             // add songs to list
             do {
                 long thisId = musicCursor.getLong(idColumn);
                 String thisTitle = musicCursor.getString(titleColumn);
                 String thisArtist = musicCursor.getString(artistColumn);
+                Long album_id = musicCursor.getLong(musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
+//                String albumId = musicCursor.getString(albumIdColumn);
+//                Bitmap albumArt = getArtistImage(albumId);
+                Bitmap albumArt = null;
 
-                songList.add(new Song(thisId, thisTitle, thisArtist));
+                // try to get album art
+                Uri uri = Uri.parse("content://media/external/audio/albumart");
+                Uri coverUri = ContentUris.withAppendedId(uri, album_id);
+                try {
+                    InputStream inputStream = musicResolver.openInputStream(coverUri);
+                    albumArt = BitmapFactory.decodeStream(inputStream);
+                } catch (Exception ignored) {}
 
-            }while (musicCursor.moveToNext());
+                Song thisSong = new Song(thisId, thisTitle, thisArtist, null);
+                if (albumArt != null) {
+                    int width = albumArt.getWidth();
+                    int height = albumArt.getHeight();
+                    albumArt = Bitmap.createScaledBitmap(albumArt, width/5, height/5, false);
+                    BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), albumArt);
+                    thisSong.setAlbumArt(bitmapDrawable);
+                }
+                songList.add(thisSong);
+            } while (musicCursor.moveToNext());
 
         }
 
 
 //        assert musicCursor != null;
 //        musicCursor.close();
+    }
+
+    private Bitmap CropBitmap(Bitmap bm) {
+        return Bitmap.createBitmap(bm, bm.getWidth()/4, 0, bm.getWidth()/4, bm.getHeight());
+    }
+
+    private Bitmap darkenBitMap(Bitmap bm) {
+        Bitmap output = Bitmap.createBitmap(bm.getWidth(),bm.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+        Paint p = new Paint(Color.RED);
+        //ColorFilter filter = new LightingColorFilter(0xFFFFFFFF , 0x00222222); // lighten
+        ColorFilter filter = new LightingColorFilter(0xFF7F7F7F, 0x00000000);    // darken
+        p.setColorFilter(filter);
+        canvas.drawBitmap(bm, new Matrix(), p);
+
+        return Bitmap.createScaledBitmap(output, 720, 1280, true);
+        //return Bitmap.createBitmap(output, 0,0,720,1280);
+    }
+
+    private Bitmap getArtistImage(String albumid) {
+        Bitmap artwork = null;
+        try {
+            Uri sArtworkUri = Uri
+                    .parse("content://media/external/audio/albumart");
+            Uri uri = ContentUris.withAppendedId(sArtworkUri, Long.valueOf(albumid));
+            ContentResolver res = this.getContentResolver();
+            InputStream in = res.openInputStream(uri);
+            artwork = BitmapFactory.decodeStream(in);
+
+        } catch (Exception e) {
+            Log.e("Exception", e.toString());
+        }
+        return artwork;
     }
 
     public void songPicked(View view) {
@@ -347,7 +418,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         });
 
         controller.setMediaPlayer(this);
-        controller.setAnchorView(findViewById(R.id.songList));
+        controller.setAnchorView(findViewById(R.id.song_recycler_view));
         controller.setEnabled(true);
     }
 
