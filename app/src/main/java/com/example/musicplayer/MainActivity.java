@@ -239,7 +239,19 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     public void getSongList() {
         ContentResolver musicResolver = getContentResolver();
         Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        Cursor musicCursor = musicResolver.query(musicUri, null, null, null, null);
+
+        String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
+        String[] projection = {
+                MediaStore.Audio.Media._ID,
+                MediaStore.Audio.Media.ARTIST,
+                MediaStore.Audio.Media.TITLE,
+//                MediaStore.Audio.Media.DATA,
+//                MediaStore.Audio.Media.DISPLAY_NAME,
+//                MediaStore.Audio.Media.DURATION,
+                MediaStore.Audio.Media.ALBUM_ID
+        };
+
+        Cursor musicCursor = musicResolver.query(musicUri, projection, selection, null, null);
         // I guess we got musics now.
 
 
@@ -248,14 +260,14 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             int titleColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
             int idColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media._ID);
             int artistColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-//            int albumIdColumn = musicCursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID);
+            int albumIdColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
 
             // add songs to list
             do {
                 long thisId = musicCursor.getLong(idColumn);
                 String thisTitle = musicCursor.getString(titleColumn);
                 String thisArtist = musicCursor.getString(artistColumn);
-                Long album_id = musicCursor.getLong(musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
+                Long album_id = musicCursor.getLong(albumIdColumn);
 //                String albumId = musicCursor.getString(albumIdColumn);
 //                Bitmap albumArt = getArtistImage(albumId);
                 Bitmap albumArt = null;
@@ -282,8 +294,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         }
 
 
-//        assert musicCursor != null;
-//        musicCursor.close();
+        assert musicCursor != null;
+        musicCursor.close();
     }
 
     private Bitmap CropBitmap(Bitmap bm) {
