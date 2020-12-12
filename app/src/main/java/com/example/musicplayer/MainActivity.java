@@ -37,7 +37,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.MediaController.MediaPlayerControl;
-import android.widget.TableLayout;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     // we are using this ArrayList to store the Songs.
     private ArrayList<Song> songList;
     // and we are gonna show them in a ListView.
-    private RecyclerView songRV;
+//    private RecyclerView songRV;
     private MusicService musicService;
     private Intent playIntent;
     private boolean musicBound = false;
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 
     private void startApp(){
 //        tabs
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager() , tabs.getTabCount());
+        ThePagerAdapter pagerAdapter = new ThePagerAdapter(getSupportFragmentManager() , tabs.getTabCount());
         viewPager.setAdapter(pagerAdapter);
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 //        songView = (ListView) findViewById(R.id.songList);
-        songRV = (RecyclerView) findViewById(R.id.song_recycler_view);
+//        songRV = (RecyclerView) findViewById(R.id.song_recycler_view);
         songList = new ArrayList<>();
         getSongList();
         // sort the data
@@ -116,9 +115,9 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
                 return s1.getTitle().compareTo(s2.getTitle());
             }
         });
-        SongAdapter songAdapter = new SongAdapter(songList);
-        songRV.setAdapter(songAdapter);
-        songRV.setLayoutManager(new LinearLayoutManager(this));
+//        SongAdapter songAdapter = new SongAdapter(songList);
+//        songRV.setAdapter(songAdapter);
+//        songRV.setLayoutManager(new LinearLayoutManager(this));
         setController();
         if (playIntent == null) {
             playIntent = new Intent(this, MusicService.class);
@@ -456,7 +455,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         });
 
         controller.setMediaPlayer(this);
-        controller.setAnchorView(findViewById(R.id.song_recycler_view));
+        controller.setAnchorView(findViewById(R.id.view_pager));
         controller.setEnabled(true);
     }
 
