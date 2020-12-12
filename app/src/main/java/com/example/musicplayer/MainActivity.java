@@ -7,7 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.viewpager.widget.ViewPager;
 import android.Manifest;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -36,8 +36,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.MediaController.MediaPlayerControl;
+import android.widget.TableLayout;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.musicplayer.MusicService.MusicBinder;
+import com.google.android.material.tabs.TabLayout;
 
 
 // The Main Activity.  Wow!!!
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
     String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
+    TabLayout tabs;
+    ViewPager viewPager;
 
 
     // Overriding onCreate function :)
@@ -71,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tabs = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.view_pager);
+
 //      permissions
         if(checkAndRequestPermissions()){
             startApp();
@@ -79,6 +85,26 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     }
 
     private void startApp(){
+//        tabs
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager() , tabs.getTabCount());
+        viewPager.setAdapter(pagerAdapter);
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 //        songView = (ListView) findViewById(R.id.songList);
         songRV = (RecyclerView) findViewById(R.id.song_recycler_view);
         songList = new ArrayList<>();

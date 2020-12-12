@@ -53,14 +53,12 @@
             android:text="Spotify" />
     </com.google.android.material.tabs.TabLayout>
 
-    <fragment
+
+
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/main_fragment"
-        android:name="com.example.musicplayer.MainFragment" />
-
-
+        android:layout_height="match_parent"
+        android:id="@+id/view_pager"/>
 
 
 </LinearLayout>

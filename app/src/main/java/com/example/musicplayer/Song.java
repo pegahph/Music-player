@@ -1,6 +1,12 @@
 package com.example.musicplayer;
 
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 public class Song {
     private long id;
@@ -8,7 +14,6 @@ public class Song {
     private String artist;
     private Drawable albumArt;
     private long albumId;
-
 
     public Song(long songId, String songTitle, String songArtist, Drawable albumArt) {
         this.id = songId;
