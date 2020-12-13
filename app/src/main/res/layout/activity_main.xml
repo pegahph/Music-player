@@ -10,10 +10,12 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:visibility="visible"
         app:tabBackground="@color/colorPrimary"
         app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/mainColor"
+        app:tabIndicatorColor="@color/SubsidiaryColor"
         app:tabTextColor="@color/colorAccent">
 
         <com.google.android.material.tabs.TabItem
@@ -58,6 +60,9 @@
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background3"
+        android:backgroundTint="@color/shadow"
+        android:backgroundTintMode="src_over"
         android:id="@+id/view_pager"/>
 
 
