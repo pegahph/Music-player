@@ -1,9 +1,11 @@
 package com.example.musicplayer;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -15,6 +17,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -26,14 +29,33 @@ public class MusicService extends Service
         AudioManager.OnAudioFocusChangeListener {
 
     private static final int NOTIFY_ID = 1;
+    private static final String CHANNEL_ID = "channel1";
+    public static final String ACTION_PLAY = "action_play";
+    public static final String ACTION_PAUSE = "action_pause";
+    public static final String ACTION_REWIND = "action_rewind";
+    public static final String ACTION_FAST_FORWARD = "action_fast_foward";
+    public static final String ACTION_NEXT = "action_next";
+    public static final String ACTION_PREVIOUS = "action_previous";
+    public static final String ACTION_STOP = "action_stop";
+
     private MediaPlayer player;
+
+    private MusicService musicService;
+    public void setMusicService(MusicService musicService) {
+        this.musicService = musicService;
+    }
+
     private ArrayList<Song> songs;
     private int songPos;
     private final IBinder musicBind = new MusicBinder();
 
     private String songTitle = "";
+    private String songArtist = "";
     private boolean shuffle = false;
     private Random rand;
+    boolean isPaused = false;
+    boolean isPlayed = false;
+
 
     private MusicController musicController;
     public void setMusicController(MusicController musicController) {
@@ -63,25 +85,81 @@ public class MusicService extends Service
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        if (musicService != null)
+            handleIntent(intent);
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
     public void onPrepared(MediaPlayer mp) {
         // start playback
         mp.start();
+        isPaused = false;
+        isPlayed = true;
         musicController.show(0);
-        Intent notIntent = new Intent(this, MainActivity.class);
-        notIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendInt = PendingIntent.getActivity(this, 0, notIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification.Builder builder = new Notification.Builder(this);
-
-        builder.setContentIntent(pendInt)
-                .setSmallIcon(R.drawable.ic_baseline_play_arrow_24)
-                .setOngoing(true)
-                .setContentTitle("Playing")
-                .setContentText(songTitle);
-        Notification not = builder.build();
-
-        startForeground(NOTIFY_ID, not);
+        if (isPlayed)
+            buildNotification(generateAction(android.R.drawable.ic_media_pause, "Pause", ACTION_PAUSE));
+        if (isPaused)
+            buildNotification(generateAction(android.R.drawable.ic_media_play, "Play", ACTION_PLAY));
     }
+
+    private Notification.Action generateAction(int icon, String title, String intentAction) {
+        Intent intent = new Intent(getApplicationContext(), MusicService.class);
+        intent.setAction(intentAction);
+        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 1, intent, 0);
+        return new Notification.Action.Builder(icon, title, pendingIntent).build();
+    }
+
+    private void handleIntent(Intent intent) {
+        if(intent == null || intent.getAction() == null)
+            return;
+
+        String action = intent.getAction();
+
+        if (action.equalsIgnoreCase(ACTION_PLAY)) {
+            musicService.go();
+            musicController.show(0);
+        } else if (action.equalsIgnoreCase(ACTION_PAUSE)) {
+            musicService.pausePlayer();
+            musicController.show(0);
+        } else if (action.equalsIgnoreCase(ACTION_FAST_FORWARD)) {
+//            musicController.getTransportControls().fastForward();
+        } else if (action.equalsIgnoreCase(ACTION_REWIND)) {
+//            musicController.getTransportControls().rewind();
+        } else if (action.equalsIgnoreCase(ACTION_PREVIOUS)) {
+            musicService.playPrev();
+        } else if (action.equalsIgnoreCase(ACTION_NEXT)) {
+            musicService.playNext();
+        } else if (action.equalsIgnoreCase(ACTION_STOP)) {
+//            musicController.getTransportControls().stop();
+        }
+//        musicController.show(0);
+    }
+
+    private void buildNotification(Notification.Action action) {
+        Notification.MediaStyle style = new Notification.MediaStyle();
+
+        Intent intent = new Intent(getApplicationContext(), MusicService.class);
+        intent.setAction(ACTION_STOP);
+        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 1, intent, 0);
+        Notification.Builder builder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle(songTitle)
+                .setContentText(songArtist)
+                .setContentIntent(pendingIntent)
+                .setOngoing(true)
+                .setStyle(style);
+        builder.addAction(generateAction(android.R.drawable.ic_media_previous, "Previous", ACTION_PREVIOUS));
+//        builder.addAction(generateAction(android.R.drawable.ic_media_rew, "Rewind", ACTION_REWIND));
+        builder.addAction(action);
+//        builder.addAction(generateAction(android.R.drawable.ic_media_ff, "Fast Foward", ACTION_FAST_FORWARD));
+        builder.addAction(generateAction(android.R.drawable.ic_media_next, "Next", ACTION_NEXT));
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, builder.build());
+    }
+
     @Override
     public void onCompletion(MediaPlayer mp) {
         // this method will fire when a track ends.
@@ -96,7 +174,21 @@ public class MusicService extends Service
         mp.reset();
         return false;
     }
-
+//    private void createNotificationChannel() {
+//        // Create the NotificationChannel, but only on API 26+ because
+//        // the NotificationChannel class is new and not in the support library
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            CharSequence name = getString(R.string.channel_name);
+//            String description = getString(R.string.channel_description);
+//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+//            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+//            channel.setDescription(description);
+//            // Register the channel with the system; you can't change the importance
+//            // or other notification behaviors after this
+//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//    }
     @Override
     public void onDestroy() {
         stopForeground(true);
@@ -132,6 +224,7 @@ public class MusicService extends Service
         Song playSong = songs.get(songPos);
 
         songTitle = playSong.getTitle();
+        songArtist = playSong.getArtist();
         // get id
         long currSong = playSong.getId();
 
@@ -163,12 +256,18 @@ public class MusicService extends Service
     }
     public void pausePlayer() {
         player.pause();
+        isPaused = true;
+        isPlayed = false;
+        buildNotification(generateAction(android.R.drawable.ic_media_play, "Play", ACTION_PLAY));
     }
     public void seek(int pos) {
         player.seekTo(pos);
     }
     public void go() {
         player.start();
+        isPlayed = true;
+        isPaused = false;
+        buildNotification(generateAction(android.R.drawable.ic_media_pause, "Pause", ACTION_PAUSE));
     }
 
     public void playPrev() {

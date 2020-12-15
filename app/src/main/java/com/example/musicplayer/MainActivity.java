@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         setController();
         if (playIntent == null) {
             playIntent = new Intent(this, MusicService.class);
+            playIntent.setAction(MusicService.ACTION_PLAY);
             bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
             startService(playIntent);
         }
@@ -204,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             MusicBinder binder = (MusicBinder) service;
 
             musicService = binder.getService();
+            musicService.setMusicService(musicService);
 
             musicService.setList(songList);
             musicBound = true;
@@ -262,65 +264,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     }
 
     public void getSongList() {
-        ContentResolver musicResolver = getContentResolver();
-        Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-
-        String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
-        String[] projection = {
-                MediaStore.Audio.Media._ID,
-                MediaStore.Audio.Media.ARTIST,
-                MediaStore.Audio.Media.TITLE,
-//                MediaStore.Audio.Media.DATA,
-//                MediaStore.Audio.Media.DISPLAY_NAME,
-//                MediaStore.Audio.Media.DURATION,
-                MediaStore.Audio.Media.ALBUM_ID
-        };
-
-        Cursor musicCursor = musicResolver.query(musicUri, projection, selection, null, null);
-        // I guess we got musics now.
-
-
-        if (musicCursor!=null && musicCursor.moveToFirst()) {
-            // get columns
-            int titleColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
-            int idColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media._ID);
-            int artistColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-            int albumIdColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
-
-            // add songs to list
-            do {
-                long thisId = musicCursor.getLong(idColumn);
-                String thisTitle = musicCursor.getString(titleColumn);
-                String thisArtist = musicCursor.getString(artistColumn);
-                Long album_id = musicCursor.getLong(albumIdColumn);
-//                String albumId = musicCursor.getString(albumIdColumn);
-//                Bitmap albumArt = getArtistImage(albumId);
-                Bitmap albumArt = null;
-
-                // try to get album art
-                Uri uri = Uri.parse("content://media/external/audio/albumart");
-                Uri coverUri = ContentUris.withAppendedId(uri, album_id);
-                try {
-                    InputStream inputStream = musicResolver.openInputStream(coverUri);
-                    albumArt = BitmapFactory.decodeStream(inputStream);
-                } catch (Exception ignored) {}
-
-                Song thisSong = new Song(thisId, thisTitle, thisArtist, null);
-                if (albumArt != null) {
-                    int width = albumArt.getWidth();
-                    int height = albumArt.getHeight();
-                    albumArt = Bitmap.createScaledBitmap(albumArt, width/5, height/5, false);
-                    BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), albumArt);
-                    thisSong.setAlbumArt(bitmapDrawable);
-                }
-                songList.add(thisSong);
-            } while (musicCursor.moveToNext());
-
-        }
-
-
-        assert musicCursor != null;
-        musicCursor.close();
+        songList = ListMaker.loadTracks(getContentResolver(), getResources());
     }
 
     private Bitmap CropBitmap(Bitmap bm) {
@@ -357,8 +301,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     }
 
     public void songPicked(View view) {
-//        Toast.makeText(musicService, "Hello", Toast.LENGTH_SHORT).show();
-//        Toast.makeText(this, view.getTag().toString(), Toast.LENGTH_SHORT).show();
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
         musicService.setMusicController(controller);
         musicService.playSong();

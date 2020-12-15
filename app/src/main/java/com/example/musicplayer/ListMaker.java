@@ -52,8 +52,6 @@ public class ListMaker {
                 String thisTitle = musicCursor.getString(titleColumn);
                 String thisArtist = musicCursor.getString(artistColumn);
                 Long album_id = musicCursor.getLong(albumIdColumn);
-//                String albumId = musicCursor.getString(albumIdColumn);
-//                Bitmap albumArt = getArtistImage(albumId);
                 Bitmap albumArt = null;
 
                 // try to get album art
