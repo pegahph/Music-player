@@ -47,7 +47,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
             Song currentSong = songs.get(position);
             songTitle.setText(currentSong.getTitle());
             songArtist.setText(currentSong.getArtist());
-            Drawable albumArtImage = currentSong.getAlbumArt();
+            Drawable albumArtImage = currentSong.getAlbumArtBitmapDrawable();
             if (albumArtImage != null)
                 albumArt.setImageDrawable(albumArtImage);
             else

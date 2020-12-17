@@ -45,33 +45,15 @@ public class ListMaker {
             int idColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media._ID);
             int artistColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int albumIdColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
-
+            Song.musicResolver = musicResolver;
+            Song.resources = resources;
             // add songs to list
             do {
                 long thisId = musicCursor.getLong(idColumn);
                 String thisTitle = musicCursor.getString(titleColumn);
                 String thisArtist = musicCursor.getString(artistColumn);
-                Long album_id = musicCursor.getLong(albumIdColumn);
-                Bitmap albumArt = null;
-
-                // try to get album art
-                Uri uri = Uri.parse("content://media/external/audio/albumart");
-                Uri coverUri = ContentUris.withAppendedId(uri, album_id);
-                try {
-                    InputStream inputStream = musicResolver.openInputStream(coverUri);
-                    albumArt = BitmapFactory.decodeStream(inputStream);
-                } catch (Exception ignored) {
-                }
-
-                Song thisSong = new Song(thisId, thisTitle, thisArtist, null);
-                if (albumArt != null) {
-                    int width = albumArt.getWidth();
-                    int height = albumArt.getHeight();
-                    albumArt = Bitmap.createScaledBitmap(albumArt, width / 5, height / 5, false);
-                    BitmapDrawable bitmapDrawable = new BitmapDrawable(resources, albumArt);
-                    thisSong.setAlbumArt(bitmapDrawable);
-                }
-                songList.add(thisSong);
+                long album_id = musicCursor.getLong(albumIdColumn);
+                songList.add(new Song(thisId, thisTitle, thisArtist, album_id));
             } while (musicCursor.moveToNext());
         }
     }
