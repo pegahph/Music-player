@@ -20,11 +20,9 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
 
 
     private ArrayList<Song> songs;
-//    private LayoutInflater songInf;
 
     public SongAdapter(ArrayList<Song> theSongs) {
         this.songs = theSongs;
-//        this.songInf = LayoutInflater.from(c);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,27 +76,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
         return songs.size();
     }
 
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        LinearLayout songLayout = (LinearLayout) songInf.inflate(R.layout.song, parent, false);
-//
-//        TextView songView = (TextView) songLayout.findViewById(R.id.song_title);
-//        TextView artistView = (TextView) songLayout.findViewById(R.id.song_artist);
-//        ImageView albumArt = (ImageView) songLayout.findViewById(R.id.album_art);
-//
-//        Song currentSong = songs.get(position);
-//
-//        songView.setText(currentSong.getTitle());
-//        artistView.setText(currentSong.getArtist());
-//        Drawable albumArtImage = currentSong.getAlbumArt();
-//        if (albumArtImage != null)
-//            albumArt.setImageDrawable(albumArtImage);
-//        else {
-//            albumArt.setBackgroundColor(Color.parseColor("#ff3c4a"));
-//        }
-//
-//        songLayout.setTag(position);
-//        return songLayout;
-//
-//    }
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 }

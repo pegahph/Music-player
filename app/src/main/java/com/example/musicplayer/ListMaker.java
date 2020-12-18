@@ -16,16 +16,23 @@ import java.util.List;
 
 public class ListMaker {
     static ArrayList<Song> songList = new ArrayList<>();
+    static ArrayList<Artist> artistList = new ArrayList<>();
+    static ContentResolver musicResolver;
+    static Resources resources;
 
-    public static ArrayList<Song> loadTracks(ContentResolver musicResolver, Resources resources) {
+    public static ArrayList<Song> loadTracks() {
         if (songList.size() == 0)
-            getSongs(musicResolver, resources);
+            getSongs();
         return songList;
     }
-    private static void getSongs(ContentResolver musicResolver, Resources resources) {
+    private static void getSongs() {
+        ArrayList<Long> artists = new ArrayList<>();
+
         Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 
         String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
+//        String selection = MediaStore.Audio.Media.IS_MUSIC +
+//                "=1 ) GROUP BY (" + MediaStore.Audio.Media.ALBUM_ID;
         String[] projection = {
                 MediaStore.Audio.Media._ID,
                 MediaStore.Audio.Media.ARTIST,
@@ -54,7 +61,19 @@ public class ListMaker {
                 String thisArtist = musicCursor.getString(artistColumn);
                 long album_id = musicCursor.getLong(albumIdColumn);
                 songList.add(new Song(thisId, thisTitle, thisArtist, album_id));
+
+                if (!artists.contains(album_id)) {
+                    artists.add(album_id);
+                    artistList.add(new Artist(album_id, thisArtist));
+                }
             } while (musicCursor.moveToNext());
         }
     }
+
+    public static ArrayList<Artist> loadArtists() {
+        if (artistList.size() == 0)
+            getSongs();
+        return artistList;
+    }
+
 }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,9 +20,11 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        songList = ListMaker.loadTracks(getActivity().getContentResolver(), getActivity().getResources());
+        songList = ListMaker.loadTracks();
         RecyclerView songRV = (RecyclerView) view.findViewById(R.id.song_recycler_view);
+//        songRV.setHasFixedSize(true);
         SongAdapter songAdapter = new SongAdapter(songList);
+        songAdapter.setHasStableIds(true);
         songRV.setAdapter(songAdapter);
         songRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 

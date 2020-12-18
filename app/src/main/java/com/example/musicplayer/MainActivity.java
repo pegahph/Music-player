@@ -37,6 +37,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.MediaController.MediaPlayerControl;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -106,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 //        songView = (ListView) findViewById(R.id.songList);
 //        songRV = (RecyclerView) findViewById(R.id.song_recycler_view);
+        ListMaker.musicResolver = getContentResolver();
+        ListMaker.resources = getResources();
         songList = new ArrayList<>();
         getSongList();
         // sort the data
@@ -264,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     }
 
     public void getSongList() {
-        songList = ListMaker.loadTracks(getContentResolver(), getResources());
+        songList = ListMaker.loadTracks();
     }
 
     private Bitmap CropBitmap(Bitmap bm) {
