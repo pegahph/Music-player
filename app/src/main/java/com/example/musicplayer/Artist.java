@@ -9,4 +9,13 @@ public class Artist {
         this.albumId = albumId;
         this.artistName = artistName;
     }
+
+    public long getAlbumId() {
+        return albumId;
+    }
+
+    public String getArtistName() {
+        return artistName;
+    }
+
 }
