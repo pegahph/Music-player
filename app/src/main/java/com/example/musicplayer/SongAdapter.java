@@ -6,9 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
+public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
 
 
     private ArrayList<Song> songs;
@@ -25,14 +23,14 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
         this.songs = theSongs;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class SongViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView albumArt;
         private TextView songTitle;
         private TextView songArtist;
         private View thisView;
 
-        public ViewHolder(View itemView) {
+        public SongViewHolder(View itemView) {
             super(itemView);
 
             albumArt = (ImageView) itemView.findViewById(R.id.album_art);
@@ -57,17 +55,17 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SongViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View songView = inflater.inflate(R.layout.song, parent, false);
 
-        return new ViewHolder(songView);
+        return new SongViewHolder(songView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SongViewHolder holder, int position) {
         holder.bindView(position);
     }
 

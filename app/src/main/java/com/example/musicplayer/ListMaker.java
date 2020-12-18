@@ -26,7 +26,7 @@ public class ListMaker {
         return songList;
     }
     private static void getSongs() {
-        ArrayList<Long> artists = new ArrayList<>();
+        ArrayList<String> artists = new ArrayList<>();
 
         Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 
@@ -62,8 +62,8 @@ public class ListMaker {
                 long album_id = musicCursor.getLong(albumIdColumn);
                 songList.add(new Song(thisId, thisTitle, thisArtist, album_id));
 
-                if (!artists.contains(album_id)) {
-                    artists.add(album_id);
+                if (!artists.contains(thisArtist)) {
+                    artists.add(thisArtist);
                     artistList.add(new Artist(album_id, thisArtist));
                 }
             } while (musicCursor.moveToNext());
