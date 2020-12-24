@@ -23,7 +23,7 @@ public class MainFragment extends Fragment {
         RecyclerView songRV = (RecyclerView) view.findViewById(R.id.song_recycler_view);
 //        songRV.setHasFixedSize(true);
         SongAdapter songAdapter = new SongAdapter(songList);
-        songAdapter.setHasStableIds(true);
+//        songAdapter.setHasStableIds(true);
         songRV.setAdapter(songAdapter);
         songRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
