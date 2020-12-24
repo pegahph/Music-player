@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             playIntent = new Intent(this, MusicService.class);
             playIntent.setAction(MusicService.ACTION_PLAY);
             bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
+            Constant.setMusicConnection(musicConnection);
             startService(playIntent);
         }
     }
@@ -209,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 
             musicService = binder.getService();
             musicService.setMusicService(musicService);
+            Constant.setMusicService(musicService);
 
             musicService.setList(songList);
             musicBound = true;
@@ -314,6 +316,15 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 //        controller.show(0);
     }
 
+    public void artistSelected(View view) {
+        Artist selectedArtist = (Artist) view.getTag();
+        Intent songSelectorIntent = new Intent(MainActivity.this, SongSelectorActivity.class);
+        Toast.makeText(this, selectedArtist.getArtistName(), Toast.LENGTH_SHORT).show();
+        songSelectorIntent.putExtra("selectedArtistName", selectedArtist.getArtistName());
+        songSelectorIntent.putExtra("selectedArtistAlbumId", selectedArtist.getAlbumId());
+        startActivity(songSelectorIntent);
+    }
+
     @Override
     protected void onDestroy() {
         stopService(playIntent);
@@ -386,7 +397,10 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 
     private void setController(){
         if (controller == null)
+        {
             controller = new MusicController(this);
+            Constant.setController(controller);
+        }
         controller.setPrevNextListeners(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
