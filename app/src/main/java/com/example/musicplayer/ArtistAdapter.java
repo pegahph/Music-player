@@ -55,6 +55,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
         public void bindView(int position) {
             Artist currentArtist = artists.get(position);
             artistName.setText(currentArtist.getArtistName());
+            thisView.setTag(currentArtist);
         }
     }
 }
