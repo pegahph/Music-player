@@ -1,18 +1,12 @@
 package com.example.musicplayer;
 
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListMaker {
     static ArrayList<Song> songList = new ArrayList<>();
@@ -74,6 +68,16 @@ public class ListMaker {
         if (artistList.size() == 0)
             getSongs();
         return artistList;
+    }
+
+    public static ArrayList<Song> getThisArtistsSongs(String thisArtistName){
+        ArrayList<Song> thisArtistsSongs = new ArrayList<>();
+        for(int i=0; i<songList.size(); i++){
+            if(songList.get(i).getArtist().equals(thisArtistName)){
+                thisArtistsSongs.add(songList.get(i));
+            }
+        }
+        return thisArtistsSongs;
     }
 
 }
