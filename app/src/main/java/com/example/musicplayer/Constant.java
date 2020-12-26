@@ -26,4 +26,13 @@ public class Constant {
     public static void setController(MusicController controller) {
         Constant.controller = controller;
     }
+
+    public static boolean musicBound;
+    public static boolean isMusicBound() {
+        return musicBound;
+    }
+    public static void setMusicBound(boolean musicBound) {
+        Constant.musicBound = musicBound;
+    }
+
 }

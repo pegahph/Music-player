@@ -214,11 +214,13 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 
             musicService.setList(songList);
             musicBound = true;
+            Constant.setMusicBound(musicBound);
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
             musicBound = false;
+            Constant.setMusicBound(musicBound);
         }
     };
 
