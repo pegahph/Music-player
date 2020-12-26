@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#0A0A0A</color>
     <color name="colorPrimaryLight">#343a40</color>
     <color name="colorAccent">#ECECEC</color>
-    <color name="SubsidiaryColor">#48bfe3</color>
-    <color name="mainColor">#56cfe1</color>
+    <color name="SubsidiaryColor">#01FFFF</color>
+    <color name="mainColor">#5DE8E5</color>
     <color name="shadow">#E2212529</color>
 
 </resources>

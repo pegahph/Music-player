@@ -60,7 +60,7 @@
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background3"
+        android:background="@drawable/background7"
         android:backgroundTint="@color/shadow"
         android:backgroundTintMode="src_over"
         android:id="@+id/view_pager"/>
