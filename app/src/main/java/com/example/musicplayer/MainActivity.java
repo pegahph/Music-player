@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private MusicService musicService;
     private Intent playIntent;
     private boolean musicBound = false;
-//    private MusicController controller;
+    private MusicController controller;
     private boolean paused=false, playbackPaused=false;
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
@@ -214,7 +214,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 
             Constant.setTheMediaPlayer(new TheMediaPlayer(musicService));
             theMediaPlayer = Constant.getTheMediaPlayer();
-            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager), true);
+            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager), true, null);
+            controller = Constant.getController();
 //            setController();
         }
 
@@ -240,6 +241,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         super.onResume();
         if (paused) {
             musicService.setList(songList);
+            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager), false, controller);
             paused = false;
         }
     }
@@ -310,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 
     public void songPicked(View view) {
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
-        musicService.setMusicController(Constant.getController());
+        musicService.setMusicController();
         musicService.playSong();
         if (playbackPaused) {
 //            setController();

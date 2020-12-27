@@ -58,8 +58,8 @@ public class MusicService extends Service
 
 
     private MusicController musicController;
-    public void setMusicController(MusicController musicController) {
-        this.musicController = musicController;
+    public void setMusicController() {
+        this.musicController = Constant.getController();
     }
 
     @Override
