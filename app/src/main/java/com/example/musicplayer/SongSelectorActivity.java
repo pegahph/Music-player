@@ -47,16 +47,19 @@ public class SongSelectorActivity extends AppCompatActivity {
         musicService = Constant.getMusicService();
         musicService.setList(thisArtistSongs);
         musicConnection = Constant.getMusicConnection();
-        controller = Constant.getController();
-        controller.hide();
-        controller.setAnchorView(findViewById(R.id.song_selector_list));
+
+        TheMediaPlayer mediaPlayer = Constant.getTheMediaPlayer();
+        mediaPlayer.setController(SongSelectorActivity.this, findViewById(R.id.song_selector_layout), true);
+//        controller = Constant.getController();
+//        controller.hide();
+//        controller.setAnchorView(findViewById(R.id.song_selector_list));
 
     }
 
     public void songPicked(View view) {
         Toast.makeText(this, "artist", Toast.LENGTH_SHORT).show();
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
-        musicService.setMusicController(controller);
+        musicService.setMusicController(Constant.getController());
         musicService.playSong();
 //        if (playbackPaused) {
 ////            setController();

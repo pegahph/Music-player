@@ -5,8 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import android.Manifest;
 import android.content.ComponentName;
@@ -17,7 +15,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -26,13 +23,12 @@ import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -209,16 +205,16 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             MusicBinder binder = (MusicBinder) service;
 
             musicService = binder.getService();
-            musicService.setMusicService(musicService);
             Constant.setMusicService(musicService);
+            musicService.setMusicService();
 
             musicService.setList(songList);
             musicBound = true;
             Constant.setMusicBound(musicBound);
 
-            theMediaPlayer = new TheMediaPlayer(musicService);
-            Constant.setTheMediaPlayer(theMediaPlayer);
-            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager));
+            Constant.setTheMediaPlayer(new TheMediaPlayer(musicService));
+            theMediaPlayer = Constant.getTheMediaPlayer();
+            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager), true);
 //            setController();
         }
 
@@ -243,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     protected void onResume() {
         super.onResume();
         if (paused) {
-//            setController();
+            musicService.setList(songList);
             paused = false;
         }
     }

@@ -41,8 +41,8 @@ public class MusicService extends Service
     private MediaPlayer player;
 
     private MusicService musicService;
-    public void setMusicService(MusicService musicService) {
-        this.musicService = musicService;
+    public void setMusicService() {
+        this.musicService = Constant.getMusicService();
     }
 
     private ArrayList<Song> songs;

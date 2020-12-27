@@ -81,11 +81,11 @@ public class TheMediaPlayer implements MediaPlayerControl {
         return 0;
     }
 
-    public void setController(Context context, View view){
-        if (controller == null)
+    public void setController(Context context, View view, boolean changeContext){
+        if (controller == null || changeContext)
         {
-            controller = new MusicController(context);
-            Constant.setController(controller);
+            Constant.setController(new MusicController(context));
+            controller = Constant.getController();
         }
         controller.setPrevNextListeners(new View.OnClickListener() {
             @Override
