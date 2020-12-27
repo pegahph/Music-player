@@ -5,7 +5,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SongSelectorActivity">
+    tools:context=".SongSelectorActivity"
+    android:background="@drawable/background7"
+    android:backgroundTint="@color/shadow"
+    android:backgroundTintMode="src_over">
 
     <TextView
         android:id="@+id/placeholder"
@@ -14,10 +17,12 @@
         android:layout_gravity="center"
         android:text="Just a placeholder"
         android:textColor="@color/SubsidiaryColor"
+        android:padding="10dp"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="5dp"
         android:id="@+id/song_selector_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
