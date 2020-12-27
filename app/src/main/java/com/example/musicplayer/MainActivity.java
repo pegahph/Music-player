@@ -48,7 +48,7 @@ import com.google.android.material.tabs.TabLayout;
 
 
 // The Main Activity.  Wow!!!
-public class MainActivity extends AppCompatActivity implements MediaPlayerControl {
+public class MainActivity extends AppCompatActivity {
     // we are using this ArrayList to store the Songs.
     private ArrayList<Song> songList;
     // and we are gonna show them in a ListView.
@@ -335,110 +335,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         stopService(playIntent);
         musicService = null;
         super.onDestroy();
-    }
-
-    @Override
-    public void start() {
-        musicService.go();
-    }
-
-    @Override
-    public void pause() {
-        playbackPaused = true;
-        musicService.pausePlayer();
-    }
-
-    @Override
-    public int getDuration() {
-        if (musicService != null && musicBound && musicService.isPng())
-            lastDuration = musicService.getDur();
-        return lastDuration;
-    }
-
-    @Override
-    public int getCurrentPosition() {
-        if (musicService != null && musicBound && musicService.isPng())
-            lastCurrentPos = musicService.getPos();
-        return lastCurrentPos;
-    }
-
-    @Override
-    public void seekTo(int pos) {
-        musicService.seek(pos);
-        lastCurrentPos = pos;
-    }
-
-    @Override
-    public boolean isPlaying() {
-        if (musicService != null && musicBound)
-            return musicService.isPng();
-        else return false;
-    }
-
-    @Override
-    public int getBufferPercentage() {
-        return 0;
-    }
-
-    @Override
-    public boolean canPause() {
-        return true;
-    }
-
-    @Override
-    public boolean canSeekBackward() {
-        return true;
-    }
-
-    @Override
-    public boolean canSeekForward() {
-        return true;
-    }
-
-    @Override
-    public int getAudioSessionId() {
-        return 0;
-    }
-
-//    private void setController(){
-//        if (controller == null)
-//        {
-//            controller = new MusicController(this);
-//            Constant.setController(controller);
-//        }
-//        controller.setPrevNextListeners(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                playNext();
-//            }
-//        }, new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                playPrev();
-//            }
-//        });
-//
-//        controller.setMediaPlayer(theMediaPlayer);
-////        controller.setMediaPlayer(this);
-//        controller.setAnchorView(findViewById(R.id.view_pager));
-//        controller.setEnabled(true);
-//    }
-
-    private void playNext() {
-        musicService.playNext();
-        if (playbackPaused) {
-//            setController();
-            playbackPaused = false;
-        }
-//        controller.show(0);
-    }
-    private void playPrev() {
-        musicService.playPrev();
-        if (playbackPaused) {
-//            setController();
-            playbackPaused = false;
-        }
-//        controller.show(0);
     }
 
 }
