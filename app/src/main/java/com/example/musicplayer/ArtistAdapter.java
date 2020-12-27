@@ -1,9 +1,12 @@
 package com.example.musicplayer;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,18 +46,25 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     public class ArtistViewHolder extends RecyclerView.ViewHolder {
 
         private TextView artistName;
+        private ImageView artistsArt;
         private View thisView;
 
         public ArtistViewHolder(@NonNull View itemView) {
             super(itemView);
 
             artistName = (TextView) itemView.findViewById(R.id.artist_name);
+            artistsArt = (ImageView) itemView.findViewById(R.id.albums_art);
             thisView = itemView;
         }
 
         public void bindView(int position) {
             Artist currentArtist = artists.get(position);
             artistName.setText(currentArtist.getArtistName());
+            Drawable albumArtImage = currentArtist.getAlbumArtBitmapDrawable();
+            if (albumArtImage != null)
+                artistsArt.setImageDrawable(albumArtImage);
+            else
+                artistsArt.setBackgroundColor(Color.parseColor("#ff5533"));
             thisView.setTag(currentArtist);
         }
     }
