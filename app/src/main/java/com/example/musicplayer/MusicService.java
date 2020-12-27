@@ -54,7 +54,9 @@ public class MusicService extends Service
     private boolean shuffle = false;
     private Random rand;
     boolean isPaused = false;
-    boolean isPlayed = false;
+    public static boolean isPlayed = false;
+
+    NotificationBuilder notificationBuilder;
 
 
     private MusicController musicController;
@@ -99,10 +101,17 @@ public class MusicService extends Service
         isPaused = false;
         isPlayed = true;
         musicController.show(0);
+        notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
         if (isPlayed)
-            buildNotification(generateAction(android.R.drawable.ic_media_pause, "Pause", ACTION_PAUSE));
+            notificationBuilder.builder(ACTION_PAUSE);
+
+//        notificationBuilder.buildNotification(notificationBuilder.generateAction(android.R.drawable.ic_media_pause, "Pause", ACTION_PAUSE));
+//            buildNotification(generateAction(android.R.drawable.ic_media_pause, "Pause", ACTION_PAUSE));
         if (isPaused)
-            buildNotification(generateAction(android.R.drawable.ic_media_play, "Play", ACTION_PLAY));
+            notificationBuilder.builder(ACTION_PLAY);
+
+//        notificationBuilder.buildNotification(notificationBuilder.generateAction(android.R.drawable.ic_media_play, "Play", ACTION_PLAY));
+//            buildNotification(generateAction(android.R.drawable.ic_media_play, "Play", ACTION_PLAY));
     }
 
     private Notification.Action generateAction(int icon, String title, String intentAction) {
@@ -259,7 +268,11 @@ public class MusicService extends Service
         player.pause();
         isPaused = true;
         isPlayed = false;
-        buildNotification(generateAction(android.R.drawable.ic_media_play, "Play", ACTION_PLAY));
+        notificationBuilder.builder(ACTION_PLAY);
+
+//        notificationBuilder.buildNotification(notificationBuilder.generateAction(android.R.drawable.ic_media_play, "Play", ACTION_PLAY));
+
+//        buildNotification(generateAction(android.R.drawable.ic_media_play, "Play", ACTION_PLAY));
     }
     public void seek(int pos) {
         player.seekTo(pos);
@@ -268,7 +281,10 @@ public class MusicService extends Service
         player.start();
         isPlayed = true;
         isPaused = false;
-        buildNotification(generateAction(android.R.drawable.ic_media_pause, "Pause", ACTION_PAUSE));
+        notificationBuilder.builder(ACTION_PAUSE);
+//        notificationBuilder.buildNotification(notificationBuilder.generateAction(android.R.drawable.ic_media_pause, "Pause", ACTION_PAUSE));
+
+//        buildNotification(generateAction(android.R.drawable.ic_media_pause, "Pause", ACTION_PAUSE));
     }
 
     public void playPrev() {
