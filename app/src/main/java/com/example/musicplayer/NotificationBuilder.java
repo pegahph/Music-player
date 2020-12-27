@@ -67,7 +67,7 @@ public class NotificationBuilder {
         BitmapDrawable image = song.getAlbumArtBitmapDrawable();
         Bitmap icon;
         if (image == null) {
-            icon = BitmapFactory.decodeResource(context.getResources(), R.drawable.icon1);
+            icon = BitmapFactory.decodeResource(context.getResources(), R.drawable.icon2);
         }
         else {
             icon = image.getBitmap();
