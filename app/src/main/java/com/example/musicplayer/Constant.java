@@ -35,4 +35,13 @@ public class Constant {
         Constant.musicBound = musicBound;
     }
 
+    public static TheMediaPlayer theMediaPlayer;
+    public static TheMediaPlayer getTheMediaPlayer() {
+        return theMediaPlayer;
+    }
+    public static void setTheMediaPlayer(TheMediaPlayer theMediaPlayer) {
+        Constant.theMediaPlayer = theMediaPlayer;
+    }
+
+
 }

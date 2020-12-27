@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private boolean paused=false, playbackPaused=false;
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
+    private TheMediaPlayer theMediaPlayer;
     String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
     TabLayout tabs;
     ViewPager viewPager;
@@ -121,7 +122,6 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 //        SongAdapter songAdapter = new SongAdapter(songList);
 //        songRV.setAdapter(songAdapter);
 //        songRV.setLayoutManager(new LinearLayoutManager(this));
-        setController();
         if (playIntent == null) {
             playIntent = new Intent(this, MusicService.class);
             playIntent.setAction(MusicService.ACTION_PLAY);
@@ -215,6 +215,10 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             musicService.setList(songList);
             musicBound = true;
             Constant.setMusicBound(musicBound);
+
+            theMediaPlayer = new TheMediaPlayer(musicService);
+            Constant.setTheMediaPlayer(theMediaPlayer);
+            setController();
         }
 
         @Override
@@ -415,7 +419,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
             }
         });
 
-        controller.setMediaPlayer(this);
+        controller.setMediaPlayer(theMediaPlayer);
+//        controller.setMediaPlayer(this);
         controller.setAnchorView(findViewById(R.id.view_pager));
         controller.setEnabled(true);
     }
