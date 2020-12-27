@@ -149,7 +149,7 @@ public class MusicService extends Service
                 .setContentTitle(songTitle)
                 .setContentText(songArtist)
                 .setContentIntent(pendingIntent)
-                .setOngoing(true)
+                .setOngoing(isPlayed)
                 .setStyle(style);
         builder.addAction(generateAction(android.R.drawable.ic_media_previous, "Previous", ACTION_PREVIOUS));
 //        builder.addAction(generateAction(android.R.drawable.ic_media_rew, "Rewind", ACTION_REWIND));
