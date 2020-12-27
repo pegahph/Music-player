@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     private MusicService musicService;
     private Intent playIntent;
     private boolean musicBound = false;
-    private MusicController controller;
+//    private MusicController controller;
     private boolean paused=false, playbackPaused=false;
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
@@ -218,7 +218,8 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 
             theMediaPlayer = new TheMediaPlayer(musicService);
             Constant.setTheMediaPlayer(theMediaPlayer);
-            setController();
+            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager));
+//            setController();
         }
 
         @Override
@@ -248,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
     }
     @Override
     protected void onStop() {
-        controller.hide();
+        Constant.getController().hide();
         super.onStop();
     }
 
@@ -313,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
 
     public void songPicked(View view) {
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
-        musicService.setMusicController(controller);
+        musicService.setMusicController(Constant.getController());
         musicService.playSong();
         if (playbackPaused) {
 //            setController();
@@ -401,29 +402,29 @@ public class MainActivity extends AppCompatActivity implements MediaPlayerContro
         return 0;
     }
 
-    private void setController(){
-        if (controller == null)
-        {
-            controller = new MusicController(this);
-            Constant.setController(controller);
-        }
-        controller.setPrevNextListeners(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playNext();
-            }
-        }, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playPrev();
-            }
-        });
-
-        controller.setMediaPlayer(theMediaPlayer);
-//        controller.setMediaPlayer(this);
-        controller.setAnchorView(findViewById(R.id.view_pager));
-        controller.setEnabled(true);
-    }
+//    private void setController(){
+//        if (controller == null)
+//        {
+//            controller = new MusicController(this);
+//            Constant.setController(controller);
+//        }
+//        controller.setPrevNextListeners(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                playNext();
+//            }
+//        }, new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                playPrev();
+//            }
+//        });
+//
+//        controller.setMediaPlayer(theMediaPlayer);
+////        controller.setMediaPlayer(this);
+//        controller.setAnchorView(findViewById(R.id.view_pager));
+//        controller.setEnabled(true);
+//    }
 
     private void playNext() {
         musicService.playNext();

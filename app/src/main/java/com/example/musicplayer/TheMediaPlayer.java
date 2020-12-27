@@ -1,13 +1,16 @@
 package com.example.musicplayer;
 
+import android.content.Context;
+import android.view.View;
 import android.widget.MediaController.MediaPlayerControl;
 
 public class TheMediaPlayer implements MediaPlayerControl {
     private MusicService musicService;
-    private boolean paused=false, playbackPaused=false;
+    private boolean playbackPaused=false;
     private boolean musicBound = false;
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
+    private MusicController controller;
 
 
     public TheMediaPlayer(MusicService musicService) {
@@ -77,4 +80,41 @@ public class TheMediaPlayer implements MediaPlayerControl {
     public int getAudioSessionId() {
         return 0;
     }
+
+    public void setController(Context context, View view){
+        if (controller == null)
+        {
+            controller = new MusicController(context);
+            Constant.setController(controller);
+        }
+        controller.setPrevNextListeners(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playNext();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playPrev();
+            }
+        });
+
+        controller.setMediaPlayer(this);
+        controller.setAnchorView(view);
+        controller.setEnabled(true);
+    }
+
+    private void playNext() {
+        musicService.playNext();
+        if (playbackPaused) {
+            playbackPaused = false;
+        }
+    }
+    private void playPrev() {
+        musicService.playPrev();
+        if (playbackPaused) {
+            playbackPaused = false;
+        }
+    }
+
 }
