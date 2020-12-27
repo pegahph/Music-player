@@ -148,6 +148,7 @@ public class MusicService extends Service
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(songTitle)
                 .setContentText(songArtist)
+                .setLargeIcon(songs.get(songPos).getAlbumArtBitmapDrawable().getBitmap())
                 .setContentIntent(pendingIntent)
                 .setOngoing(isPlayed)
                 .setStyle(style);
