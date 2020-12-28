@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/top_half"
@@ -9,59 +9,67 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/cover_art"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        app:srcCompat="@drawable/background5" />
-
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/trackNameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="track name"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:singleLine="true"/>
+        <ImageView
+            android:id="@+id/cover_art"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            app:srcCompat="@drawable/background5" />
 
-        <TextView
-            android:id="@+id/artistNameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="artist name" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/trackNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="track name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:singleLine="true"/>
+
+            <TextView
+                android:id="@+id/artistNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="artist name" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/prevBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            app:srcCompat="@android:drawable/ic_media_previous" />
+
+        <ImageButton
+            android:id="@+id/playBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            app:srcCompat="@android:drawable/ic_media_play" />
+
+        <ImageButton
+            android:id="@+id/nextBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            app:srcCompat="@android:drawable/ic_media_next" />
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/prevBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@null"
-        android:scaleType="centerCrop"
-        app:srcCompat="@android:drawable/ic_media_previous" />
-
-    <ImageButton
-        android:id="@+id/playBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@null"
-        android:scaleType="centerCrop"
-        app:srcCompat="@android:drawable/ic_media_play" />
-
-    <ImageButton
-        android:id="@+id/nextBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@null"
-        android:scaleType="centerCrop"
-        app:srcCompat="@android:drawable/ic_media_next" />
-</LinearLayout>
+</FrameLayout>
