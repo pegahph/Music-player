@@ -1,3 +1,3 @@
 # Music-player
 android project
-a music player app for android devices.
+## a music player app for android devices.
