@@ -338,4 +338,9 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+
+    public void controllerClicked(View view) {
+        Toast.makeText(this, "controller clicked", Toast.LENGTH_SHORT).show();
+    }
+
 }

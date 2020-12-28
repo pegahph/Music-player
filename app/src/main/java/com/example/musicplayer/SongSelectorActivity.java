@@ -68,4 +68,9 @@ public class SongSelectorActivity extends AppCompatActivity {
 //        }
 //        controller.show(0);
     }
+
+
+    public void controllerClicked(View view) {
+        Toast.makeText(this, "controller clicked", Toast.LENGTH_SHORT).show();
+    }
 }
