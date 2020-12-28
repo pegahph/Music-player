@@ -214,8 +214,9 @@ public class MainActivity extends AppCompatActivity {
             musicBound = true;
             Constant.setMusicBound(musicBound);
 
-            Constant.setTheMediaPlayer(new TheMediaPlayer(musicService, (LinearLayout) findViewById(R.id.top_half)));
+            Constant.setTheMediaPlayer(new TheMediaPlayer(musicService));
             theMediaPlayer = Constant.getTheMediaPlayer();
+            theMediaPlayer.setAnchorLayout((LinearLayout) findViewById(R.id.top_half));
             theMediaPlayer.setController();
 //            controller = Constant.getController();
 //            setController();
