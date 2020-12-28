@@ -46,9 +46,12 @@ public class TheMediaPlayer implements MediaPlayerControl {
             playBtn.setImageResource(android.R.drawable.ic_media_play);
     }
 
-    public TheMediaPlayer(MusicService musicService, LinearLayout controllerLayout) {
+    public TheMediaPlayer(MusicService musicService) {
         this.musicService = musicService;
         this.musicBound = Constant.isMusicBound();
+    }
+
+    public void setAnchorLayout(LinearLayout controllerLayout) {
         this.controllerLayout = controllerLayout;
         prevBtn = (ImageButton) this.controllerLayout.findViewById(R.id.prevBtn);
         playBtn = (ImageButton) this.controllerLayout.findViewById(R.id.playBtn);
