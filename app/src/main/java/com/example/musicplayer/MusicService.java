@@ -323,4 +323,8 @@ public class MusicService extends Service
         shuffle = !shuffle;
     }
 
+    public Song getCurrentSong(){
+        return songs.get(songPos);
+    }
+
 }

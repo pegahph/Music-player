@@ -340,7 +340,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void controllerClicked(View view) {
-        Toast.makeText(this, "controller clicked", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this , SongPlayerPage.class);
+        startActivity(intent);
     }
 
 }
