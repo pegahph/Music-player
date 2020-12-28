@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +23,7 @@ public class SongSelectorActivity extends AppCompatActivity {
     private long artistAlbumId;
     private MusicService musicService;
     private ServiceConnection musicConnection;
-//    private MusicController controller;
+    private MusicController controller;
 
 
     @Override
@@ -50,8 +50,8 @@ public class SongSelectorActivity extends AppCompatActivity {
         musicConnection = Constant.getMusicConnection();
 
         TheMediaPlayer mediaPlayer = Constant.getTheMediaPlayer();
-        mediaPlayer.setAnchorLayout((LinearLayout) findViewById(R.id.top_half));
-//        controller = Constant.getController();
+        mediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
+        controller = Constant.getController();
 //        controller.hide();
 //        controller.setAnchorView(findViewById(R.id.song_selector_list));
 

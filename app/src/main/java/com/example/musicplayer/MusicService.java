@@ -100,7 +100,8 @@ public class MusicService extends Service
         mp.start();
         isPaused = false;
         isPlayed = true;
-        Constant.getTheMediaPlayer().setPlayBtn(true);
+        Constant.getController().show();
+//        Constant.getTheMediaPlayer().setPlayBtn(true);
 //        musicController.show(0);
         notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
         if (isPlayed)
@@ -115,12 +116,12 @@ public class MusicService extends Service
 //            buildNotification(generateAction(android.R.drawable.ic_media_play, "Play", ACTION_PLAY));
     }
 
-    private Notification.Action generateAction(int icon, String title, String intentAction) {
-        Intent intent = new Intent(getApplicationContext(), MusicService.class);
-        intent.setAction(intentAction);
-        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 1, intent, 0);
-        return new Notification.Action.Builder(icon, title, pendingIntent).build();
-    }
+//    private Notification.Action generateAction(int icon, String title, String intentAction) {
+//        Intent intent = new Intent(getApplicationContext(), MusicService.class);
+//        intent.setAction(intentAction);
+//        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 1, intent, 0);
+//        return new Notification.Action.Builder(icon, title, pendingIntent).build();
+//    }
 
     private void handleIntent(Intent intent) {
         if(intent == null || intent.getAction() == null)
@@ -130,12 +131,14 @@ public class MusicService extends Service
 
         if (action.equalsIgnoreCase(ACTION_PLAY)) {
             musicService.go();
+            Constant.getController().show();
 //            musicController.show(0);
-            Constant.getTheMediaPlayer().setPlayBtn(true);
+//            Constant.getTheMediaPlayer().setPlayBtn(true);
         } else if (action.equalsIgnoreCase(ACTION_PAUSE)) {
             musicService.pausePlayer();
+            Constant.getController().show();
 //            musicController.show(0);
-            Constant.getTheMediaPlayer().setPlayBtn(false);
+//            Constant.getTheMediaPlayer().setPlayBtn(false);
         } else if (action.equalsIgnoreCase(ACTION_FAST_FORWARD)) {
 //            musicController.getTransportControls().fastForward();
         } else if (action.equalsIgnoreCase(ACTION_REWIND)) {
@@ -150,28 +153,28 @@ public class MusicService extends Service
 //        musicController.show(0);
     }
 
-    private void buildNotification(Notification.Action action) {
-        Notification.MediaStyle style = new Notification.MediaStyle();
-
-        Intent intent = new Intent(getApplicationContext(), MusicService.class);
-        intent.setAction(ACTION_STOP);
-        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 1, intent, 0);
-        Notification.Builder builder = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle(songTitle)
-                .setContentText(songArtist)
-                .setLargeIcon(songs.get(songPos).getAlbumArtBitmapDrawable().getBitmap())
-                .setContentIntent(pendingIntent)
-                .setOngoing(isPlayed)
-                .setStyle(style);
-        builder.addAction(generateAction(android.R.drawable.ic_media_previous, "Previous", ACTION_PREVIOUS));
-//        builder.addAction(generateAction(android.R.drawable.ic_media_rew, "Rewind", ACTION_REWIND));
-        builder.addAction(action);
-//        builder.addAction(generateAction(android.R.drawable.ic_media_ff, "Fast Foward", ACTION_FAST_FORWARD));
-        builder.addAction(generateAction(android.R.drawable.ic_media_next, "Next", ACTION_NEXT));
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, builder.build());
-    }
+//    private void buildNotification(Notification.Action action) {
+//        Notification.MediaStyle style = new Notification.MediaStyle();
+//
+//        Intent intent = new Intent(getApplicationContext(), MusicService.class);
+//        intent.setAction(ACTION_STOP);
+//        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 1, intent, 0);
+//        Notification.Builder builder = new Notification.Builder(this)
+//                .setSmallIcon(R.drawable.ic_launcher_foreground)
+//                .setContentTitle(songTitle)
+//                .setContentText(songArtist)
+//                .setLargeIcon(songs.get(songPos).getAlbumArtBitmapDrawable().getBitmap())
+//                .setContentIntent(pendingIntent)
+//                .setOngoing(isPlayed)
+//                .setStyle(style);
+//        builder.addAction(generateAction(android.R.drawable.ic_media_previous, "Previous", ACTION_PREVIOUS));
+////        builder.addAction(generateAction(android.R.drawable.ic_media_rew, "Rewind", ACTION_REWIND));
+//        builder.addAction(action);
+////        builder.addAction(generateAction(android.R.drawable.ic_media_ff, "Fast Foward", ACTION_FAST_FORWARD));
+//        builder.addAction(generateAction(android.R.drawable.ic_media_next, "Next", ACTION_NEXT));
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        notificationManager.notify(1, builder.build());
+//    }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
@@ -239,9 +242,9 @@ public class MusicService extends Service
         songTitle = playSong.getTitle();
         songArtist = playSong.getArtist();
 
-        Constant.getTheMediaPlayer().setTrackName(songTitle);
-        Constant.getTheMediaPlayer().setArtistName(songArtist);
-        Constant.getTheMediaPlayer().setCoverArt(songs.get(songPos).getAlbumArtBitmapDrawable().getBitmap());
+        Constant.getController().setTrackName(songTitle);
+        Constant.getController().setArtistName(songArtist);
+        Constant.getController().setCoverArt(songs.get(songPos).getAlbumArtBitmapDrawable().getBitmap());
 
         // get id
         long currSong = playSong.getId();

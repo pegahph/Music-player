@@ -28,13 +28,10 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.MediaController.MediaPlayerControl;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import java.io.InputStream;
@@ -58,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private MusicService musicService;
     private Intent playIntent;
     private boolean musicBound = false;
-//    private MusicController controller;
+    private MusicController controller;
     private boolean paused=false, playbackPaused=false;
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
@@ -214,11 +211,10 @@ public class MainActivity extends AppCompatActivity {
             musicBound = true;
             Constant.setMusicBound(musicBound);
 
-            Constant.setTheMediaPlayer(new TheMediaPlayer(musicService));
+            Constant.setTheMediaPlayer(new TheMediaPlayer(musicService, getApplicationContext()));
             theMediaPlayer = Constant.getTheMediaPlayer();
-            theMediaPlayer.setAnchorLayout((LinearLayout) findViewById(R.id.top_half));
-            theMediaPlayer.setController();
-//            controller = Constant.getController();
+            theMediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
+            controller = Constant.getController();
 //            setController();
         }
 
@@ -244,6 +240,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (paused) {
             musicService.setList(songList);
+            theMediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
+            controller = Constant.getController();
 //            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager), false, controller);
             paused = false;
         }
