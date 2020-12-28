@@ -7,5 +7,7 @@
     <color name="SubsidiaryColor">#08F7FE</color>
     <color name="mainColor">#5DE8E5</color>
     <color name="shadow">#E2212529</color>
+    <color name="shadow2">#52B80977</color>
+    <color name="colorRed">#E2F3004C</color>
 
 </resources>

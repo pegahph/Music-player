@@ -59,10 +59,10 @@ public class MusicService extends Service
     NotificationBuilder notificationBuilder;
 
 
-    private MusicController musicController;
-    public void setMusicController() {
-        this.musicController = Constant.getController();
-    }
+//    private MusicController musicController;
+//    public void setMusicController() {
+//        this.musicController = Constant.getController();
+//    }
 
     @Override
     public void onCreate() {
@@ -100,7 +100,8 @@ public class MusicService extends Service
         mp.start();
         isPaused = false;
         isPlayed = true;
-        musicController.show(0);
+        Constant.getTheMediaPlayer().setPlayBtn(true);
+//        musicController.show(0);
         notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
         if (isPlayed)
             notificationBuilder.builder(ACTION_PAUSE);
@@ -129,10 +130,12 @@ public class MusicService extends Service
 
         if (action.equalsIgnoreCase(ACTION_PLAY)) {
             musicService.go();
-            musicController.show(0);
+//            musicController.show(0);
+            Constant.getTheMediaPlayer().setPlayBtn(true);
         } else if (action.equalsIgnoreCase(ACTION_PAUSE)) {
             musicService.pausePlayer();
-            musicController.show(0);
+//            musicController.show(0);
+            Constant.getTheMediaPlayer().setPlayBtn(false);
         } else if (action.equalsIgnoreCase(ACTION_FAST_FORWARD)) {
 //            musicController.getTransportControls().fastForward();
         } else if (action.equalsIgnoreCase(ACTION_REWIND)) {
@@ -235,6 +238,11 @@ public class MusicService extends Service
 
         songTitle = playSong.getTitle();
         songArtist = playSong.getArtist();
+
+        Constant.getTheMediaPlayer().setTrackName(songTitle);
+        Constant.getTheMediaPlayer().setArtistName(songArtist);
+        Constant.getTheMediaPlayer().setCoverArt(songs.get(songPos).getAlbumArtBitmapDrawable().getBitmap());
+
         // get id
         long currSong = playSong.getId();
 

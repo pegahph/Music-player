@@ -26,5 +26,11 @@
         android:layout_marginTop="5dp"
         android:id="@+id/song_selector_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <include
+        layout="@layout/custom_controller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
