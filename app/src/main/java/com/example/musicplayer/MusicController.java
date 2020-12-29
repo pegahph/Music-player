@@ -22,7 +22,6 @@ public class MusicController extends FrameLayout {
     public MusicController(@NonNull Context context) {
         super(context);
         this.context = context;
-        Toast.makeText(context, "this is a controller", Toast.LENGTH_SHORT).show();
     }
 
     public void setParentLayout(FrameLayout root) {

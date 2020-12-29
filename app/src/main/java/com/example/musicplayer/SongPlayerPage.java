@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import io.alterac.blurkit.BlurKit;
 import io.alterac.blurkit.BlurLayout;
@@ -15,7 +16,8 @@ public class SongPlayerPage extends AppCompatActivity {
     BlurLayout blurLayout;
     MusicService theMusicService;
     Song song;
-    ImageView cover;
+    ImageView backCover , forCover;
+    TextView songName , songArtist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +26,21 @@ public class SongPlayerPage extends AppCompatActivity {
         blurLayout = findViewById(R.id.blurLayout);
         theMusicService = Constant.getMusicService();
         song = theMusicService.getCurrentSong();
-        cover = findViewById(R.id.musicCover);
+        backCover = findViewById(R.id.backCover);
+        forCover = findViewById(R.id.forCover);
+        songName = findViewById(R.id.songName);
+        songArtist = findViewById(R.id.songArtist);
+        songName.setText(song.getTitle());
+        songArtist.setText(song.getArtist());
+        songName.setSelected(true);
         Drawable songCover = song.getAlbumArtBitmapDrawable();
         if(songCover!=null){
-            cover.setImageDrawable(songCover);
+            backCover.setImageDrawable(songCover);
+            forCover.setImageDrawable(songCover);
         }
         else {
-            cover.setImageResource(R.drawable.background6);
+            backCover.setImageResource(R.drawable.background6);
+            forCover.setImageResource(R.drawable.background6);
         }
     }
 
