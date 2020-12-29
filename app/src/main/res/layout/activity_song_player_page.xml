@@ -8,10 +8,11 @@
 
     <io.alterac.blurkit.BlurLayout
         android:id="@+id/blurLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:blk_blurRadius="5"
-        app:blk_fps="0">
+        app:blk_downscaleFactor="0.12"
+        app:blk_fps="5">
 
         <ImageView
             android:id="@+id/backCover"
@@ -122,7 +123,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".75"/>
+            android:layout_weight="1"/>
 
 
         <ImageView
