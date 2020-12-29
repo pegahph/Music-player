@@ -63,7 +63,7 @@
             android:layout_height="40dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            app:srcCompat="@android:drawable/ic_media_play" />
+            app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
 
         <ImageButton
             android:id="@+id/nextBtn"

@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +17,21 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import java.io.File;
 import java.io.InputStream;
 
 public class Song {
     public static ContentResolver musicResolver;
     public static Resources resources;
-    public static String rootFolder;
-    Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+    public static String INTERNAL_STORAGE_ROOT_PATH = Environment.getExternalStorageDirectory().getPath();
+    public static String EXTERNAL_STORAGE_ROOT_PATH = Environment.getStorageDirectory().getPath();
     private long id;
     private String title;
     private String artist;
     private String path;
-//    private String folder;
+    private String folder;
     private long albumId;
+    private boolean internalStorage;
 
     public Song(long songId, String songTitle, String songArtist, long albumId, String songPath) {
         this.id = songId;
@@ -73,12 +76,32 @@ public class Song {
     // Oh my God!!!
     // I did it.
     public String getFolder() {
-        String[] directory = path.split("/");
-        int index = directory.length - 2;
-        return path;
-    }
+        if (folder != null)
+        {
+            return folder;
+        }
+        internalStorage = path.startsWith(INTERNAL_STORAGE_ROOT_PATH);
+        if (internalStorage)
+        {
+            int index = path.indexOf(INTERNAL_STORAGE_ROOT_PATH) + INTERNAL_STORAGE_ROOT_PATH.length();
+            String s = path.substring(index);
 
-    private void getDefaultPath() {
-
+            // contains only one slash. means that the file is just in internal storage.
+            if (s.split("/").length == 2)  // is two because first one is ""
+            {
+                folder = "internal storage";     // second on is INTERNAL_STORAGE_ROOT_PATH
+            }
+            else
+            {
+                String[] tree = s.split("/");
+                folder = tree[tree.length - 2]; // because last one is the song title itself.
+            }
+        } else {
+            int index = path.indexOf(EXTERNAL_STORAGE_ROOT_PATH) + EXTERNAL_STORAGE_ROOT_PATH.length();
+            String s = path.substring(index);
+            String[] tree = s.split("/");
+            folder = tree[tree.length - 2];
+        }
+        return folder;
     }
 }
