@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class ListMaker {
     static ArrayList<Song> songList = new ArrayList<>();
     static ArrayList<Artist> artistList = new ArrayList<>();
+    static ArrayList<Folder> folderList = new ArrayList<>();
     static ContentResolver musicResolver;
     static Resources resources;
 
@@ -21,6 +22,7 @@ public class ListMaker {
     }
     private static void getSongs() {
         ArrayList<String> artists = new ArrayList<>();
+        ArrayList<String> folders = new ArrayList<>();
 
         Uri musicUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 
@@ -56,11 +58,17 @@ public class ListMaker {
                 String thisArtist = musicCursor.getString(artistColumn);
                 long album_id = musicCursor.getLong(albumIdColumn);
                 String path = musicCursor.getString(pathColumn);
-                songList.add(new Song(thisId, thisTitle, thisArtist, album_id, path));
+                Song thisSong = new Song(thisId, thisTitle, thisArtist, album_id, path);
+                songList.add(thisSong);
+                String thisFolder = thisSong.getFolder();
 
                 if (!artists.contains(thisArtist)) {
                     artists.add(thisArtist);
                     artistList.add(new Artist(album_id, thisArtist));
+                }
+                if (!folders.contains(thisFolder)) {
+                    folders.add(thisFolder);
+                    folderList.add(new Folder(album_id, thisFolder));
                 }
             } while (musicCursor.moveToNext());
         }
@@ -80,6 +88,22 @@ public class ListMaker {
             }
         }
         return thisArtistsSongs;
+    }
+
+    public static ArrayList<Folder> loadFolders() {
+        if (folderList.size() == 0)
+            getSongs();
+        return folderList;
+    }
+
+    public static ArrayList<Song> getThisFolderSongs(String thisFolderName){
+        ArrayList<Song> thisFolderSongs = new ArrayList<>();
+        for(int i=0; i<songList.size(); i++){
+            if(songList.get(i).getFolder().equals(thisFolderName)){
+                thisFolderSongs.add(songList.get(i));
+            }
+        }
+        return thisFolderSongs;
     }
 
 }
