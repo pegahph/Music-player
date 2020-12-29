@@ -23,6 +23,7 @@ public class SongPlayerPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_player_page);
+        getSupportActionBar().hide();
         blurLayout = findViewById(R.id.blurLayout);
         theMusicService = Constant.getMusicService();
         song = theMusicService.getCurrentSong();

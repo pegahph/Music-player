@@ -75,7 +75,7 @@ public class Song {
     public String getFolder() {
         String[] directory = path.split("/");
         int index = directory.length - 2;
-        return directory[index];
+        return path;
     }
 
     private void getDefaultPath() {
