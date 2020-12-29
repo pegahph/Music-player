@@ -15,6 +15,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -241,10 +242,14 @@ public class MusicService extends Service
 
         songTitle = playSong.getTitle();
         songArtist = playSong.getArtist();
+//        Toast.makeText(getApplicationContext(), "path.split(): " + playSong.getFolder()[1] + " +++ " + playSong.getFolder()[2], Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "path.: " + playSong.getFolder(), Toast.LENGTH_LONG).show();
+
 
         Constant.getController().setTrackName(songTitle);
         Constant.getController().setArtistName(songArtist);
-        Constant.getController().setCoverArt(songs.get(songPos).getAlbumArtBitmapDrawable().getBitmap());
+        if (songs.get(songPos).getAlbumArtBitmapDrawable() != null)
+            Constant.getController().setCoverArt(songs.get(songPos).getAlbumArtBitmapDrawable().getBitmap());
 
         // get id
         long currSong = playSong.getId();

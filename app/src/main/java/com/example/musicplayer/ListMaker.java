@@ -31,7 +31,7 @@ public class ListMaker {
                 MediaStore.Audio.Media._ID,
                 MediaStore.Audio.Media.ARTIST,
                 MediaStore.Audio.Media.TITLE,
-//                MediaStore.Audio.Media.DATA,
+                MediaStore.MediaColumns.DATA,
 //                MediaStore.Audio.Media.DISPLAY_NAME,
 //                MediaStore.Audio.Media.DURATION,
                 MediaStore.Audio.Media.ALBUM_ID
@@ -46,6 +46,7 @@ public class ListMaker {
             int idColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media._ID);
             int artistColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int albumIdColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
+            int pathColumn = musicCursor.getColumnIndex(MediaStore.MediaColumns.DATA);
             Song.musicResolver = musicResolver;
             Song.resources = resources;
             // add songs to list
@@ -54,7 +55,8 @@ public class ListMaker {
                 String thisTitle = musicCursor.getString(titleColumn);
                 String thisArtist = musicCursor.getString(artistColumn);
                 long album_id = musicCursor.getLong(albumIdColumn);
-                songList.add(new Song(thisId, thisTitle, thisArtist, album_id));
+                String path = musicCursor.getString(pathColumn);
+                songList.add(new Song(thisId, thisTitle, thisArtist, album_id, path));
 
                 if (!artists.contains(thisArtist)) {
                     artists.add(thisArtist);
