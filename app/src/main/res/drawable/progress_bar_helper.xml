@@ -3,8 +3,9 @@
     <item android:id="@android:id/background">
         <shape
             android:shape="ring"
-            android:useLevel="false">
-            <solid android:color="#FF01579B" />
+            android:useLevel="false"
+            android:thickness="20dp">
+            <solid android:color="#0A0A0A" />
         </shape>
     </item>
     <item android:id="@android:id/progress">
@@ -14,8 +15,9 @@
             android:toDegrees="270">
             <shape
                 android:shape="ring"
-                android:useLevel="true">
-                <solid android:color="#52B80977" />
+                android:useLevel="true"
+                android:thickness="12dp">
+                <solid android:color="#1ABC9C" />
             </shape>
         </rotate>
     </item>
