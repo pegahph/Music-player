@@ -46,7 +46,7 @@ public class SongSelectorActivity extends AppCompatActivity {
         {
             sectionName = in.getStringExtra("selectedFolderName");
             sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
-//            theSongs = ListMaker.getThisFolderSongs(sectionName);
+            theSongs = ListMaker.getThisFolderSongs(sectionName);
         }
 
         placeholder = (TextView) findViewById(R.id.placeholder);
