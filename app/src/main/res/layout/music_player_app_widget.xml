@@ -24,7 +24,8 @@
         <TextView
             android:id="@+id/textView0"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginTop="45dp"
             android:gravity="center"
             android:text="Music"
@@ -39,7 +40,8 @@
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="Artist"
             android:textColor="#FFFFFF"
@@ -52,7 +54,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="0dp"
+            android:layout_weight="3"
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
