@@ -9,6 +9,7 @@ public class ThePagerAdapter extends FragmentPagerAdapter {
     int tabsCount;
     MainFragment mainFragment;
     ArtistsFragment artistsFragment;
+    FolderFragment folderFragment;
     public ThePagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
         tabsCount = behavior;
@@ -19,12 +20,15 @@ public class ThePagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         mainFragment = new MainFragment();
         artistsFragment = new ArtistsFragment();
+        folderFragment = new FolderFragment();
 
         switch (position) {
             case 0:
-                return mainFragment;
+                return folderFragment;
             case 1:
                 return artistsFragment;
+            case 2:
+                return mainFragment;
             default:
                 return artistsFragment;
         }
