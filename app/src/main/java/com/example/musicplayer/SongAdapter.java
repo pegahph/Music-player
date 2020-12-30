@@ -43,11 +43,11 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             Song currentSong = songs.get(position);
             songTitle.setText(currentSong.getTitle());
             songArtist.setText(currentSong.getArtist());
-            Drawable albumArtImage = currentSong.getAlbumArtBitmapDrawable();
-            if (albumArtImage != null)
-                albumArt.setImageDrawable(albumArtImage);
-            else
-                albumArt.setBackgroundColor(Color.parseColor("#ff5533"));
+//            Drawable albumArtImage = currentSong.getAlbumArtBitmapDrawable();
+//            if (albumArtImage != null)
+//                albumArt.setImageDrawable(albumArtImage);
+//            else
+//                albumArt.setImageResource(R.drawable.icon2);
 
             thisView.setTag(position);
         }

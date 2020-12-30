@@ -60,11 +60,11 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
         public void bindView(int position) {
             Artist currentArtist = artists.get(position);
             artistName.setText(currentArtist.getArtistName());
-            Drawable albumArtImage = currentArtist.getAlbumArtBitmapDrawable();
-            if (albumArtImage != null)
-                artistsArt.setImageDrawable(albumArtImage);
-            else
-                artistsArt.setBackgroundColor(Color.parseColor("#ff5533"));
+//            Drawable albumArtImage = currentArtist.getAlbumArtBitmapDrawable();
+//            if (albumArtImage != null)
+//                artistsArt.setImageDrawable(albumArtImage);
+//            else
+//                artistsArt.setImageResource(R.drawable.icon2);
             thisView.setTag(currentArtist);
         }
     }

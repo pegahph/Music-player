@@ -22,20 +22,19 @@
             android:id="@+id/albums_art"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/icon1" />
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/artist_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:layout_marginLeft="10dp"
             android:singleLine="true"
             android:textColor="@color/mainColor"
             android:textSize="18sp"
-            android:layout_gravity="center"
             android:textStyle="bold" />
     </LinearLayout>
 
