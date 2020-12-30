@@ -239,7 +239,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (paused) {
-            musicService.setList(songList);
             theMediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
             controller = Constant.getController();
 //            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager), false, controller);
@@ -314,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
     public void songPicked(View view) {
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
 //        musicService.setMusicController();
+        musicService.setList(songList);
         musicService.playSong();
         if (playbackPaused) {
 //            setController();

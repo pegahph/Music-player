@@ -82,6 +82,6 @@ public class SongSelectorActivity extends AppCompatActivity {
 
 
     public void controllerClicked(View view) {
-        Toast.makeText(this, "controller clicked", Toast.LENGTH_SHORT).show();
-    }
+        Intent intent = new Intent(SongSelectorActivity.this , SongPlayerPage.class);
+        startActivity(intent);    }
 }
