@@ -323,11 +323,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void artistSelected(View view) {
-        Artist selectedArtist = (Artist) view.getTag();
         Intent songSelectorIntent = new Intent(MainActivity.this, SongSelectorActivity.class);
-        Toast.makeText(this, selectedArtist.getArtistName(), Toast.LENGTH_SHORT).show();
-        songSelectorIntent.putExtra("selectedArtistName", selectedArtist.getArtistName());
-        songSelectorIntent.putExtra("selectedArtistAlbumId", selectedArtist.getAlbumId());
+
+        long albumId = 0;
+        String name = "";
+
+        if (view.getTag() instanceof Artist)
+        {
+            Artist selectedArtist = (Artist) view.getTag();
+            Toast.makeText(this, selectedArtist.getArtistName(), Toast.LENGTH_SHORT).show();
+            name = selectedArtist.getArtistName();
+            albumId = selectedArtist.getAlbumId();
+            songSelectorIntent.putExtra("tab", "Artist");
+            songSelectorIntent.putExtra("selectedArtistName", name);
+            songSelectorIntent.putExtra("selectedArtistAlbumId", albumId);
+
+        }
+        else if (view.getTag() instanceof Folder)
+        {
+            Folder selectedFolder = (Folder) view.getTag();
+            Toast.makeText(this, selectedFolder.getFolderName(), Toast.LENGTH_SHORT).show();
+            name = selectedFolder.getFolderName();
+            albumId = selectedFolder.getAlbumId();
+            songSelectorIntent.putExtra("tab", "Folder");
+            songSelectorIntent.putExtra("selectedFolderName", name);
+            songSelectorIntent.putExtra("selectedFolderAlbumId", albumId);
+        }
         startActivity(songSelectorIntent);
     }
 

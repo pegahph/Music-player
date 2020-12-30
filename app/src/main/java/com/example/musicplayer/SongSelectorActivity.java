@@ -18,9 +18,9 @@ public class SongSelectorActivity extends AppCompatActivity {
 
     private TextView placeholder;
     private RecyclerView songSelectorList;
-    private ArrayList<Song> thisArtistSongs;
-    private String artistName;
-    private long artistAlbumId;
+    private ArrayList<Song> theSongs;
+    private String sectionName;
+    private long sectionAlbumId;
     private MusicService musicService;
     private ServiceConnection musicConnection;
     private MusicController controller;
@@ -31,22 +31,33 @@ public class SongSelectorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_selector);
 
+        theSongs = new ArrayList<>();
+
         Intent in = getIntent();
-        artistName = in.getStringExtra("selectedArtistName");
-        artistAlbumId = in.getLongExtra("selectedArtistAlbumId", 0);
+        String tab = in.getStringExtra("tab");
+        assert tab != null;
+        if (tab.equals("Artist"))
+        {
+            sectionName = in.getStringExtra("selectedArtistName");
+            sectionAlbumId = in.getLongExtra("selectedArtistAlbumId", 0);
+            theSongs = ListMaker.getThisArtistsSongs(sectionName);
+        }
+        else if (tab.equals("Folder"))
+        {
+            sectionName = in.getStringExtra("selectedFolderName");
+            sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
+//            theSongs = ListMaker.getThisFolderSongs(sectionName);
+        }
 
         placeholder = (TextView) findViewById(R.id.placeholder);
         songSelectorList = (RecyclerView) findViewById(R.id.song_selector_list);
 
-        thisArtistSongs = new ArrayList<>();
-        thisArtistSongs = ListMaker.getThisArtistsSongs(artistName);
-
-        SongAdapter songAdapter = new SongAdapter(thisArtistSongs);
+        SongAdapter songAdapter = new SongAdapter(theSongs);
         songSelectorList.setAdapter(songAdapter);
         songSelectorList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         musicService = Constant.getMusicService();
-        musicService.setList(thisArtistSongs);
+        musicService.setList(theSongs);
         musicConnection = Constant.getMusicConnection();
 
         TheMediaPlayer mediaPlayer = Constant.getTheMediaPlayer();
