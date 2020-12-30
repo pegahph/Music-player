@@ -22,31 +22,10 @@ public class TheMediaPlayer implements MediaPlayerControl {
     private boolean musicBound = false;
     private int lastCurrentPos = 0;
     private int lastDuration = 0;
-//    private MusicController controller;
     private MusicController controllerLayout;
-//    private ImageButton prevBtn, playBtn, nextBtn;
-//    private ImageView coverArt;
-//    private TextView trackName, artistName;
 
 
-//    public void setCoverArt(Bitmap coverArt) {
-//        this.coverArt.setImageBitmap(coverArt);
-//    }
-//
-//    public void setTrackName(String trackName) {
-//        this.trackName.setText(trackName);
-//    }
-//
-//    public void setArtistName(String artistName) {
-//        this.artistName.setText(artistName);
-//    }
-//
-//    public void setPlayBtn(boolean isPlaying) {
-//        if (isPlaying)
-//            playBtn.setImageResource(android.R.drawable.ic_media_pause);
-//        else
-//            playBtn.setImageResource(android.R.drawable.ic_media_play);
-//    }
+
 
     public TheMediaPlayer(MusicService musicService, Context context) {
         this.musicService = musicService;
@@ -62,50 +41,24 @@ public class TheMediaPlayer implements MediaPlayerControl {
         this.controllerLayout.setParentLayout(controllerLayout);
         this.controllerLayout.setMediaPlayer(this);
         this.controllerLayout.setController();
-//        prevBtn = (ImageButton) controllerLayout.findViewById(R.id.prevBtn);
-//        playBtn = (ImageButton) controllerLayout.findViewById(R.id.playBtn);
-//        nextBtn = (ImageButton) controllerLayout.findViewById(R.id.nextBtn);
-//        coverArt = (ImageView) controllerLayout.findViewById(R.id.cover_art);
-//        trackName = (TextView) controllerLayout.findViewById(R.id.trackNameTextView);
-//        artistName = (TextView) controllerLayout.findViewById(R.id.artistNameTextView);
-
-//        setClickListener();
+        setClickListener();
     }
 
-//    private void setClickListener() {
-//        // play-pause button
-//        playBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (MusicService.isPlayed) {
-//                    pause();
-//                    playBtn.setImageResource(android.R.drawable.ic_media_play);
-//                }
-//                else {
-//                    start();
-//                    playBtn.setImageResource(android.R.drawable.ic_media_pause);
-//                }
-//            }
-//        });
-//
-//        // next button
-//        nextBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                playNext();
-//                playBtn.setImageResource(android.R.drawable.ic_media_pause);
-//            }
-//        });
-//
-//        // previous button
-//        prevBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                playPrev();
-//                playBtn.setImageResource(android.R.drawable.ic_media_pause);
-//            }
-//        });
-//    }
+    private void setClickListener() {
+        View.OnClickListener next = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playNext();
+            }
+        };
+        View.OnClickListener prev = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playPrev();
+            }
+        };
+        this.controllerLayout.setPrevNextListeners(next, prev);
+    }
 
     @Override
     public void start() {

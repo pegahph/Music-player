@@ -100,4 +100,18 @@ public class MusicController extends FrameLayout {
     public void setArtistName(String artistName) {
         this.artistName.setText(artistName);
     }
+
+    public void setPrevNextListeners(View.OnClickListener next, View.OnClickListener prev) {
+
+        if (nextBtn != null) {
+            nextBtn.setVisibility(View.VISIBLE);
+            nextBtn.setOnClickListener(next);
+            nextBtn.setEnabled(true);
+        }
+        if (prevBtn != null) {
+            prevBtn.setVisibility(View.VISIBLE);
+            prevBtn.setOnClickListener(prev);
+            prevBtn.setEnabled(true);
+        }
+    }
 }
