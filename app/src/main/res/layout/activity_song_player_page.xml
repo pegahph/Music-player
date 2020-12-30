@@ -148,26 +148,51 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginLeft="15dp"
                 app:srcCompat="@drawable/ic_baseline_shuffle_24" />
 
             <SeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:paddingRight="5dp"
-                android:paddingLeft="5dp"
-                android:layout_gravity="center_vertical"/>
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginRight="15dp"
                 app:srcCompat="@drawable/ic_round_repeat_24" />
         </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="time"
+                android:textColor="@color/SubsidiaryColor"
+                android:textSize="15dp"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="duration"
+                android:textColor="@color/SubsidiaryColor"
+                android:textSize="15dp"
+                android:layout_gravity="right"/>
+        </FrameLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -178,11 +203,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
-            <ImageView
+            <ImageButton
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
-                app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
+                android:background="@drawable/ic_baseline_play_arrow_24" />
         </LinearLayout>
 
     </LinearLayout>
