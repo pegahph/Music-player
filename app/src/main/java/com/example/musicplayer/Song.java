@@ -6,18 +6,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
-
-import java.io.File;
 import java.io.InputStream;
 
 public class Song {
@@ -31,7 +22,6 @@ public class Song {
     private String path;
     private String folder;
     private long albumId;
-    private boolean internalStorage;
 
     public Song(long songId, String songTitle, String songArtist, long albumId, String songPath) {
         this.id = songId;
@@ -66,7 +56,7 @@ public class Song {
         if (albumArt != null) {
             int width = albumArt.getWidth();
             int height = albumArt.getHeight();
-            albumArt = Bitmap.createScaledBitmap(albumArt, width, height , false);
+            albumArt = Bitmap.createScaledBitmap(albumArt, width, height, false);
             return new BitmapDrawable(resources, albumArt);
         }
         else {
@@ -80,7 +70,7 @@ public class Song {
         {
             return folder;
         }
-        internalStorage = path.startsWith(INTERNAL_STORAGE_ROOT_PATH);
+        boolean internalStorage = path.startsWith(INTERNAL_STORAGE_ROOT_PATH);
         if (internalStorage)
         {
             int index = path.indexOf(INTERNAL_STORAGE_ROOT_PATH) + INTERNAL_STORAGE_ROOT_PATH.length();
