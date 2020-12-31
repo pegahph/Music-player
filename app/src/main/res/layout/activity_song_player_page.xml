@@ -26,7 +26,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/shadow"/>
+        android:background="@color/shadowlight"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -142,32 +142,18 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginLeft="15dp"
-                app:srcCompat="@drawable/ic_baseline_shuffle_24" />
 
             <SeekBar
                 android:id="@+id/seekBar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/MySeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_weight="1"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp" />
+                android:progressDrawable="@drawable/seekbar2" />
 
-            <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginRight="15dp"
-                app:srcCompat="@drawable/ic_round_repeat_24" />
-        </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -197,12 +183,24 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight=".75"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:gravity="center">
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_baseline_shuffle_24" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
             <ImageButton
                 android:id="@+id/full_prev_btn"
                 android:layout_width="60dp"
@@ -227,6 +225,16 @@
                 android:scaleType="centerCrop"
                 android:background="@null"
                 app:srcCompat="@drawable/ic_round_skip_next_24" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_round_repeat_24" />
         </LinearLayout>
 
     </LinearLayout>
