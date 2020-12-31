@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType = "centerCrop"
-        android:src="@drawable/background6" />
+        app:srcCompat="@drawable/background6" />
 
     <io.alterac.blurkit.BlurLayout
         android:id="@+id/blurLayout"
@@ -131,7 +131,7 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/background6" />
+                app:srcCompat="@drawable/background6" />
         </androidx.cardview.widget.CardView>
 
         <Space
