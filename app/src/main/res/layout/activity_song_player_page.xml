@@ -79,7 +79,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight=".75"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -119,13 +119,20 @@
             android:layout_weight="1"/>
 
 
-        <ImageView
-            android:id="@+id/forCover"
-            android:layout_width="270dp"
-            android:layout_height="270dp"
-            android:scaleType="centerCrop"
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/background6" />
+            app:cardCornerRadius="40dp"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/forCover"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background6" />
+        </androidx.cardview.widget.CardView>
 
         <Space
             android:layout_width="match_parent"
@@ -143,8 +150,8 @@
             android:gravity="center">
 
             <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@null"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_round_volume_up_24" />
@@ -154,8 +161,8 @@
                 android:layout_weight="1"/>
 
             <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@null"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_twotone_favorite_24" />
@@ -165,8 +172,8 @@
                 android:layout_weight="1"/>
 
             <ImageButton
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:background="@null"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_baseline_playlist_add_24" />
@@ -232,9 +239,8 @@
                 android:layout_weight="1"/>
             <ImageButton
                 android:id="@+id/full_prev_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:scaleType="centerCrop"
                 android:background="@null"
                 app:srcCompat="@drawable/ic_round_skip_previous_24" />
@@ -242,15 +248,13 @@
                 android:id="@+id/full_play_btn"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="10dp"
                 android:scaleType="centerCrop"
                 android:background="@null"
-                app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
+                app:srcCompat="@drawable/ic_round_play_circle_outline_24" />
             <ImageButton
                 android:id="@+id/full_next_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:scaleType="centerCrop"
                 android:background="@null"
                 app:srcCompat="@drawable/ic_round_skip_next_24" />

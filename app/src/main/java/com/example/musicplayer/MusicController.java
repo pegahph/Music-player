@@ -69,10 +69,10 @@ public class MusicController extends FrameLayout {
 
     private void updatePausePlay() {
         if (mediaPlayer.isPlaying()) {
-            playBtn.setImageResource(android.R.drawable.ic_media_pause);
+            playBtn.setImageResource(R.drawable.ic_baseline_pause_circle_outline_24);
             playBtn.setContentDescription("Pause");
         } else {
-            playBtn.setImageResource(R.drawable.ic_baseline_play_arrow_24);
+            playBtn.setImageResource(R.drawable.ic_round_play_circle_outline_24);
             playBtn.setContentDescription("Play");
         }
     }
