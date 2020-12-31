@@ -20,7 +20,7 @@ import io.alterac.blurkit.BlurLayout;
 public class SongPlayerPage extends AppCompatActivity {
     BlurLayout blurLayout;
     MusicService theMusicService;
-    Song song;
+//    Song song;
     ImageView backCover , forCover;
     TextView songName , songArtist;
     TheMediaPlayer mediaPlayer;
@@ -38,23 +38,24 @@ public class SongPlayerPage extends AppCompatActivity {
         getSupportActionBar().hide();
         blurLayout = findViewById(R.id.blurLayout);
         theMusicService = Constant.getMusicService();
-        song = theMusicService.getCurrentSong();
+
+//        song = theMusicService.getCurrentSong();
         backCover = findViewById(R.id.backCover);
         forCover = findViewById(R.id.forCover);
         songName = findViewById(R.id.songName);
         songArtist = findViewById(R.id.songArtist);
-        songName.setText(song.getTitle());
-        songArtist.setText(song.getArtist());
+//        songName.setText(song.getTitle());
+//        songArtist.setText(song.getArtist());
         songName.setSelected(true);
-        Drawable songCover = song.getAlbumArtBitmapDrawable();
-        if(songCover!=null){
-            backCover.setImageDrawable(songCover);
-            forCover.setImageDrawable(songCover);
-        }
-        else {
-            backCover.setImageResource(R.drawable.background6);
-            forCover.setImageResource(R.drawable.background6);
-        }
+//        Drawable songCover = song.getAlbumArtBitmapDrawable();
+//        if(songCover!=null){
+//            backCover.setImageDrawable(songCover);
+//            forCover.setImageDrawable(songCover);
+//        }
+//        else {
+//            backCover.setImageResource(R.drawable.background6);
+//            forCover.setImageResource(R.drawable.background6);
+//        }
 
         prevBtn = (ImageView) findViewById(R.id.full_prev_btn);
         playBtn = (ImageView) findViewById(R.id.full_play_btn);
@@ -64,9 +65,18 @@ public class SongPlayerPage extends AppCompatActivity {
         currentTime = (TextView) findViewById(R.id.current_time);
 
         mediaPlayer = Constant.getTheMediaPlayer();
+        theController = new MusicController(getApplicationContext());
+        theController.getButtons(prevBtn, playBtn, nextBtn);
+        theController.getDetails(forCover, songName, songArtist);
+        theController.getEndTimeTextView(backCover, endTime);
+        theController.setMediaPlayer(mediaPlayer);
+        theController.setController();
+        Constant.setController(theController);
+        mediaPlayer.setClickListener(theController);
+
+        Constant.setController(theController);
 
         int timeMs = mediaPlayer.getDuration();
-        endTime.setText(stringForTime(timeMs));
         seekBar.setMax(timeMs);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -93,26 +103,16 @@ public class SongPlayerPage extends AppCompatActivity {
             @Override
             public void run() {
                 int currPos = mediaPlayer.getCurrentPosition();
-                int endPos = mediaPlayer.getDuration();
                 if (!isTracking)
                 {
                     seekBar.setProgress(mediaPlayer.getCurrentPosition());
                     currentTime.setText(stringForTime(currPos));
-                    endTime.setText(stringForTime(endPos));
                 }
                 updateHandler.postDelayed(this, 250);
             }
         };
 
         updateHandler.postDelayed(timerRunnable, 250);
-
-        theController = new MusicController(getApplicationContext());
-        theController.getButtons(prevBtn, playBtn, nextBtn);
-        theController.setMediaPlayer(mediaPlayer);
-        theController.getDetailsForAssurance(forCover, songName, songArtist);
-        mediaPlayer.setClickListener(theController);
-
-        Constant.setController(theController);
 
     }
 
@@ -140,21 +140,5 @@ public class SongPlayerPage extends AppCompatActivity {
         } else {
             return new Formatter().format("%02d:%02d", minutes, seconds).toString();
         }
-    }
-
-    public void setDetails(Song song) {
-        Drawable songCover = song.getAlbumArtBitmapDrawable();
-        if(songCover!=null){
-            backCover.setImageDrawable(songCover);
-            forCover.setImageDrawable(songCover);
-        }
-        else {
-            backCover.setImageResource(R.drawable.background6);
-            forCover.setImageResource(R.drawable.background6);
-        }
-
-        this.songName.setText(song.getTitle());
-        this.songArtist.setText(song.getArtist());
-        this.endTime.setText(stringForTime(mediaPlayer.getDuration()));
     }
 }

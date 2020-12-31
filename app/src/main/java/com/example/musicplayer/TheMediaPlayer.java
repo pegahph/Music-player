@@ -129,10 +129,6 @@ public class TheMediaPlayer implements MediaPlayerControl {
         return 0;
     }
 
-    public void setController(){
-
-    }
-
     private void playNext() {
         musicService.playNext();
         if (playbackPaused) {
