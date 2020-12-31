@@ -1,12 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:theme="@style/ThemeOverlay.MusicPlayer.AppWidgetContainer"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/ThemeOverlay.MusicPlayer.AppWidgetContainer">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,18 +11,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center"
                 android:layout_weight="2"
-                android:text="ُSong Name"
-                android:singleLine="true"
+                android:clickable="true"
                 android:ellipsize="marquee"
+                android:gravity="center"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="ُSong Name"
                 android:textColor="@color/mainColor"
                 android:textSize="15sp" />
 
@@ -49,13 +47,15 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="100"
                 android:background="@drawable/icon"
-                android:scaleType="centerInside" />
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                tools:visibility="visible"/>
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -91,11 +91,13 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:background="@color/colorPrimary">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginStart="5dp"
-                    android:background="@drawable/ic_baseline_shuffle_24" />
+                    android:background="@drawable/ic_baseline_shuffle_24"
+                    android:clickable="true" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -106,37 +108,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:background="@drawable/ic_round_skip_previous_24"
+                    android:clickable="true"
                     android:scaleType="fitXY" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
+
                 <ImageButton
                     android:id="@+id/full_play_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/ic_round_play_circle_outline_24" />
+                    android:background="@drawable/ic_round_play_circle_outline_24"
+                    android:clickable="true"
+                    android:scaleType="centerCrop" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
+
                 <ImageButton
                     android:id="@+id/full_next_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/ic_round_skip_next_24" />
+                    android:background="@drawable/ic_round_skip_next_24"
+                    android:clickable="true"
+                    android:scaleType="centerCrop" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginEnd="5dp"
-                    android:background="@drawable/ic_round_repeat_24" />
+                    android:background="@drawable/ic_round_repeat_24"
+                    android:clickable="true" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
-</LinearLayout>
+</RelativeLayout>
