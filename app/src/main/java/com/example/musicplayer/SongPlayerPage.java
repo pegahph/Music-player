@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -44,6 +45,7 @@ public class SongPlayerPage extends AppCompatActivity {
         forCover = findViewById(R.id.forCover);
         songName = findViewById(R.id.songName);
         songArtist = findViewById(R.id.songArtist);
+        View grayView = findViewById(R.id.gray_view);
 //        songName.setText(song.getTitle());
 //        songArtist.setText(song.getArtist());
         songName.setSelected(true);
@@ -68,7 +70,7 @@ public class SongPlayerPage extends AppCompatActivity {
         theController = new MusicController(getApplicationContext());
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.getDetails(forCover, songName, songArtist);
-        theController.getEndTimeTextView(backCover, endTime);
+        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView);
         theController.setMediaPlayer(mediaPlayer);
         theController.setController();
         Constant.setController(theController);

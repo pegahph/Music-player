@@ -21,6 +21,8 @@ public class MusicController extends FrameLayout {
     private ImageView coverArt, backCover;
     private TextView trackName, artistName, endTimeTextView;
     private boolean isSongPlayerActivity = false;
+    private BlurLayout blurLayout;
+    private View grayView;
 
     public MusicController(@NonNull Context context) {
         super(context);
@@ -44,10 +46,12 @@ public class MusicController extends FrameLayout {
         trackName = aTrackName;
         artistName = aArtistName;
     }
-    public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime) {
+    public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout, View grayView) {
         isSongPlayerActivity = true;
         this.endTimeTextView = aEndTime;
         this.backCover = aBackCover;
+        this.blurLayout = blurLayout;
+        this.grayView = grayView;
     }
 
     public void setMediaPlayer(TheMediaPlayer mediaPlayer) {
@@ -107,7 +111,18 @@ public class MusicController extends FrameLayout {
     public void setBackCoverArt(Drawable aCoverArt) {
         if (isSongPlayerActivity)
         {
+            this.blurLayout.setVisibility(INVISIBLE);
+            this.grayView.setVisibility(INVISIBLE);
+
             this.backCover.setImageDrawable(aCoverArt);
+            this.blurLayout.invalidate();
+
+            this.blurLayout.setVisibility(VISIBLE);
+            this.grayView.setVisibility(VISIBLE);
+
+//            this.blurLayout.startBlur();
+//            this.blurLayout
+            setController();
         }
     }
     public void setDuration(int duration) {
