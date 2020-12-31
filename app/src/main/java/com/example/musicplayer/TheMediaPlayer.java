@@ -1,19 +1,13 @@
 package com.example.musicplayer;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.MediaController.MediaPlayerControl;
-import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TheMediaPlayer implements MediaPlayerControl {
     private MusicService musicService;
@@ -26,25 +20,25 @@ public class TheMediaPlayer implements MediaPlayerControl {
 
 
 
-
     public TheMediaPlayer(MusicService musicService, Context context) {
         this.musicService = musicService;
         this.musicBound = Constant.isMusicBound();
         this.context = context;
     }
 
-    public void setControllerLayout(FrameLayout controllerLayout, MusicController controller) {
+    public void setControllerLayout(ViewGroup controllerLayout, MusicController controller) {
         if (controller == null)
             this.controllerLayout = new MusicController(context);
         else
             this.controllerLayout = controller;
-        this.controllerLayout.setParentLayout(controllerLayout);
+        getButtons(controllerLayout);
         this.controllerLayout.setMediaPlayer(this);
         this.controllerLayout.setController();
-        setClickListener();
+        Constant.setController(this.controllerLayout);
+        setClickListener(this.controllerLayout);
     }
 
-    private void setClickListener() {
+    public void setClickListener(MusicController aController) {
         View.OnClickListener next = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +51,19 @@ public class TheMediaPlayer implements MediaPlayerControl {
                 playPrev();
             }
         };
-        this.controllerLayout.setPrevNextListeners(next, prev);
+        aController.setPrevNextListeners(next, prev);
+    }
+
+    private void getButtons(ViewGroup controllerLayout) {
+        ImageButton aPrevBtn = (ImageButton) controllerLayout.findViewById(R.id.prevBtn);
+        ImageButton aPlayBtn = (ImageButton) controllerLayout.findViewById(R.id.playBtn);
+        ImageButton aNextBtn = (ImageButton) controllerLayout.findViewById(R.id.nextBtn);
+        ImageView aCoverArt = (ImageView) controllerLayout.findViewById(R.id.cover_art);
+        TextView aTrackName = (TextView) controllerLayout.findViewById(R.id.trackNameTextView);
+        TextView aArtistName = (TextView) controllerLayout.findViewById(R.id.artistNameTextView);
+
+        this.controllerLayout.getButtons(aPrevBtn, aPlayBtn, aNextBtn);
+        this.controllerLayout.getDetails(aCoverArt, aTrackName, aArtistName);
     }
 
     @Override

@@ -24,6 +24,7 @@ public class SongSelectorActivity extends AppCompatActivity {
     private MusicService musicService;
     private ServiceConnection musicConnection;
     private MusicController controller;
+    private TheMediaPlayer mediaPlayer;
 
 
     @Override
@@ -60,12 +61,19 @@ public class SongSelectorActivity extends AppCompatActivity {
         musicService.setList(theSongs);
         musicConnection = Constant.getMusicConnection();
 
-        TheMediaPlayer mediaPlayer = Constant.getTheMediaPlayer();
+        mediaPlayer = Constant.getTheMediaPlayer();
         mediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
         controller = Constant.getController();
 //        controller.hide();
 //        controller.setAnchorView(findViewById(R.id.song_selector_list));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
+        controller = Constant.getController();
     }
 
     public void songPicked(View view) {

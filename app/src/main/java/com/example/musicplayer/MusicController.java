@@ -2,44 +2,59 @@ package com.example.musicplayer;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import java.util.Formatter;
+
 public class MusicController extends FrameLayout {
     private Context context;
-    private FrameLayout root;
     private TheMediaPlayer mediaPlayer;
-    private ImageButton prevBtn, playBtn, nextBtn;
+    private ImageView prevBtn, playBtn, nextBtn;
     private ImageView coverArt;
     private TextView trackName, artistName;
+    private boolean hasTextView = false;
+
 
     public MusicController(@NonNull Context context) {
         super(context);
         this.context = context;
     }
 
-    public void setParentLayout(FrameLayout root) {
-        this.root = root;
-        getButtons();
-    }
-
-    private void getButtons() {
-        prevBtn = (ImageButton) root.findViewById(R.id.prevBtn);
-        playBtn = (ImageButton) root.findViewById(R.id.playBtn);
-        nextBtn = (ImageButton) root.findViewById(R.id.nextBtn);
-        coverArt = (ImageView) root.findViewById(R.id.cover_art);
-        trackName = (TextView) root.findViewById(R.id.trackNameTextView);
-        artistName = (TextView) root.findViewById(R.id.artistNameTextView);
+    public void getButtons(ImageView aPrevBtn, ImageView aPlayBtn, ImageView aNextBtn) {
+        prevBtn = aPrevBtn;
+        playBtn = aPlayBtn;
+        nextBtn = aNextBtn;
 
         if (playBtn != null) {
             playBtn.requestFocus();
             playBtn.setOnClickListener(playListener);
+        }
+    }
+
+    public void getDetails(ImageView aCoverArt, TextView aTrackName, TextView aArtistName) {
+        coverArt = aCoverArt;
+        trackName = aTrackName;
+        artistName = aArtistName;
+        hasTextView = true;
+    }
+
+    public void getDetailsForAssurance(ImageView aCoverArt, TextView aTrackName, TextView aArtistName) {
+        if (!hasTextView)
+        {
+            coverArt = aCoverArt;
+            trackName = aTrackName;
+            artistName = aArtistName;
         }
     }
 
@@ -57,7 +72,7 @@ public class MusicController extends FrameLayout {
             playBtn.setImageResource(android.R.drawable.ic_media_pause);
             playBtn.setContentDescription("Pause");
         } else {
-            playBtn.setImageResource(android.R.drawable.ic_media_play);
+            playBtn.setImageResource(R.drawable.ic_baseline_play_arrow_24);
             playBtn.setContentDescription("Play");
         }
     }
@@ -81,24 +96,29 @@ public class MusicController extends FrameLayout {
     public void setController() {
         if (Constant.getController() != null) {
             MusicController lastController = Constant.getController();
-            this.trackName.setText(lastController.trackName.getText());
-            this.artistName.setText(lastController.artistName.getText());
-            this.coverArt.setImageDrawable(lastController.coverArt.getDrawable());
+            if (hasTextView)
+            {
+                this.trackName.setText(lastController.trackName.getText());
+                this.artistName.setText(lastController.artistName.getText());
+                this.coverArt.setImageDrawable(lastController.coverArt.getDrawable());
+            }
         }
-        Constant.setController(this);
         updatePausePlay();
     }
 
     public void setCoverArt(Bitmap coverArt) {
-        this.coverArt.setImageBitmap(coverArt);
+        if (hasTextView)
+            this.coverArt.setImageBitmap(coverArt);
     }
 
     public void setTrackName(String trackName) {
-        this.trackName.setText(trackName);
+        if (hasTextView)
+            this.trackName.setText(trackName);
     }
 
     public void setArtistName(String artistName) {
-        this.artistName.setText(artistName);
+        if (hasTextView)
+            this.artistName.setText(artistName);
     }
 
     public void setPrevNextListeners(View.OnClickListener next, View.OnClickListener prev) {
@@ -115,3 +135,4 @@ public class MusicController extends FrameLayout {
         }
     }
 }
+
