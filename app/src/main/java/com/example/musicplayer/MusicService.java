@@ -242,9 +242,6 @@ public class MusicService extends Service
 
         songTitle = playSong.getTitle();
         songArtist = playSong.getArtist();
-//        Toast.makeText(getApplicationContext(), "path.split(): " + playSong.getFolder()[1] + " +++ " + playSong.getFolder()[2], Toast.LENGTH_LONG).show();
-        Toast.makeText(getApplicationContext(), playSong.getFolder(), Toast.LENGTH_LONG).show();
-
 
         Constant.getController().setTrackName(songTitle);
         Constant.getController().setArtistName(songArtist);
