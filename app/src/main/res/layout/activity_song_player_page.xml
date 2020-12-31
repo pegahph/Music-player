@@ -71,12 +71,6 @@
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_marginLeft="10dp"
-                app:srcCompat="@drawable/ic_baseline_playlist_add_24" />
-
-            <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:layout_marginLeft="10dp"
                 app:srcCompat="@drawable/ic_twotone_delete_outline_24" />
 
 
@@ -87,21 +81,17 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="33dp"
-                android:layout_height="33dp"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="left"
-                android:layout_marginRight="10dp"
-                app:srcCompat="@drawable/ic_round_star_border_24" />
-
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="70dp"
+            android:gravity="center">
             <TextView
                 android:id="@+id/songName"
-                android:layout_width="215dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="ُSong Name"
                 android:singleLine="true"
@@ -112,7 +102,7 @@
                 android:gravity="center"
                 android:textColor="@color/mainColor"
                 android:textSize="23dp" />
-        </FrameLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/songArtist"
@@ -143,7 +133,46 @@
             android:layout_weight="1"/>
 
 
-            <SeekBar
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_round_volume_up_24" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_twotone_favorite_24" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@null"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_baseline_playlist_add_24" />
+        </LinearLayout>
+
+        <SeekBar
                 android:id="@+id/seekBar"
                 style="@style/MySeekBar"
                 android:layout_width="match_parent"
@@ -192,8 +221,8 @@
             android:layout_marginRight="15dp"
             android:gravity="center">
             <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="@null"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_baseline_shuffle_24" />
@@ -203,8 +232,8 @@
                 android:layout_weight="1"/>
             <ImageButton
                 android:id="@+id/full_prev_btn"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:scaleType="centerCrop"
                 android:background="@null"
@@ -219,8 +248,8 @@
                 app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
             <ImageButton
                 android:id="@+id/full_next_btn"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:scaleType="centerCrop"
                 android:background="@null"
@@ -230,8 +259,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="@null"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/ic_round_repeat_24" />
