@@ -21,7 +21,7 @@ public class MusicPlayerAppWidget extends AppWidgetProvider {
 
         CharSequence widgetText = MusicPlayerAppWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
-        Intent intent = new Intent(context,SongPlayerPage.class);
+        Intent intent = new Intent(context,MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.music_player_app_widget);
         views.setOnClickPendingIntent(R.id.textView3, pendingIntent);
@@ -43,6 +43,11 @@ public class MusicPlayerAppWidget extends AppWidgetProvider {
             views.setViewVisibility(R.id.imageView, View.VISIBLE);
         } else {
             views.setViewVisibility(R.id.imageView, View.GONE);
+        }
+        if (minHeight < 220) {
+            views.setViewVisibility(R.id.imageView, View.GONE);
+        } else {
+            views.setViewVisibility(R.id.imageView, View.VISIBLE);
         }
     }
 

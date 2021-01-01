@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/shadow">
+        android:background="@color/shadowlight">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,6 +17,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="2"
                 android:clickable="true"
@@ -45,17 +47,20 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="5dp"
-                android:layout_weight="100"
-                android:background="@drawable/icon"
-                android:scaleType="centerInside"
+                android:layout_weight="50"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:background="@drawable/background6"
+                android:scaleType="center"
                 android:visibility="gone"
-                tools:visibility="visible"/>
+                app:srcCompat="@drawable/background5"
+                tools:visibility="visible" />
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -80,6 +85,7 @@
                     android:layout_gravity="end"/>
             </FrameLayout>
             <ProgressBar
+                android:layout_weight="1"
                 android:id="@+id/progressBar2"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
@@ -88,63 +94,72 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="5"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:background="@color/colorPrimary">
+                android:background="@color/shadow">
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/ic_baseline_shuffle_24"
-                    android:clickable="true" />
+                    android:scaleType="fitCenter"
+                    tools:ignore="NestedWeights" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" />
+                    android:layout_weight="10"
+                    tools:ignore="NestedWeights" />
 
                 <ImageButton
                     android:id="@+id/full_prev_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@drawable/ic_round_skip_previous_24"
-                    android:clickable="true"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitCenter"
+                    tools:ignore="NestedWeights" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="5" />
 
                 <ImageButton
                     android:id="@+id/full_play_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@drawable/ic_round_play_circle_outline_24"
-                    android:clickable="true"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="fitCenter"
+                    tools:ignore="NestedWeights" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="5" />
 
                 <ImageButton
                     android:id="@+id/full_next_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@drawable/ic_round_skip_next_24"
-                    android:clickable="true"
-                    android:scaleType="centerCrop" />
+                    android:scaleType="fitCenter"
+                    tools:ignore="NestedWeights" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" />
+                    android:layout_weight="10" />
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/ic_round_repeat_24"
-                    android:clickable="true" />
+                    android:scaleType="fitCenter"
+                    tools:ignore="NestedWeights" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
