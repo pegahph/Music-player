@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:gravity="left">
+        <layer-list>
+            <item android:gravity="left|center" android:height="10dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="5dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="5dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="20dp" android:left="7dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="14dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="21dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="28dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="35dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="42dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="49dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="56dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="63dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="20dp" android:left="70dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </layer-list>
+    </item>
+    <item android:gravity="left" android:left="63dp">
+        <layer-list>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="14dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="21dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="28dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="35dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="42dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="49dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="56dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="63dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="20dp" android:left="70dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </layer-list>
+    </item>
+    <item android:gravity="left" android:left="126dp">
+        <layer-list>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="14dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="21dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="28dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="35dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="42dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="49dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="56dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="63dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="20dp" android:left="70dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </layer-list>
+    </item>
+    <item android:gravity="left" android:left="189dp">
+        <layer-list>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="14dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="21dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="28dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="35dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="42dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="49dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="56dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="63dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="20dp" android:left="70dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </layer-list>
+    </item>
+    <item android:gravity="left" android:left="252dp">
+        <layer-list>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="14dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="21dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="28dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="35dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="50dp" android:left="42dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="25dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="49dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="40dp" android:left="56dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="20dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="30dp" android:left="63dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="15dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="20dp" android:left="70dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="10dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+
+            <item android:gravity="left|center" android:height="10dp" android:left="77dp">
+                <layer-list>
+                    <item>
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="5dp"/>
+                            <solid android:color="@color/mainColor"/>
+                        </shape>
+                    </item>
+                    <item android:gravity="bottom">
+                        <shape android:shape="rectangle">
+                            <size  android:width="3dp" android:height="5dp"/>
+                            <solid android:color="@color/blueGreen"/>
+                        </shape>
+                    </item>
+                </layer-list>
+            </item>
+        </layer-list>
+    </item>
+
+</layer-list>
