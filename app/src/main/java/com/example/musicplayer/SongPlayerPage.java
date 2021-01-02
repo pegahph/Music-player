@@ -3,6 +3,7 @@ package com.example.musicplayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,9 +22,9 @@ import io.alterac.blurkit.BlurLayout;
 public class SongPlayerPage extends AppCompatActivity {
     BlurLayout blurLayout;
     MusicService theMusicService;
-    //    Song song;
-    ImageView backCover, forCover;
-    TextView songName, songArtist;
+//    Song song;
+    ImageView backCover , forCover;
+    TextView songName , songArtist;
     TheMediaPlayer mediaPlayer;
     ImageView prevBtn, playBtn, nextBtn;
     SeekBar seekBar;
@@ -105,7 +106,8 @@ public class SongPlayerPage extends AppCompatActivity {
             @Override
             public void run() {
                 int currPos = mediaPlayer.getCurrentPosition();
-                if (!isTracking) {
+                if (!isTracking)
+                {
                     seekBar.setProgress(mediaPlayer.getCurrentPosition());
                     currentTime.setText(stringForTime(currPos));
                 }
@@ -134,12 +136,16 @@ public class SongPlayerPage extends AppCompatActivity {
 
         int seconds = totalSeconds % 60;
         int minutes = (totalSeconds / 60) % 60;
-        int hours = totalSeconds / 3600;
+        int hours   = totalSeconds / 3600;
 
         if (hours > 0) {
             return new Formatter().format("%d:%02d:%02d", hours, minutes, seconds).toString();
         } else {
             return new Formatter().format("%02d:%02d", minutes, seconds).toString();
         }
+    }
+
+    public void backToPrevious(View view) {
+       finish();
     }
 }
