@@ -95,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -116,10 +117,10 @@
                 <ImageButton
                     android:id="@+id/full_prev_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
                     android:background="@drawable/ic_round_skip_previous_24"
-                    android:scaleType="fitXY"
+                    android:scaleType="fitCenter"
                     tools:ignore="NestedWeights" />
 
                 <LinearLayout
@@ -130,10 +131,10 @@
                 <ImageButton
                     android:id="@+id/full_play_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
                     android:background="@drawable/ic_round_play_circle_outline_24"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerInside"
                     tools:ignore="NestedWeights" />
 
                 <LinearLayout
@@ -144,8 +145,8 @@
                 <ImageButton
                     android:id="@+id/full_next_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
                     android:background="@drawable/ic_round_skip_next_24"
                     android:scaleType="fitXY"
                     tools:ignore="NestedWeights" />
