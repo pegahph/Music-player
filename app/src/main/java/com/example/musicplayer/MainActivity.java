@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         tabs = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view_pager);
 
+        ListMaker.musicResolver = getContentResolver();
+        ListMaker.resources = getResources();
 //      permissions
         if(checkAndRequestPermissions()){
             startApp();
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startApp(){
 //        tabs
-        ThePagerAdapter pagerAdapter = new ThePagerAdapter(getSupportFragmentManager() , tabs.getTabCount());
+        ThePagerAdapter pagerAdapter = new ThePagerAdapter(getSupportFragmentManager(), tabs.getTabCount());
         viewPager.setAdapter(pagerAdapter);
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -103,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 //        songView = (ListView) findViewById(R.id.songList);
 //        songRV = (RecyclerView) findViewById(R.id.song_recycler_view);
-        ListMaker.musicResolver = getContentResolver();
-        ListMaker.resources = getResources();
         songList = new ArrayList<>();
         getSongList();
         // sort the data
@@ -117,13 +117,7 @@ public class MainActivity extends AppCompatActivity {
 //        SongAdapter songAdapter = new SongAdapter(songList);
 //        songRV.setAdapter(songAdapter);
 //        songRV.setLayoutManager(new LinearLayoutManager(this));
-        if (playIntent == null) {
-            playIntent = new Intent(this, MusicService.class);
-            playIntent.setAction(MusicService.ACTION_PLAY);
-            bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
-            Constant.setMusicConnection(musicConnection);
-            startService(playIntent);
-        }
+
     }
 
     private boolean checkAndRequestPermissions() {
@@ -153,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if(deniedCount == 0){
+                Toast.makeText(this, "permission allowed", Toast.LENGTH_SHORT).show();
                 startApp();
             } else{
                 for (Map.Entry<String,Integer> entry :permissionDenieds.entrySet()){
@@ -207,12 +202,14 @@ public class MainActivity extends AppCompatActivity {
             Constant.setMusicService(musicService);
             musicService.setMusicService();
 
-            musicService.setList(songList);
+//            musicService.setList(songList);
             musicBound = true;
             Constant.setMusicBound(musicBound);
 
-            Constant.setTheMediaPlayer(new TheMediaPlayer(musicService, getApplicationContext()));
-            theMediaPlayer = Constant.getTheMediaPlayer();
+            if (theMediaPlayer == null) {
+                Constant.setTheMediaPlayer(new TheMediaPlayer(musicService, getApplicationContext()));
+                theMediaPlayer = Constant.getTheMediaPlayer();
+            }
             theMediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
             controller = Constant.getController();
 //            setController();
@@ -228,7 +225,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        if (playIntent == null) {
+            playIntent = new Intent(this, MusicService.class);
+            playIntent.setAction(MusicService.ACTION_PLAY);
+            bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
+            Constant.setMusicConnection(musicConnection);
+            startService(playIntent);
+        }
     }
     @Override
     protected void onPause() {
@@ -239,6 +242,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (paused) {
+            if (theMediaPlayer == null) {
+                Constant.setTheMediaPlayer(new TheMediaPlayer(musicService, getApplicationContext()));
+                theMediaPlayer = Constant.getTheMediaPlayer();
+            }
             theMediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
             controller = Constant.getController();
 //            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager), false, controller);
