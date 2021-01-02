@@ -147,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if(deniedCount == 0){
-                Toast.makeText(this, "permission allowed", Toast.LENGTH_SHORT).show();
                 startApp();
             } else{
                 for (Map.Entry<String,Integer> entry :permissionDenieds.entrySet()){
