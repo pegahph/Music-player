@@ -6,7 +6,9 @@
     <color name="colorAccent">#ECECEC</color>
     <color name="SubsidiaryColor">#08F7FE</color>
     <color name="mainColor">#5DE8E5</color>
-    <color name="seekbarNoActivateColor">#5DE8E5</color>
+    <color name="seekbarColorTop">#99BDBB</color>
+    <color name="seekbarColorBottom">#92454C4A</color>
+    <color name="seekbarActivateColor">#2196F3</color>
     <color name="shadow">#E2212529</color>
     <color name="shadowlight">#C9212529</color>
     <color name="shadow2">#52B80977</color>

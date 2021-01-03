@@ -187,14 +187,15 @@
 
             <SeekBar
                 android:id="@+id/seekBar"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:splitTrack="false"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"
-                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="12dp"
                 android:progressDrawable="@drawable/seekbar"
                 android:thumb="@drawable/seekbar_thumb" />
+
+
 
             <FrameLayout
                 android:layout_width="match_parent"
