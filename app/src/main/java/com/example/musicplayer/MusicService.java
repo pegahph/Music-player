@@ -54,6 +54,11 @@ public class MusicService extends Service
     private String songTitle = "";
     private String songArtist = "";
     private boolean shuffle = false;
+
+    //  repeatOn = false  means play all songs once, and then stop.
+    //  repeatOn = true and repeatAll = false  means play one song again and again.
+    //  repeatOn = true and repeatAll = true  means play all songs and then repeat all of them.
+    private boolean repeatOn = false, repeatAll = false;
     private Random rand;
     boolean isPaused = false;
     public static boolean isPlayed = false;
@@ -141,7 +146,10 @@ public class MusicService extends Service
         // this method will fire when a track ends.
         if (player.getCurrentPosition() > 0) {
             mp.reset();
-            playNext();
+            if (!repeatOn)
+                playNext();
+            else if (!repeatAll)
+                playNext();
         }
     }
     @Override
