@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ public class SongPlayerPage extends AppCompatActivity {
     ImageView backCover , forCover;
     TextView songName , songArtist;
     TheMediaPlayer mediaPlayer;
-    ImageView prevBtn, playBtn, nextBtn;
+    ImageView prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn;
     SeekBar seekBar;
     TextView currentTime, endTime;
     int targetPosition;
@@ -41,31 +42,21 @@ public class SongPlayerPage extends AppCompatActivity {
         blurLayout = findViewById(R.id.blurLayout);
         theMusicService = Constant.getMusicService();
 
-//        song = theMusicService.getCurrentSong();
         backCover = findViewById(R.id.backCover);
         forCover = findViewById(R.id.forCover);
         songName = findViewById(R.id.songName);
         songArtist = findViewById(R.id.songArtist);
         View grayView = findViewById(R.id.gray_view);
-//        songName.setText(song.getTitle());
-//        songArtist.setText(song.getArtist());
         songName.setSelected(true);
-//        Drawable songCover = song.getAlbumArtBitmapDrawable();
-//        if(songCover!=null){
-//            backCover.setImageDrawable(songCover);
-//            forCover.setImageDrawable(songCover);
-//        }
-//        else {
-//            backCover.setImageResource(R.drawable.background6);
-//            forCover.setImageResource(R.drawable.background6);
-//        }
 
-        prevBtn = (ImageView) findViewById(R.id.full_prev_btn);
-        playBtn = (ImageView) findViewById(R.id.full_play_btn);
-        nextBtn = (ImageView) findViewById(R.id.full_next_btn);
+        prevBtn = findViewById(R.id.full_prev_btn);
+        playBtn = findViewById(R.id.full_play_btn);
+        nextBtn = findViewById(R.id.full_next_btn);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         endTime = (TextView) findViewById(R.id.end_time);
         currentTime = (TextView) findViewById(R.id.current_time);
+        shuffleBtn = findViewById(R.id.shuffle_button);
+        repeatBtn = findViewById(R.id.repeat_button);
 
         mediaPlayer = Constant.getTheMediaPlayer();
         theController = new MusicController(getApplicationContext());
