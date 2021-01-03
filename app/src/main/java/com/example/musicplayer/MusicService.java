@@ -256,6 +256,9 @@ public class MusicService extends Service
     public void setShuffle() {
         shuffle = !shuffle;
     }
+    public boolean getShuffle() {
+        return shuffle;
+    }
 
     public Song getCurrentSong(){
         return songs.get(songPos);

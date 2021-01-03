@@ -27,7 +27,7 @@ public class SongPlayerPage extends AppCompatActivity {
     ImageView backCover , forCover;
     TextView songName , songArtist;
     TheMediaPlayer mediaPlayer;
-    ImageView prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn;
+    ImageButton prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn;
     SeekBar seekBar;
     TextView currentTime, endTime;
     int targetPosition;
@@ -49,21 +49,21 @@ public class SongPlayerPage extends AppCompatActivity {
         View grayView = findViewById(R.id.gray_view);
         songName.setSelected(true);
 
-        prevBtn = findViewById(R.id.full_prev_btn);
-        playBtn = findViewById(R.id.full_play_btn);
-        nextBtn = findViewById(R.id.full_next_btn);
+        prevBtn = (ImageButton) findViewById(R.id.full_prev_btn);
+        playBtn = (ImageButton) findViewById(R.id.full_play_btn);
+        nextBtn = (ImageButton) findViewById(R.id.full_next_btn);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         endTime = (TextView) findViewById(R.id.end_time);
         currentTime = (TextView) findViewById(R.id.current_time);
-        shuffleBtn = findViewById(R.id.shuffle_button);
-        repeatBtn = findViewById(R.id.repeat_button);
+        shuffleBtn = (ImageButton) findViewById(R.id.shuffle_button);
+        repeatBtn = (ImageButton) findViewById(R.id.repeat_button);
 
         mediaPlayer = Constant.getTheMediaPlayer();
         theController = new MusicController(getApplicationContext());
         theController.getButtons(prevBtn, playBtn, nextBtn);
-        theController.getDetails(forCover, songName, songArtist);
-        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView);
         theController.setMediaPlayer(mediaPlayer);
+        theController.getDetails(forCover, songName, songArtist);
+        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn);
         theController.setController();
         Constant.setController(theController);
         mediaPlayer.setClickListener(theController);

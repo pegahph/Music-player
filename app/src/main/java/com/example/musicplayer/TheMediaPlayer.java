@@ -66,6 +66,13 @@ public class TheMediaPlayer implements MediaPlayerControl {
         this.controllerLayout.getDetails(aCoverArt, aTrackName, aArtistName);
     }
 
+    public void setShuffle() {
+        musicService.setShuffle();
+    }
+    public boolean getShuffle() {
+        return musicService.getShuffle();
+    }
+
     @Override
     public void start() {
         musicService.go();

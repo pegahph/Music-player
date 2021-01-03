@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,7 +18,8 @@ import io.alterac.blurkit.BlurLayout;
 public class MusicController extends FrameLayout {
     private Context context;
     private TheMediaPlayer mediaPlayer;
-    private ImageView prevBtn, playBtn, nextBtn;
+    private ImageButton prevBtn, playBtn, nextBtn;
+    private ImageButton shuffleBtn, repeatBtn;
     private ImageView coverArt, backCover;
     private TextView trackName, artistName, endTimeTextView;
     private boolean isSongPlayerActivity = false;
@@ -29,7 +31,7 @@ public class MusicController extends FrameLayout {
         this.context = context;
     }
 
-    public void getButtons(ImageView aPrevBtn, ImageView aPlayBtn, ImageView aNextBtn) {
+    public void getButtons(ImageButton aPrevBtn, ImageButton aPlayBtn, ImageButton aNextBtn) {
         prevBtn = aPrevBtn;
         playBtn = aPlayBtn;
         nextBtn = aNextBtn;
@@ -46,12 +48,20 @@ public class MusicController extends FrameLayout {
         trackName = aTrackName;
         artistName = aArtistName;
     }
-    public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout, View grayView) {
+    public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout, View grayView, ImageButton shuffleBtn, ImageButton repeatBtn) {
         isSongPlayerActivity = true;
         this.endTimeTextView = aEndTime;
         this.backCover = aBackCover;
         this.blurLayout = blurLayout;
         this.grayView = grayView;
+        this.shuffleBtn = shuffleBtn;
+        this.repeatBtn = repeatBtn;
+
+        if (shuffleBtn != null) {
+            shuffleBtn.requestFocus();
+            shuffleBtn.setOnClickListener(shuffleListener);
+            updateShuffle();
+        }
     }
 
     public void setMediaPlayer(TheMediaPlayer mediaPlayer) {
@@ -79,6 +89,26 @@ public class MusicController extends FrameLayout {
             doPauseResume();
         }
     };
+    private final View.OnClickListener shuffleListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            doShuffle();
+        }
+    };
+
+    private void doShuffle() {
+        mediaPlayer.setShuffle();
+        updateShuffle();
+    }
+
+    private void updateShuffle() {
+        if (mediaPlayer.getShuffle()) {
+            shuffleBtn.setImageResource(R.drawable.ic_baseline_shuffle_24);
+        }
+        else {
+            shuffleBtn.setImageResource(android.R.drawable.ic_media_play);
+        }
+    }
 
     private void doPauseResume() {
         if (mediaPlayer.isPlaying()) {
