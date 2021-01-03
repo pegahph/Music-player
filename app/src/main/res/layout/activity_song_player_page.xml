@@ -241,7 +241,7 @@
                     android:layout_height="30dp"
                     android:background="@null"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_baseline_shuffle_24" />
+                    app:srcCompat="@drawable/shuffle_off" />
 
                 <Space
                     android:layout_width="0dp"

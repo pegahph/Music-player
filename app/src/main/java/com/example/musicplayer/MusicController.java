@@ -103,10 +103,10 @@ public class MusicController extends FrameLayout {
 
     private void updateShuffle() {
         if (mediaPlayer.getShuffle()) {
-            shuffleBtn.setImageResource(R.drawable.ic_baseline_shuffle_24);
+            shuffleBtn.setImageResource(R.drawable.shuffle_off);
         }
         else {
-            shuffleBtn.setImageResource(android.R.drawable.ic_media_play);
+            shuffleBtn.setImageResource(R.drawable.shuffle_on);
         }
     }
 
