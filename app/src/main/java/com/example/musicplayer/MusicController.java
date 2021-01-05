@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ public class MusicController extends FrameLayout {
     private boolean isSongPlayerActivity = false;
     private BlurLayout blurLayout;
     private View grayView;
+    private SeekBar seekBar;
 
     public MusicController(@NonNull Context context) {
         super(context);
@@ -48,7 +50,8 @@ public class MusicController extends FrameLayout {
         trackName = aTrackName;
         artistName = aArtistName;
     }
-    public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout, View grayView, ImageButton shuffleBtn, ImageButton repeatBtn) {
+    public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout,
+                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar) {
         isSongPlayerActivity = true;
         this.endTimeTextView = aEndTime;
         this.backCover = aBackCover;
@@ -56,11 +59,18 @@ public class MusicController extends FrameLayout {
         this.grayView = grayView;
         this.shuffleBtn = shuffleBtn;
         this.repeatBtn = repeatBtn;
+        this.seekBar = seekBar;
 
         if (shuffleBtn != null) {
             shuffleBtn.requestFocus();
             shuffleBtn.setOnClickListener(shuffleListener);
             updateShuffle();
+        }
+
+        if (repeatBtn != null) {
+            repeatBtn.requestFocus();
+            repeatBtn.setOnClickListener(repeatListener);
+//            updateShuffle();
         }
     }
 
@@ -71,6 +81,11 @@ public class MusicController extends FrameLayout {
 
     public void show() {
         updatePausePlay();
+//        if (isSongPlayerActivity) {
+//            updateShuffle();
+//            seekBar.setProgress(mediaPlayer.getCurrentPosition());
+//            Toast.makeText(context, stringForTime(mediaPlayer.getCurrentPosition()), Toast.LENGTH_SHORT).show();
+//        }
     }
 
     private void updatePausePlay() {
@@ -95,6 +110,16 @@ public class MusicController extends FrameLayout {
             doShuffle();
         }
     };
+    private final View.OnClickListener repeatListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            changeRepeat();
+        }
+    };
+
+    private void changeRepeat() {
+        mediaPlayer.changeRepeatStatus();
+    }
 
     private void doShuffle() {
         mediaPlayer.setShuffle();
@@ -103,10 +128,10 @@ public class MusicController extends FrameLayout {
 
     private void updateShuffle() {
         if (mediaPlayer.getShuffle()) {
-            shuffleBtn.setImageResource(R.drawable.shuffle_off);
+            shuffleBtn.setImageResource(R.drawable.shuffle_on);
         }
         else {
-            shuffleBtn.setImageResource(R.drawable.shuffle_on);
+            shuffleBtn.setImageResource(R.drawable.shuffle_off);
         }
     }
 
@@ -159,6 +184,7 @@ public class MusicController extends FrameLayout {
         if (isSongPlayerActivity)
         {
             this.endTimeTextView.setText(stringForTime(duration));
+            this.seekBar.setMax(duration);
         }
     }
 
@@ -198,4 +224,3 @@ public class MusicController extends FrameLayout {
         }
     }
 }
-

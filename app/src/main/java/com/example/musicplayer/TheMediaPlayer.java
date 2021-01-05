@@ -72,6 +72,9 @@ public class TheMediaPlayer implements MediaPlayerControl {
     public boolean getShuffle() {
         return musicService.getShuffle();
     }
+    public void changeRepeatStatus() {
+        musicService.changeRepeatStatus();
+    }
 
     @Override
     public void start() {

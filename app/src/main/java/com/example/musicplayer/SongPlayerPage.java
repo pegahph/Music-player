@@ -63,7 +63,7 @@ public class SongPlayerPage extends AppCompatActivity {
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
-        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn);
+        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar);
         theController.setController();
         Constant.setController(theController);
         mediaPlayer.setClickListener(theController);

@@ -1,11 +1,7 @@
 package com.example.musicplayer;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentUris;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
@@ -19,7 +15,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -49,6 +44,8 @@ public class MusicService extends Service
 
     private ArrayList<Song> songs;
     private int songPos;
+    private int startPos;
+
     private final IBinder musicBind = new MusicBinder();
 
     private String songTitle = "";
@@ -58,7 +55,8 @@ public class MusicService extends Service
     //  repeatOn = false  means play all songs once, and then stop.
     //  repeatOn = true and repeatAll = false  means play one song again and again.
     //  repeatOn = true and repeatAll = true  means play all songs and then repeat all of them.
-    private boolean repeatOn = false, repeatAll = false;
+    private boolean repeatOn = false;
+    private boolean repeatAll = false;
     private Random rand;
     boolean isPaused = false;
     public static boolean isPlayed = false;
@@ -69,6 +67,7 @@ public class MusicService extends Service
     public void onCreate() {
         super.onCreate();
         songPos = 0;
+        startPos = 0;
         player = new MediaPlayer();
         rand = new Random();
 
@@ -146,10 +145,23 @@ public class MusicService extends Service
         // this method will fire when a track ends.
         if (player.getCurrentPosition() > 0) {
             mp.reset();
+            // repeat off.
             if (!repeatOn)
+            {
+                if ((songPos+1) % songs.size() != startPos)
+                    playNext();
+                else
+                {
+                    playNext();
+                }
+            }
+            // repeat on, repeat all the songs in the list
+            else if (repeatAll) {
                 playNext();
-            else if (!repeatAll)
-                playNext();
+            }
+            else {
+                playSong();
+            }
         }
     }
     @Override
@@ -213,6 +225,7 @@ public class MusicService extends Service
 
     public void setSong(int songIndex) {
         songPos = songIndex;
+        startPos = songIndex;
     }
 
     public int getPos() {
@@ -266,6 +279,22 @@ public class MusicService extends Service
     }
     public boolean getShuffle() {
         return shuffle;
+    }
+
+    public void changeRepeatStatus() {
+        if (!repeatOn) {
+            repeatOn = true;
+            repeatAll = true;
+            Toast.makeText(getApplicationContext(), "repeat all", Toast.LENGTH_SHORT).show();
+        }
+        else if (repeatAll) {
+            repeatAll = false;
+            Toast.makeText(getApplicationContext(), "repeat one", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            repeatOn = false;
+            Toast.makeText(getApplicationContext(), "repeat off", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public Song getCurrentSong(){
