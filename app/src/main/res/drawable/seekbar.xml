@@ -4,18 +4,8 @@
         android:id="@android:id/background"
         android:drawable="@drawable/background_fill"/>
 
-    <item android:gravity="center">
-        <scale android:scaleWidth="100%">
-            <selector>
-                <item android:state_enabled="false" android:drawable="@android:color/transparent" />
-                <item>
-                    <shape android:shape="rectangle">
-                        <size android:height="2dp"/>
-                        <solid android:color="@color/SubsidiaryColor"/>
-                    </shape>
-                </item>
-            </selector>
-        </scale>
+    <item android:id="@android:id/progress">
+        <clip android:drawable="@drawable/progress_fill" />
     </item>
 
 </layer-list>
