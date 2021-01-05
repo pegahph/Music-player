@@ -33,6 +33,9 @@ public class SongPlayerPage extends AppCompatActivity {
     int targetPosition;
     boolean isTracking = false;
     MusicController theController;
+    Runnable timerRunnable;
+    boolean killMe = false;
+    // is it added?
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,16 +96,17 @@ public class SongPlayerPage extends AppCompatActivity {
 
         final Handler updateHandler = new Handler();
 
-        Runnable timerRunnable = new Runnable() {
+        timerRunnable = new Runnable() {
             @Override
             public void run() {
-                int currPos = mediaPlayer.getCurrentPosition();
-                if (!isTracking)
+                if (!isTracking && !killMe)
                 {
+                    int currPos = mediaPlayer.getCurrentPosition();
                     seekBar.setProgress(mediaPlayer.getCurrentPosition());
                     currentTime.setText(stringForTime(currPos));
                 }
-                updateHandler.postDelayed(this, 250);
+                if (!killMe)
+                    updateHandler.postDelayed(this, 250);
             }
         };
 
@@ -114,11 +118,13 @@ public class SongPlayerPage extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         blurLayout.startBlur();
+        killMe = false;
     }
 
     @Override
     protected void onStop() {
         blurLayout.pauseBlur();
+        killMe = true;
         super.onStop();
     }
 
