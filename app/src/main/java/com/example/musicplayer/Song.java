@@ -22,6 +22,7 @@ public class Song {
     private String path;
     private String folder;
     private long albumId;
+    private boolean favorite;
 
     public Song(long songId, String songTitle, String songArtist, long albumId, String songPath) {
         this.id = songId;
@@ -29,6 +30,7 @@ public class Song {
         this.artist = songArtist;
         this.albumId = albumId;
         this.path = songPath;
+        this.favorite = false;
     }
 
     public long getId() {
@@ -42,6 +44,12 @@ public class Song {
     }
     public long getAlbumId() {
         return albumId;
+    }
+    public boolean isFavorite() {
+        return favorite;
+    }
+    public void changeFavorite() {
+        this.favorite = !favorite;
     }
     public BitmapDrawable getAlbumArtBitmapDrawable() {
         Bitmap albumArt = null;
