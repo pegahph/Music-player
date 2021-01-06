@@ -27,7 +27,7 @@ public class SongPlayerPage extends AppCompatActivity {
     ImageView backCover , forCover;
     TextView songName , songArtist;
     TheMediaPlayer mediaPlayer;
-    ImageButton prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn;
+    ImageButton prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn, favoriteBtn;
     SeekBar seekBar;
     TextView currentTime, endTime;
     int targetPosition;
@@ -60,13 +60,14 @@ public class SongPlayerPage extends AppCompatActivity {
         currentTime = (TextView) findViewById(R.id.current_time);
         shuffleBtn = (ImageButton) findViewById(R.id.shuffle_button);
         repeatBtn = (ImageButton) findViewById(R.id.repeat_button);
+        favoriteBtn = (ImageButton) findViewById(R.id.favourite);
 
         mediaPlayer = Constant.getTheMediaPlayer();
         theController = new MusicController(getApplicationContext());
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
-        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar);
+        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn);
         theController.setController();
         Constant.setController(theController);
         mediaPlayer.setClickListener(theController);

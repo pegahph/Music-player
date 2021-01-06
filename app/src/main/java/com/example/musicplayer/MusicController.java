@@ -1,7 +1,6 @@
 package com.example.musicplayer;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -9,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -20,7 +20,7 @@ public class MusicController extends FrameLayout {
     private Context context;
     private TheMediaPlayer mediaPlayer;
     private ImageButton prevBtn, playBtn, nextBtn;
-    private ImageButton shuffleBtn, repeatBtn;
+    private ImageButton shuffleBtn, repeatBtn, favoriteBtn;
     private ImageView coverArt, backCover;
     private TextView trackName, artistName, endTimeTextView;
     private boolean isSongPlayerActivity = false;
@@ -51,7 +51,7 @@ public class MusicController extends FrameLayout {
         artistName = aArtistName;
     }
     public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout,
-                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar) {
+                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn) {
         isSongPlayerActivity = true;
         this.endTimeTextView = aEndTime;
         this.backCover = aBackCover;
@@ -60,17 +60,24 @@ public class MusicController extends FrameLayout {
         this.shuffleBtn = shuffleBtn;
         this.repeatBtn = repeatBtn;
         this.seekBar = seekBar;
+        this.favoriteBtn = favoriteBtn;
 
-        if (shuffleBtn != null) {
+        if (this.shuffleBtn != null) {
             shuffleBtn.requestFocus();
             shuffleBtn.setOnClickListener(shuffleListener);
             updateShuffle();
         }
 
-        if (repeatBtn != null) {
+        if (this.repeatBtn != null) {
             repeatBtn.requestFocus();
             repeatBtn.setOnClickListener(repeatListener);
 //            updateShuffle();
+        }
+
+        if (this.favoriteBtn != null) {
+            favoriteBtn.requestFocus();
+            favoriteBtn.setOnClickListener(favoriteListener);
+            updateFavorite();
         }
     }
 
@@ -116,9 +123,27 @@ public class MusicController extends FrameLayout {
             changeRepeat();
         }
     };
+    private final View.OnClickListener favoriteListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            favorite();
+        }
+    };
 
     private void changeRepeat() {
         mediaPlayer.changeRepeatStatus();
+    }
+
+    private void favorite() {
+        Song currentSong = mediaPlayer.getCurrentSong();
+        if (currentSong.isFavorite()) {
+            Database.removeFromFavorites(currentSong);
+        }
+        else {
+            Database.newFavoriteSong(currentSong);
+        }
+        currentSong.changeFavorite();
+        updateFavorite();
     }
 
     private void doShuffle() {
@@ -132,6 +157,16 @@ public class MusicController extends FrameLayout {
         }
         else {
             shuffleBtn.setImageResource(R.drawable.shuffle_off);
+        }
+    }
+
+    public void updateFavorite() {
+        Song currentSong = mediaPlayer.getCurrentSong();
+        if (currentSong.isFavorite()) {
+            favoriteBtn.setImageResource(R.drawable.ic_twotone_delete_outline_24);
+        }
+        else {
+            favoriteBtn.setImageResource(R.drawable.ic_twotone_favorite_24);
         }
     }
 

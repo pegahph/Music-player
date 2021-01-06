@@ -22,6 +22,7 @@ public class Database {
     public static void loadPlaylists() {
         // we need to get these from database.
         // anyway...
+        playlists = new HashMap<>();
         favorite = new ArrayList<>();
         recentlyPlayed = new ArrayList<>();
         // and any other playlist...
