@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 return s1.getTitle().compareTo(s2.getTitle());
             }
         });
+        Database.loadPlaylists();
 //        SongAdapter songAdapter = new SongAdapter(songList);
 //        songRV.setAdapter(songAdapter);
 //        songRV.setLayoutManager(new LinearLayoutManager(this));
