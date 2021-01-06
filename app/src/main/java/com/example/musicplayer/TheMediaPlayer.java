@@ -75,6 +75,9 @@ public class TheMediaPlayer implements MediaPlayerControl {
     public void changeRepeatStatus() {
         musicService.changeRepeatStatus();
     }
+    public Song getCurrentSong() {
+        return musicService.getCurrentSong();
+    }
 
     @Override
     public void start() {
