@@ -358,6 +358,8 @@ public class MainActivity extends AppCompatActivity {
             songSelectorIntent.putExtra("selectedFolderName", name);
             songSelectorIntent.putExtra("selectedFolderAlbumId", albumId);
         }
+        else
+            Toast.makeText(this, "playlist clicked", Toast.LENGTH_SHORT).show();;
         startActivity(songSelectorIntent);
     }
 
