@@ -33,6 +33,15 @@ public class Song {
         this.favorite = false;
     }
 
+    public Song(long songId, String songTitle, String songArtist, long albumId, String songPath, boolean favorite) {
+        this.id = songId;
+        this.title = songTitle;
+        this.artist = songArtist;
+        this.albumId = albumId;
+        this.path = songPath;
+        this.favorite = favorite;
+    }
+
     public long getId() {
         return id;
     }
@@ -74,31 +83,26 @@ public class Song {
     // Oh my God!!!
     // I did it.
     public String getFolder() {
-        if (folder != null)
-        {
-            return folder;
-        }
-        boolean internalStorage = path.startsWith(INTERNAL_STORAGE_ROOT_PATH);
-        if (internalStorage)
-        {
-            int index = path.indexOf(INTERNAL_STORAGE_ROOT_PATH) + INTERNAL_STORAGE_ROOT_PATH.length();
-            String s = path.substring(index);
+        if (folder == null) {
+            boolean internalStorage = path.startsWith(INTERNAL_STORAGE_ROOT_PATH);
+            if (internalStorage) {
+                int index = path.indexOf(INTERNAL_STORAGE_ROOT_PATH) + INTERNAL_STORAGE_ROOT_PATH.length();
+                String s = path.substring(index);
 
-            // contains only one slash. means that the file is just in internal storage.
-            if (s.split("/").length == 2)  // is two because first one is ""
-            {
-                folder = "internal storage";     // second on is INTERNAL_STORAGE_ROOT_PATH
-            }
-            else
-            {
+                // contains only one slash. means that the file is just in internal storage.
+                if (s.split("/").length == 2)  // is two because first one is ""
+                {
+                    folder = "internal storage";     // second on is INTERNAL_STORAGE_ROOT_PATH
+                } else {
+                    String[] tree = s.split("/");
+                    folder = tree[tree.length - 2]; // because last one is the song title itself.
+                }
+            } else {
+                int index = path.indexOf(EXTERNAL_STORAGE_ROOT_PATH) + EXTERNAL_STORAGE_ROOT_PATH.length();
+                String s = path.substring(index);
                 String[] tree = s.split("/");
-                folder = tree[tree.length - 2]; // because last one is the song title itself.
+                folder = tree[tree.length - 2];
             }
-        } else {
-            int index = path.indexOf(EXTERNAL_STORAGE_ROOT_PATH) + EXTERNAL_STORAGE_ROOT_PATH.length();
-            String s = path.substring(index);
-            String[] tree = s.split("/");
-            folder = tree[tree.length - 2];
         }
         return folder;
     }
