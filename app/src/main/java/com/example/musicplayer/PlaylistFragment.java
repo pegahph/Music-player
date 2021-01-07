@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class PlaylistFragment extends Fragment {
 
@@ -26,7 +25,7 @@ public class PlaylistFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_playlist, container, false);
-        playlists = Database.getPlaylists();
+        playlists = PlaylistMaker.getPlaylists();
         sortByName();
         keys = playlists.keySet().toArray();
         RecyclerView playlistRV = (RecyclerView) view.findViewById(R.id.playlistRecyclerView);

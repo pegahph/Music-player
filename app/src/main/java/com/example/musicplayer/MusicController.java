@@ -8,7 +8,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -137,10 +136,10 @@ public class MusicController extends FrameLayout {
     private void favorite() {
         Song currentSong = mediaPlayer.getCurrentSong();
         if (currentSong.isFavorite()) {
-            Database.removeFromFavorites(currentSong);
+            PlaylistMaker.removeFromFavorites(currentSong);
         }
         else {
-            Database.newFavoriteSong(currentSong);
+            PlaylistMaker.newFavoriteSong(currentSong);
         }
         currentSong.changeFavorite();
         updateFavorite();

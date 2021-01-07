@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -119,7 +118,7 @@ public class MusicService extends Service
         if (isPaused)
             notificationBuilder.builder(ACTION_PLAY);
 
-        Database.newRecentlyPlayedSong(currentSong);
+        PlaylistMaker.newRecentlyPlayedSong(currentSong);
     }
 
     private void handleIntent(Intent intent) {

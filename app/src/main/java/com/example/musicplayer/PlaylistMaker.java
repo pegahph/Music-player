@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Database {
+public class PlaylistMaker {
     public static HashMap<String, ArrayList<Song>> playlists;
     public static ArrayList<Song> favorite;
     public static ArrayList<Song> recentlyPlayed;
 
-    public Database() {
+    public PlaylistMaker() {
     }
 
     public static HashMap<String, ArrayList<Song>> getPlaylists() {
@@ -18,6 +18,10 @@ public class Database {
             loadPlaylists();
         }
         return playlists;
+    }
+
+    public static void savePlaylist() {
+
     }
     public static void loadPlaylists() {
         // we need to get these from database.

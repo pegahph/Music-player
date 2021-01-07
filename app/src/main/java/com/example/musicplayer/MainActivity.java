@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 return s1.getTitle().compareTo(s2.getTitle());
             }
         });
-        Database.loadPlaylists();
+        PlaylistMaker.loadPlaylists();
 //        SongAdapter songAdapter = new SongAdapter(songList);
 //        songRV.setAdapter(songAdapter);
 //        songRV.setLayoutManager(new LinearLayoutManager(this));
@@ -374,7 +374,7 @@ public class MainActivity extends AppCompatActivity {
 
         long albumId = 0;
         String name = "";
-        Object[] keys = Database.getPlaylists().keySet().toArray();
+        Object[] keys = PlaylistMaker.getPlaylists().keySet().toArray();
         int position = (int) view.getTag();
 
         name = keys[position].toString();

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -56,7 +55,7 @@ public class SongSelectorActivity extends AppCompatActivity {
         {
             sectionName = in.getStringExtra("selectedPlaylistName");
 //            sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
-            theSongs = Database.loadThisPlaylist(sectionName);
+            theSongs = PlaylistMaker.loadThisPlaylist(sectionName);
             placeholder.setText(sectionName);
         }
 
