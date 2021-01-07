@@ -64,11 +64,14 @@ public class Database {
         favorite.remove(song);
     }
     public static void newRecentlyPlayedSong(Song song) {
-        // saved 100 recently played song.
-        if (recentlyPlayed.size() >= 100) {
-            recentlyPlayed.remove(0);
+        // we saved only 100 song that played recently.
+        recentlyPlayed.remove(song);
+
+        // TODO: 10 should be 100 and 9 should be 99.
+        if (recentlyPlayed.size() >= 10) {
+            recentlyPlayed.remove(9);
         }
-        recentlyPlayed.add(song);
+        recentlyPlayed.add(0, song);
     }
 
 }

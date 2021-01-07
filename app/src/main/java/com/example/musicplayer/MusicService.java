@@ -3,6 +3,7 @@ package com.example.musicplayer;
 import android.app.Service;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -100,15 +101,16 @@ public class MusicService extends Service
         mp.start();
         isPaused = false;
         isPlayed = true;
+        Song currentSong = songs.get(songPos);
         MusicController thisController = Constant.getController();
         thisController.show();
         thisController.setTrackName(songTitle);
         thisController.setArtistName(songArtist);
-        if (songs.get(songPos).getAlbumArtBitmapDrawable() != null)
+        BitmapDrawable currentSongAlbumArt = currentSong.getAlbumArtBitmapDrawable();
+        if (currentSongAlbumArt != null)
         {
-            Drawable cover = songs.get(songPos).getAlbumArtBitmapDrawable();
-            thisController.setCoverArt(cover);
-            thisController.setBackCoverArt(cover);
+            thisController.setCoverArt(currentSongAlbumArt);
+            thisController.setBackCoverArt(currentSongAlbumArt);
         }
         thisController.setDuration(getDur());
         notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
@@ -116,6 +118,8 @@ public class MusicService extends Service
             notificationBuilder.builder(ACTION_PAUSE);
         if (isPaused)
             notificationBuilder.builder(ACTION_PLAY);
+
+        Database.newRecentlyPlayedSong(currentSong);
     }
 
     private void handleIntent(Intent intent) {

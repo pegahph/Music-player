@@ -32,6 +32,8 @@ public class SongSelectorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_selector);
 
+        placeholder = (TextView) findViewById(R.id.placeholder);
+
         theSongs = new ArrayList<>();
 
         Intent in = getIntent();
@@ -55,6 +57,7 @@ public class SongSelectorActivity extends AppCompatActivity {
             sectionName = in.getStringExtra("selectedPlaylistName");
 //            sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
             theSongs = Database.loadThisPlaylist(sectionName);
+            placeholder.setText(sectionName);
         }
 
         placeholder = (TextView) findViewById(R.id.placeholder);
