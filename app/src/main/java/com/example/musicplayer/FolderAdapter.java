@@ -29,7 +29,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View folderView = inflater.inflate(R.layout.artist, parent, false);
+        View folderView = inflater.inflate(R.layout.folder, parent, false);
         return new FolderViewHolder(folderView);
     }
 

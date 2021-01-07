@@ -341,27 +341,50 @@ public class MainActivity extends AppCompatActivity {
         if (view.getTag() instanceof Artist)
         {
             Artist selectedArtist = (Artist) view.getTag();
-            Toast.makeText(this, selectedArtist.getArtistName(), Toast.LENGTH_SHORT).show();
             name = selectedArtist.getArtistName();
             albumId = selectedArtist.getAlbumId();
             songSelectorIntent.putExtra("tab", "Artist");
             songSelectorIntent.putExtra("selectedArtistName", name);
             songSelectorIntent.putExtra("selectedArtistAlbumId", albumId);
 
-        }
-        else if (view.getTag() instanceof Folder)
-        {
-            Folder selectedFolder = (Folder) view.getTag();
-            Toast.makeText(this, selectedFolder.getFolderName(), Toast.LENGTH_SHORT).show();
-            name = selectedFolder.getFolderName();
-            albumId = selectedFolder.getAlbumId();
-            songSelectorIntent.putExtra("tab", "Folder");
-            songSelectorIntent.putExtra("selectedFolderName", name);
-            songSelectorIntent.putExtra("selectedFolderAlbumId", albumId);
+            startActivity(songSelectorIntent);
         }
         else
             Toast.makeText(this, "playlist clicked", Toast.LENGTH_SHORT).show();;
+    }
+
+    public void folderSelected(View view) {
+        Intent songSelectorIntent = new Intent(MainActivity.this, SongSelectorActivity.class);
+
+        long albumId = 0;
+        String name = "";
+        Folder selectedFolder = (Folder) view.getTag();
+        name = selectedFolder.getFolderName();
+        albumId = selectedFolder.getAlbumId();
+        songSelectorIntent.putExtra("tab", "Folder");
+        songSelectorIntent.putExtra("selectedFolderName", name);
+        songSelectorIntent.putExtra("selectedFolderAlbumId", albumId);
+
         startActivity(songSelectorIntent);
+
+    }
+
+    public void playlistSelected(View view) {
+        Intent songSelectorIntent = new Intent(MainActivity.this, SongSelectorActivity.class);
+
+        long albumId = 0;
+        String name = "";
+        Object[] keys = Database.getPlaylists().keySet().toArray();
+        int position = (int) view.getTag();
+
+        name = keys[position].toString();
+//        albumId = selectedFolder.getAlbumId();
+        songSelectorIntent.putExtra("tab", "Playlist");
+        songSelectorIntent.putExtra("selectedPlaylistName", name);
+//        songSelectorIntent.putExtra("selectedPlaylistAlbumId", albumId);
+
+        startActivity(songSelectorIntent);
+
     }
 
     @Override

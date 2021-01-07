@@ -50,6 +50,14 @@ public class SongSelectorActivity extends AppCompatActivity {
             theSongs = ListMaker.getThisFolderSongs(sectionName);
         }
 
+        else if (tab.equals("Playlist"))
+        {
+            sectionName = in.getStringExtra("selectedPlaylistName");
+//            sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
+            Toast.makeText(this, sectionName, Toast.LENGTH_SHORT).show();
+//            theSongs = ListMaker.getThisFolderSongs(sectionName);
+        }
+
         placeholder = (TextView) findViewById(R.id.placeholder);
         songSelectorList = (RecyclerView) findViewById(R.id.song_selector_list);
 
@@ -64,9 +72,6 @@ public class SongSelectorActivity extends AppCompatActivity {
         mediaPlayer = Constant.getTheMediaPlayer();
         mediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
         controller = Constant.getController();
-//        controller.hide();
-//        controller.setAnchorView(findViewById(R.id.song_selector_list));
-
     }
 
     @Override
@@ -77,15 +82,8 @@ public class SongSelectorActivity extends AppCompatActivity {
     }
 
     public void songPicked(View view) {
-        Toast.makeText(this, "artist", Toast.LENGTH_SHORT).show();
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
-//        musicService.setMusicController();
         musicService.playSong();
-//        if (playbackPaused) {
-////            setController();
-//            playbackPaused = false;
-//        }
-//        controller.show(0);
     }
 
 
