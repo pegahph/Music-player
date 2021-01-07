@@ -37,7 +37,7 @@ public class PlaylistFragment extends Fragment {
                 Context context = parent.getContext();
                 LayoutInflater inflater = LayoutInflater.from(context);
 
-                View artistView = inflater.inflate(R.layout.artist, parent, false);
+                View artistView = inflater.inflate(R.layout.playlist, parent, false);
                 return new PlaylistViewHolder(artistView);
             }
 
