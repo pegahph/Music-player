@@ -54,8 +54,7 @@ public class SongSelectorActivity extends AppCompatActivity {
         {
             sectionName = in.getStringExtra("selectedPlaylistName");
 //            sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
-            Toast.makeText(this, sectionName, Toast.LENGTH_SHORT).show();
-//            theSongs = ListMaker.getThisFolderSongs(sectionName);
+            theSongs = Database.loadThisPlaylist(sectionName);
         }
 
         placeholder = (TextView) findViewById(R.id.placeholder);

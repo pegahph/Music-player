@@ -54,6 +54,9 @@ public class Database {
             }
         }
     }
+    public static ArrayList<Song> loadThisPlaylist(String key) {
+        return playlists.get(key);
+    }
     public static void newFavoriteSong(Song song) {
         favorite.add(song);
     }
