@@ -1,17 +1,23 @@
 package com.example.musicplayer;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class PlaylistMaker {
+    public static ArrayList<String> keys;
     public static HashMap<String, ArrayList<Song>> playlists;
     public static ArrayList<Song> favorite;
     public static ArrayList<Song> recentlyPlayed;
+    private static DatabaseHelper mDatabaseHelper;
 
     public PlaylistMaker() {
     }
 
+    public static void createDatabase(Context context) {
+        mDatabaseHelper = new DatabaseHelper(context);
+    }
     public static HashMap<String, ArrayList<Song>> getPlaylists() {
         if (playlists == null || playlists.size() == 0) {
             playlists = new HashMap<>();
@@ -20,19 +26,21 @@ public class PlaylistMaker {
         return playlists;
     }
 
-    public static void savePlaylist() {
-
+    public static void savePlaylists() {
+        for (String key : keys) {
+            mDatabaseHelper.addPlaylistTitle(key);
+        }
     }
     public static void loadPlaylists() {
-        // we need to get these from database.
-        // anyway...
         playlists = new HashMap<>();
-        favorite = new ArrayList<>();
-        recentlyPlayed = new ArrayList<>();
-        // and any other playlist...
-
-        playlists.put("Favorite tracks", favorite);
-        playlists.put("Recently played", recentlyPlayed);
+        keys = new ArrayList<>();
+        for (String key : mDatabaseHelper.allPlaylistTitles()) {
+            if (!keys.contains(key))
+            {
+                keys.add(key);
+                playlists.put(key, new ArrayList<Song>());
+            }
+        }
         // playlists object is the one that we work with.
     }
     public static void savePlaylistsToDatabase() {
@@ -40,19 +48,19 @@ public class PlaylistMaker {
     }
     public static boolean newPlaylist(String playlistName, ArrayList<Song> songs) {
         // if playlist added successfully, return true.
-        for (Map.Entry<String, ArrayList<Song>> entry : playlists.entrySet()) {
-            String key = entry.getKey();
+        for (String key : keys) {
             if (key.equals(playlistName)) {
                 return false;
             }
         }
         playlists.put(playlistName, songs);
+        keys.add(playlistName);
         return true;
         // playlist name should be monhaser be fard!!
     }
     public static void deletePlaylist(String name) {
-        for (Map.Entry<String, ArrayList<Song>> entry : playlists.entrySet()) {
-            if (entry.getKey().equals(name)) {
+        for (String key : keys) {
+            if (key.equals(name)) {
                 playlists.remove(name);
                 break;
             }
@@ -62,6 +70,11 @@ public class PlaylistMaker {
         return playlists.get(key);
     }
     public static void newFavoriteSong(Song song) {
+        if (favorite == null) {
+            favorite = new ArrayList<>();
+            playlists.put("Favorite tracks", favorite);
+            keys.add("Favorite tracks");
+        }
         favorite.add(song);
     }
     public static void removeFromFavorites(Song song) {
@@ -69,6 +82,11 @@ public class PlaylistMaker {
     }
     public static void newRecentlyPlayedSong(Song song) {
         // we saved only 100 song that played recently.
+        if (recentlyPlayed == null) {
+            recentlyPlayed = new ArrayList<>();
+            playlists.put("Recently played", recentlyPlayed);
+            keys.add("Recently played");
+        }
         recentlyPlayed.remove(song);
 
         // TODO: 10 should be 100 and 9 should be 99.

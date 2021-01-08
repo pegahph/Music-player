@@ -14,20 +14,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PlaylistFragment extends Fragment {
 
     HashMap<String, ArrayList<Song>> playlists;
-    Object[] keys;
+    ArrayList<String> keys;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_playlist, container, false);
-        playlists = PlaylistMaker.getPlaylists();
-        sortByName();
-        keys = playlists.keySet().toArray();
         RecyclerView playlistRV = (RecyclerView) view.findViewById(R.id.playlistRecyclerView);
         RecyclerView.Adapter<PlaylistViewHolder> adapter = new RecyclerView.Adapter<PlaylistViewHolder>() {
             @NonNull
@@ -52,7 +51,24 @@ public class PlaylistFragment extends Fragment {
         };
         playlistRV.setAdapter(adapter);
         playlistRV.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        FloatingActionButton addPlaylist = view.findViewById(R.id.add_playlist);
+        addPlaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlaylistMaker.newPlaylist("playlist #" + (keys.size() + 1), new ArrayList<Song>());
+                playlists = PlaylistMaker.getPlaylists();
+                keys = PlaylistMaker.keys;
+            }
+        });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        playlists = PlaylistMaker.getPlaylists();
+        keys = PlaylistMaker.keys;
     }
 
     private void sortByName() {
@@ -73,7 +89,7 @@ public class PlaylistFragment extends Fragment {
         }
 
         public void bindView(int position) {
-            playlistName.setText(keys[position].toString());
+            playlistName.setText(keys.get(position));
             thisView.setTag(position);
         }
     }

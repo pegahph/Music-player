@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 return s1.getTitle().compareTo(s2.getTitle());
             }
         });
+        PlaylistMaker.createDatabase(getApplicationContext());
         PlaylistMaker.loadPlaylists();
 //        SongAdapter songAdapter = new SongAdapter(songList);
 //        songRV.setAdapter(songAdapter);
@@ -374,10 +375,10 @@ public class MainActivity extends AppCompatActivity {
 
         long albumId = 0;
         String name = "";
-        Object[] keys = PlaylistMaker.getPlaylists().keySet().toArray();
+        ArrayList<String> keys = PlaylistMaker.keys;
         int position = (int) view.getTag();
 
-        name = keys[position].toString();
+        name = keys.get(position);
 //        albumId = selectedFolder.getAlbumId();
         songSelectorIntent.putExtra("tab", "Playlist");
         songSelectorIntent.putExtra("selectedPlaylistName", name);
@@ -389,6 +390,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        PlaylistMaker.savePlaylists();
         stopService(playIntent);
         musicService = null;
         super.onDestroy();
