@@ -151,6 +151,8 @@ public class MusicService extends Service
             // repeat off.
             if (!repeatOn)
             {
+                // TODO: what if songs.size() mosavi sefr bashe??
+                // I mean when it will?
                 if ((songPos+1) % songs.size() != startPos)
                     playNext();
                 else
