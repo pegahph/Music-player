@@ -1122,4 +1122,12 @@
             </item>
         </layer-list>
     </item>
+    <item android:gravity="center_vertical" android:top="1dp">
+        <shape android:shape="rectangle" >
+            <size android:width="250dp" android:height="2dp"/>
+            <corners android:radius="2dp"/>
+            <gradient android:startColor="#838F97" android:centerColor="#4A5661" android:endColor="#838F97"
+                android:angle="180"/>
+        </shape>
+    </item>
 </layer-list>
