@@ -188,11 +188,10 @@
 
             <SeekBar
                 android:id="@+id/seekBar"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_width="340dp"
+                android:layout_height="58dp"
                 android:splitTrack="false"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="12dp"
+                android:layout_gravity="center"
                 android:progressDrawable="@drawable/seekbar"
                 android:thumb="@drawable/seekbar_thumb" />
 
@@ -238,8 +237,8 @@
 
                 <ImageButton
                     android:id="@+id/shuffle_button"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@null"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/shuffle_off" />
@@ -286,7 +285,7 @@
                     android:layout_height="30dp"
                     android:background="@null"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_round_repeat_24" />
+                    app:srcCompat="@drawable/ic_repeat_off" />
             </LinearLayout>
 
         </LinearLayout>

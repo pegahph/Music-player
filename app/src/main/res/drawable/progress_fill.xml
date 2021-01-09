@@ -1,1109 +1,1137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:gravity="center">
+    <item android:gravity="left">
         <layer-list>
             <item android:gravity="left">
                 <layer-list>
-                    <item android:gravity="left|center" android:height="10dp">
+                    <item android:gravity="left">
                         <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="5dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="6dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="3dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="3dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="5dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="10dp" android:left="5dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="5dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="5dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="16dp" android:left="10dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="8dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="8dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="12dp" android:left="15dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="6dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="6dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="20dp" android:left="20dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp" />
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="18dp" android:left="25dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="9dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="9dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="26dp" android:left="30dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="13dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="13dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="20dp" android:left="35dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="28dp" android:left="40dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="2dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="20dp" android:left="45dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="2dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="26dp" android:left="50dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="13dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="13dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
                         </layer-list>
                     </item>
-
-                    <item android:gravity="left|center" android:height="20dp" android:left="6dp">
+                    <item android:gravity="left" android:left="55dp">
                         <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="32dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="28dp" android:left="5dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="2dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="36dp" android:left="10dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="18dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp" />
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="18dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="30dp" android:left="15dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="15dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="15dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="22dp" android:left="20dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="11dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="11dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="32dp" android:left="25dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="40dp" android:left="30dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="20dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="20dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="30dp" android:left="35dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="15dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="15dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="44dp" android:left="40dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="22dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="22dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="34dp" android:left="45dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="17dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="17dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="42dp" android:left="50dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="21dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="21dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="28dp" android:left="55dp" >
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="36dp" android:left="60dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="18dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="18dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
                         </layer-list>
                     </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="12dp">
+                    <item android:gravity="left" android:left="120dp">
                         <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="32dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp" />
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="40dp" android:left="5dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="20dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="20dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="50dp" android:left="10dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="25dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="25dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="46dp" android:left="15dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="23dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="23dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="40dp" android:left="20dp" >
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="20dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="20dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="50dp" android:left="25dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="25dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="25dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="58dp" android:left="30dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="29dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="29dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="48dp" android:left="35dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="24dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="24dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="38dp" android:left="40dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="19dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="19dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="44dp" android:left="45dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="22dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="22dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="34dp" android:left="50dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="17dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="17dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="48dp" android:left="55dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="24dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="24dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="38dp" android:left="60dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="19dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="19dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
                         </layer-list>
                     </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="18dp">
+                    <item android:gravity="left" android:left="185dp">
                         <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="44dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="22dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp" />
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="22dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="32dp" android:left="5dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="28dp" android:left="10dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="34dp" android:left="15dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="17dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="17dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="44dp" android:left="20dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="22dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="22dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="32dp" android:left="25dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="40dp" android:left="30dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="20dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="20dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="30dp" android:left="35dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="15dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="15dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="24dp" android:left="40dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="12dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="12dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="32dp" android:left="45dp" >
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="36dp" android:left="50dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="18dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="18dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="28dp" android:left="55dp" >
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
+                            </item>
+                            <item android:gravity="left|center" android:height="32dp" android:left="60dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="16dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
                         </layer-list>
                     </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="24dp">
+                    <item android:gravity="left" android:left="250dp">
                         <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp" />
-                                </shape>
+                            <item android:gravity="left|center" android:height="26dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="13dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="13dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="20dp" android:left="5dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="30dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="28dp" android:left="10dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="14dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="20dp" android:left="15dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="36dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="26dp" android:left="20dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="13dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="13dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="18dp" android:left="25dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="9dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="9dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="42dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="20dp" android:left="30dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp" />
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="10dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="12dp" android:left="35dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="6dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="6dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="48dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="16dp" android:left="40dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="8dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="8dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="10dp" android:left="45dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="5dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="5dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="54dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="20dp" android:left="60dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
+                            <item android:gravity="left|center" android:height="6dp" android:left="50dp">
+                                <layer-list>
+                                    <item>
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="3dp"/>
+                                            <solid android:color="@color/progressColor"/>
+                                            <corners android:radius="3dp"/>
+                                        </shape>
+                                    </item>
+                                    <item android:gravity="bottom">
+                                        <shape android:shape="rectangle">
+                                            <size  android:width="3dp" android:height="3dp"/>
+                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
+                                        </shape>
+                                    </item>
+                                </layer-list>
                             </item>
                         </layer-list>
                     </item>
                 </layer-list>
             </item>
-            <item android:gravity="left" android:left="54dp">
-                <layer-list>
-                    <item android:gravity="left|center" android:height="30dp" android:left="12dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="18dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="24dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp" />
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="30dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="36dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="42dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="48dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="54dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="20dp" android:left="60dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-                </layer-list>
+            <item android:gravity="center_vertical" android:top="1dp">
+                <shape android:shape="rectangle" >
+                    <size android:width="300dp" android:height="2dp"/>
+                    <corners android:radius="2dp"/>
+                    <gradient android:startColor="#5E60CE" android:centerColor="#5390D9" android:endColor="#5E60CE"
+                        android:angle="180"/>
+                </shape>
             </item>
-            <item android:gravity="left" android:left="108dp">
-                <layer-list>
-                    <item android:gravity="left|center" android:height="30dp" android:left="12dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="18dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="24dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp" />
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="30dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="36dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="42dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="48dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="54dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="20dp" android:left="60dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-                </layer-list>
-            </item>
-            <item android:gravity="left" android:left="162dp">
-                <layer-list>
-                    <item android:gravity="left|center" android:height="30dp" android:left="12dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="18dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="24dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp" />
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="30dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="36dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="42dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="48dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="54dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="20dp" android:left="60dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-                </layer-list>
-            </item>
-            <item android:gravity="left" android:left="216dp">
-                <layer-list>
-                    <item android:gravity="left|center" android:height="30dp" android:left="12dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="18dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="24dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp" />
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="30dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="36dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="42dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="48dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="54dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="20dp" android:left="60dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-                </layer-list>
-            </item>
-            <item android:gravity="left" android:left="270dp">
-                <layer-list>
-                    <item android:gravity="left|center" android:height="30dp" android:left="12dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="18dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="24dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp" />
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="30dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="50dp" android:left="36dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="25dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="42dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="40dp" android:left="48dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="20dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="30dp" android:left="54dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="15dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-
-                    <item android:gravity="left|center" android:height="20dp" android:left="60dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="10dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-                    <item android:gravity="left|center" android:height="10dp" android:left="66dp">
-                        <layer-list>
-                            <item>
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="5dp"/>
-                                    <solid android:color="@color/colorRed"/>
-                                    <corners android:radius="2dp"/>
-                                </shape>
-                            </item>
-                            <item android:gravity="bottom">
-                                <shape android:shape="rectangle">
-                                    <size  android:width="3dp" android:height="5dp"/>
-                                    <solid android:color="@color/seekbarColorBottom"/>
-                                    <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
-                                </shape>
-                            </item>
-                        </layer-list>
-                    </item>
-                </layer-list>
-            </item>
-
-
         </layer-list>
     </item>
 </layer-list>
