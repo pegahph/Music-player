@@ -162,7 +162,7 @@ public class MusicController extends FrameLayout {
     public void updateFavorite() {
         Song currentSong = mediaPlayer.getCurrentSong();
         if (currentSong.isFavorite()) {
-            favoriteBtn.setImageResource(R.drawable.ic_twotone_delete_outline_24);
+            favoriteBtn.setImageResource(R.drawable.ic_baseline_favorite_24);
         }
         else {
             favoriteBtn.setImageResource(R.drawable.ic_twotone_favorite_24);

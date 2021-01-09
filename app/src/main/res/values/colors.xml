@@ -19,5 +19,6 @@
     <color name="light_blue_900">#FF01579B</color>
     <color name="blueGreen">#1ABC9C</color>
     <color name="darkBlueGreen">#1b6759</color>
+    <color name="progressColor">#4ea8de</color>
 
 </resources>
