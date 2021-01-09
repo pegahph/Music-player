@@ -34,6 +34,7 @@ public class SongPlayerPage extends AppCompatActivity {
     MusicController theController;
     Runnable timerRunnable;
     boolean killMe = false;
+    final Handler updateHandler = new Handler();
     // is it added?
 
     @Override
@@ -94,7 +95,6 @@ public class SongPlayerPage extends AppCompatActivity {
             }
         });
 
-        final Handler updateHandler = new Handler();
 
         timerRunnable = new Runnable() {
             @Override
@@ -119,6 +119,7 @@ public class SongPlayerPage extends AppCompatActivity {
         super.onStart();
         blurLayout.startBlur();
         killMe = false;
+        updateHandler.postDelayed(timerRunnable, 250);
     }
 
     @Override
