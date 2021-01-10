@@ -67,7 +67,6 @@ public class SongSelectorActivity extends AppCompatActivity {
         songSelectorList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         musicService = Constant.getMusicService();
-        musicService.setList(theSongs);
         musicConnection = Constant.getMusicConnection();
 
         mediaPlayer = Constant.getTheMediaPlayer();
@@ -84,6 +83,7 @@ public class SongSelectorActivity extends AppCompatActivity {
 
     public void songPicked(View view) {
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
+        musicService.setList(theSongs);
         musicService.playSong();
     }
 
