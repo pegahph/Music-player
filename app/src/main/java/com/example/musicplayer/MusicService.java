@@ -112,13 +112,21 @@ public class MusicService extends Service
             thisController.setBackCoverArt(currentSongAlbumArt);
         }
         thisController.setDuration(getDur());
-        notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
+
+        newNotification();
         if (isPlayed)
             notificationBuilder.builder(ACTION_PAUSE);
         if (isPaused)
             notificationBuilder.builder(ACTION_PLAY);
 
         PlaylistMaker.newRecentlyPlayedSong(currentSong);
+    }
+
+    private void newNotification() {
+        if (songs == null) {
+            setList(PlaylistMaker.recentlyPlayed);
+        }
+        notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
     }
 
     private void handleIntent(Intent intent) {
@@ -246,6 +254,8 @@ public class MusicService extends Service
         player.pause();
         isPaused = true;
         isPlayed = false;
+        if (notificationBuilder == null)
+            newNotification();
         notificationBuilder.builder(ACTION_PLAY);
     }
     public void seek(int pos) {
@@ -255,6 +265,8 @@ public class MusicService extends Service
         player.start();
         isPlayed = true;
         isPaused = false;
+        if (notificationBuilder == null)
+            newNotification();
         notificationBuilder.builder(ACTION_PAUSE);
     }
 
@@ -303,6 +315,9 @@ public class MusicService extends Service
     }
 
     public Song getCurrentSong(){
+        if (songs == null) {
+            setList(PlaylistMaker.recentlyPlayed);
+        }
         return songs.get(songPos);
     }
 
