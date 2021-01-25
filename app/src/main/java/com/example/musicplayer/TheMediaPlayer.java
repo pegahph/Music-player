@@ -147,12 +147,14 @@ public class TheMediaPlayer implements MediaPlayerControl {
         if (playbackPaused) {
             playbackPaused = false;
         }
+        Constant.getController().updateFavorite();
     }
     private void playPrev() {
         musicService.playPrev();
         if (playbackPaused) {
             playbackPaused = false;
         }
+        Constant.getController().updateFavorite();
     }
 
 }
