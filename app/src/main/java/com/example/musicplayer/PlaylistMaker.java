@@ -2,6 +2,10 @@ package com.example.musicplayer;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,6 +14,7 @@ public class PlaylistMaker {
     public static HashMap<String, ArrayList<Song>> playlists;
     public static ArrayList<Song> favorite;
     public static ArrayList<Song> recentlyPlayed;
+    private static Song lastSong;
     private static DatabaseHelper mDatabaseHelper;
 
     public PlaylistMaker() {
@@ -19,7 +24,7 @@ public class PlaylistMaker {
         mDatabaseHelper = new DatabaseHelper(context);
     }
     public static HashMap<String, ArrayList<Song>> getPlaylists() {
-        if (playlists == null || playlists.size() == 0) {
+        if (playlists == null) {
             playlists = new HashMap<>();
             loadPlaylists();
         }
@@ -27,22 +32,60 @@ public class PlaylistMaker {
     }
 
     public static void savePlaylists() {
+        Gson gson = new Gson();
         for (String key : keys) {
-            mDatabaseHelper.addPlaylistTitle(key);
+            String json = gson.toJson(playlists.get(key));
+            mDatabaseHelper.addPlaylist(key, json);
         }
     }
     public static void loadPlaylists() {
         playlists = new HashMap<>();
         keys = new ArrayList<>();
-        for (String key : mDatabaseHelper.allPlaylistTitles()) {
+        Type type = new TypeToken<ArrayList<Song>>() {
+        }.getType();
+        Gson gson = new Gson();
+        for (String key : mDatabaseHelper.getAllPlaylistTitles()) {
             if (!keys.contains(key))
             {
                 keys.add(key);
-                playlists.put(key, new ArrayList<Song>());
+                String playlistSongsJson = mDatabaseHelper.getThisPlaylistSongs(key);
+                ArrayList<Song> playlistSongs = gson.fromJson(playlistSongsJson, type);
+                playlistSongs = changeToRealSongs(key, playlistSongs);
+                playlists.put(key, playlistSongs);
             }
+        }
+        if (keys.contains("Favorite tracks"))
+        {
+            favorite = playlists.get("Favorite tracks");
+        }
+        if (keys.contains("Recently played"))
+        {
+            recentlyPlayed = playlists.get("Recently played");
+            assert recentlyPlayed != null;
+            lastSong = recentlyPlayed.get(0);
+
         }
         // playlists object is the one that we work with.
     }
+
+    private static ArrayList<Song> changeToRealSongs(String key, ArrayList<Song> playlistSongs) {
+        ArrayList<Song> tracks = ListMaker.loadTracks();
+        ArrayList<Song> result = new ArrayList<>();
+        for (Song song : playlistSongs) {
+            int index = tracks.indexOf(song);
+            if (index != -1 && song != null)
+            {
+                Song song1 = tracks.get(index);
+                result.add(song1);
+                if (key.equals("Favorite tracks"))
+                {
+                    song1.changeFavorite();
+                }
+            }
+        }
+        return result;
+    }
+
     public static void savePlaylistsToDatabase() {
         // save to database
     }
@@ -71,11 +114,19 @@ public class PlaylistMaker {
     }
     public static void newFavoriteSong(Song song) {
         if (favorite == null) {
-            favorite = new ArrayList<>();
-            playlists.put("Favorite tracks", favorite);
-            keys.add("Favorite tracks");
+            if (keys.contains("Favorite tracks"))
+            {
+                favorite = playlists.get("Favorite tracks");
+            }
+            else {
+                favorite = new ArrayList<>();
+                playlists.put("Favorite tracks", favorite);
+                keys.add("Favorite tracks");
+            }
         }
-        favorite.add(song);
+        assert favorite != null;
+        if (!favorite.contains(song))
+            favorite.add(0, song);
     }
     public static void removeFromFavorites(Song song) {
         favorite.remove(song);
@@ -83,10 +134,17 @@ public class PlaylistMaker {
     public static void newRecentlyPlayedSong(Song song) {
         // we saved only 100 song that played recently.
         if (recentlyPlayed == null) {
-            recentlyPlayed = new ArrayList<>();
-            playlists.put("Recently played", recentlyPlayed);
-            keys.add("Recently played");
+            if (keys.contains("Recently played"))
+            {
+                recentlyPlayed = playlists.get("Recently played");
+            }
+            else {
+                recentlyPlayed = new ArrayList<>();
+                playlists.put("Recently played", recentlyPlayed);
+                keys.add("Recently played");
+            }
         }
+        assert recentlyPlayed != null;
         recentlyPlayed.remove(song);
 
         // TODO: 10 should be 100 and 9 should be 99.
@@ -94,6 +152,10 @@ public class PlaylistMaker {
             recentlyPlayed.remove(9);
         }
         recentlyPlayed.add(0, song);
+        lastSong = song;
     }
 
+    public static Song getLastSong() {
+        return lastSong;
+    }
 }
