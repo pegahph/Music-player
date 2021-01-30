@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 
 import java.io.InputStream;
+import java.util.Objects;
 
 public class Song {
     public static ContentResolver musicResolver;
@@ -105,5 +106,18 @@ public class Song {
             }
         }
         return folder;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Song song = (Song) o;
+        return id == song.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, artist, path, folder, albumId, favorite);
     }
 }

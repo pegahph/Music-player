@@ -26,6 +26,7 @@ public class MusicController extends FrameLayout {
     private BlurLayout blurLayout;
     private View grayView;
     private SeekBar seekBar;
+    private Song lastSong;
 
     public MusicController(@NonNull Context context) {
         super(context);
@@ -160,12 +161,14 @@ public class MusicController extends FrameLayout {
     }
 
     public void updateFavorite() {
-        Song currentSong = mediaPlayer.getCurrentSong();
-        if (currentSong.isFavorite()) {
-            favoriteBtn.setImageResource(R.drawable.ic_baseline_favorite_24);
-        }
-        else {
-            favoriteBtn.setImageResource(R.drawable.ic_twotone_favorite_24);
+        if (isSongPlayerActivity) {
+            Song currentSong = mediaPlayer.getCurrentSong();
+            if (currentSong.isFavorite()) {
+                favoriteBtn.setImageResource(R.drawable.ic_baseline_favorite_24);
+            }
+            else {
+                favoriteBtn.setImageResource(R.drawable.ic_twotone_favorite_24);
+            }
         }
     }
 
@@ -187,6 +190,17 @@ public class MusicController extends FrameLayout {
             if (isSongPlayerActivity)
             {
                 this.backCover.setImageDrawable(lastController.coverArt.getDrawable());
+                this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
+            }
+        }
+        lastSong = PlaylistMaker.getLastSong();
+        if (lastSong != null) {
+            this.trackName.setText(lastSong.getTitle());
+            this.artistName.setText(lastSong.getArtist());
+            this.coverArt.setImageDrawable(lastSong.getAlbumArtBitmapDrawable());
+            if (isSongPlayerActivity)
+            {
+                this.backCover.setImageDrawable(lastSong.getAlbumArtBitmapDrawable());
                 this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
             }
         }
