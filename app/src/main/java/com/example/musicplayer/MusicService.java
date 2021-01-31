@@ -124,7 +124,9 @@ public class MusicService extends Service
 
     private void newNotification() {
         if (songs == null) {
-            setList(PlaylistMaker.recentlyPlayed);
+            setList(PlaylistMaker.lastList);
+            songPos = songs.indexOf(PlaylistMaker.getLastSong());
+            playSong();
         }
         notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
     }
@@ -197,7 +199,12 @@ public class MusicService extends Service
     }
 
     public void setList(ArrayList<Song> theSongs) {
+        if (theSongs == null)
+        {
+            theSongs = ListMaker.songList;
+        }
         this.songs = theSongs;
+        PlaylistMaker.lastList = this.songs;
     }
 
     @Override
