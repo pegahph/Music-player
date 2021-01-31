@@ -14,6 +14,7 @@ public class PlaylistMaker {
     public static HashMap<String, ArrayList<Song>> playlists;
     public static ArrayList<Song> favorite;
     public static ArrayList<Song> recentlyPlayed;
+    public static ArrayList<Song> lastList;
     private static Song lastSong;
     private static DatabaseHelper mDatabaseHelper;
 
@@ -37,6 +38,8 @@ public class PlaylistMaker {
             String json = gson.toJson(playlists.get(key));
             mDatabaseHelper.addPlaylist(key, json);
         }
+        String json = gson.toJson(lastList);
+        mDatabaseHelper.addPlaylist("lastList", json);
     }
     public static void loadPlaylists() {
         playlists = new HashMap<>();
@@ -45,7 +48,13 @@ public class PlaylistMaker {
         }.getType();
         Gson gson = new Gson();
         for (String key : mDatabaseHelper.getAllPlaylistTitles()) {
-            if (!keys.contains(key))
+            if (key.equals("lastList"))
+            {
+                String playlistSongsJson = mDatabaseHelper.getThisPlaylistSongs(key);
+                ArrayList<Song> playlistSongs = gson.fromJson(playlistSongsJson, type);
+                lastList = changeToRealSongs(key, playlistSongs);
+            }
+            else if (!keys.contains(key))
             {
                 keys.add(key);
                 String playlistSongsJson = mDatabaseHelper.getThisPlaylistSongs(key);
