@@ -72,6 +72,7 @@
                     android:text="Name" />
 
                 <ImageView
+                    android:id="@+id/share_btn"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:layout_marginLeft="10dp"
@@ -86,6 +87,7 @@
 
 
                 <ImageView
+                    android:id="@+id/delete_btn"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:layout_marginLeft="10dp"
