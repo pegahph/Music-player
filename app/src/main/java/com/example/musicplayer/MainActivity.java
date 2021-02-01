@@ -73,9 +73,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(darkTheme){
-            setTheme(R.style.DarkTheme);
-        }
+        Theme.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_main);
         tabs = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view_pager);
@@ -304,8 +302,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.themeMood:
-                        darkTheme = true;
-                        recreate();
+                        Theme.changeToTheme(MainActivity.this, Theme.THEME_DARK);
                         return true;
                     case R.id.removeBackground:
                         // do your code
