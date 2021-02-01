@@ -68,7 +68,7 @@ public class Song {
         if (hours > 0) {
             return new Formatter().format("%d:%02d:%02d", hours, minutes, seconds).toString();
         } else {
-            return new Formatter().format("%02d:%02d", minutes, seconds).toString();
+            return new Formatter().format("%d:%02d", minutes, seconds).toString();
         }
     }
     public long getAlbumId() {

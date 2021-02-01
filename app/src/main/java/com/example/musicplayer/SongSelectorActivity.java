@@ -31,7 +31,7 @@ public class SongSelectorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_selector);
 
-        placeholder = (TextView) findViewById(R.id.placeholder);
+
 
         theSongs = new ArrayList<>();
 
@@ -59,7 +59,7 @@ public class SongSelectorActivity extends AppCompatActivity {
             placeholder.setText(sectionName);
         }
 
-        placeholder = (TextView) findViewById(R.id.placeholder);
+//        placeholder = (TextView) findViewById(R.id.placeholder);
         songSelectorList = (RecyclerView) findViewById(R.id.song_selector_list);
 
         SongAdapter songAdapter = new SongAdapter(theSongs);

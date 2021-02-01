@@ -20,5 +20,6 @@
     <color name="blueGreen">#1ABC9C</color>
     <color name="darkBlueGreen">#1b6759</color>
     <color name="progressColor">#4ea8de</color>
+    <color name="white">#fff</color>
 
 </resources>

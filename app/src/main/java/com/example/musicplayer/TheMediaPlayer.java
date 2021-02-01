@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController.MediaPlayerControl;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -61,7 +62,10 @@ public class TheMediaPlayer implements MediaPlayerControl {
         ImageView aCoverArt = (ImageView) controllerLayout.findViewById(R.id.cover_art);
         TextView aTrackName = (TextView) controllerLayout.findViewById(R.id.trackNameTextView);
         TextView aArtistName = (TextView) controllerLayout.findViewById(R.id.artistNameTextView);
+        ProgressBar progressBar = (ProgressBar) controllerLayout.findViewById(R.id.CustomControllerProgressBar);
+        aTrackName.setSelected(true);
 
+        this.controllerLayout.getProgressbar(progressBar);
         this.controllerLayout.getButtons(aPrevBtn, aPlayBtn, aNextBtn);
         this.controllerLayout.getDetails(aCoverArt, aTrackName, aArtistName);
     }

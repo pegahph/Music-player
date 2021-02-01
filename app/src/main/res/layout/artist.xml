@@ -33,9 +33,10 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:textColor="@color/mainColor"
+            android:textColor="?attr/mainColor"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="Artist"/>
     </LinearLayout>
 
     <View
@@ -43,6 +44,6 @@
         android:layout_width="match_parent"
         android:layout_marginTop="7dp"
         android:layout_height="1dp"
-        android:background="@color/SubsidiaryColor" />
+        android:background="?attr/SubsidiaryColor" />
 
 </LinearLayout>

@@ -15,6 +15,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -29,9 +30,11 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import java.io.InputStream;
@@ -63,12 +66,16 @@ public class MainActivity extends AppCompatActivity {
     String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
     TabLayout tabs;
     ViewPager viewPager;
+    private boolean darkTheme = false;
 
 
     // Overriding onCreate function :)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(darkTheme){
+            setTheme(R.style.DarkTheme);
+        }
         setContentView(R.layout.activity_main);
         tabs = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view_pager);
@@ -271,6 +278,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        View menuItemView = findViewById(R.id.Theme);
         switch (item.getItemId()) {
             case R.id.action_shuffle:
                 musicService.setShuffle();
@@ -280,9 +288,37 @@ public class MainActivity extends AppCompatActivity {
                 musicService = null;
                 System.exit(0);
                 break;
+            case R.id.Theme:
+                showPopup(menuItemView);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.theme_menu, popup.getMenu());
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.themeMood:
+                        darkTheme = true;
+                        recreate();
+                        return true;
+                    case R.id.removeBackground:
+                        // do your code
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+        popup.show();
+    }
+
+
 
     public void getSongList() {
         songList = ListMaker.loadTracks();
