@@ -13,7 +13,7 @@ public class Theme {
     public static void changeToTheme(Activity activity, int theme)
     {
         sTheme = theme;
-        activity.finish();
+        activity.recreate();
         activity.startActivity(new Intent(activity, activity.getClass()));
     }
 
