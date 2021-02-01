@@ -6,16 +6,23 @@
     android:onClick="controllerClicked"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="?attr/colorPrimary"
     android:gravity="center_vertical"
     android:orientation="horizontal">
+
+    <ProgressBar
+        android:id="@+id/CustomControllerProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
 
         <ImageView
             android:id="@+id/cover_art"
@@ -38,17 +45,18 @@
                 android:text="track name"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:textColor="@color/mainColor"/>
+                android:textColor="?attr/mainColor"/>
 
             <TextView
                 android:id="@+id/artistNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="artist name"
-                android:textColor="@color/SubsidiaryColor"/>
+                android:textColor="?attr/SubsidiaryColor"/>
         </LinearLayout>
 
         <ImageButton

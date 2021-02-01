@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/action_shuffle"
         android:icon="@drawable/ic_baseline_shuffle_24"
         android:orderInCategory="1"
-        app:showAsAction="always"
-        android:title="Shuffle" />
+        android:title="Shuffle"
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/action_end"
         android:icon="@drawable/ic_baseline_close_24"
+        android:orderInCategory="3"
+        android:title="End"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/Theme"
         android:orderInCategory="2"
-        app:showAsAction="always"
-        android:title="End" />
-
+        android:title="theme"
+        app:showAsAction="always" >
+    </item>
 
 </menu>

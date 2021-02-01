@@ -205,7 +205,7 @@
 
             <SeekBar
                 android:id="@+id/seekBar"
-                android:layout_width="340dp"
+                android:layout_width="335dp"
                 android:layout_height="58dp"
                 android:splitTrack="false"
                 android:layout_gravity="center"

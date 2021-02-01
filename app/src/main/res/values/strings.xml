@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">The Music</string>
+    <string name="app_name">Music library</string>
     <string name="title_activity_test">Test</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

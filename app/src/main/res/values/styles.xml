@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -31,4 +31,45 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
+    <style name="ActionBar" parent="@style/Theme.AppCompat.Light">
+        <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
+        <item name="actionMenuTextColor">?attr/actionbarText</item>
+    </style>
+
+    <style name="Widget.Styled.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="titleTextStyle">@style/ActionBarTitleText</item>
+        <item name="subtitleTextStyle">@style/ActionBarSubTitleText</item>
+    </style>
+
+    <style name="ActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">?attr/actionbarText</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ActionBarSubTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">?attr/actionbarText</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <!--    themes-->
+    <style name="LightTheme" parent="Theme.AppCompat.Light">
+        <item name="shadow">#DCE7ECEF</item>
+        <item name="colorPrimary">#d8e2dc</item>
+        <item name="mainColor">#212529</item>
+        <item name="SubsidiaryColor">#485059</item>
+        <item name="tabItems">#4F5861</item>
+        <item name="actionbarText">#212529</item>
+        <item name="background">@drawable/back_light3</item>
+        <item name="folder_icon">@drawable/folder_icon_light</item>
+    </style>
+    <style name="DarkTheme" parent="Theme.AppCompat.Light">
+        <item name="shadow">#E2212529</item>
+        <item name="colorPrimary">#212529</item>
+        <item name="mainColor">#5DE8E5</item>
+        <item name="SubsidiaryColor">#08F7FE</item>
+        <item name="tabItems">#ECECEC</item>
+        <item name="actionbarText">#fff</item>
+        <item name="background">@drawable/background7</item>
+        <item name="folder_icon">@drawable/folder_icon_dark</item>
+        </style>
 </resources>
