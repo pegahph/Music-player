@@ -35,7 +35,7 @@ public class ListMaker {
                 MediaStore.Audio.Media.TITLE,
                 MediaStore.MediaColumns.DATA,
 //                MediaStore.Audio.Media.DISPLAY_NAME,
-//                MediaStore.Audio.Media.DURATION,
+                MediaStore.Audio.Media.DURATION,
                 MediaStore.Audio.Media.ALBUM_ID
         };
         String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
@@ -49,6 +49,7 @@ public class ListMaker {
             int artistColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int albumIdColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
             int pathColumn = musicCursor.getColumnIndex(MediaStore.MediaColumns.DATA);
+            int durationColumn = musicCursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
             Song.musicResolver = musicResolver;
             Song.resources = resources;
             // add songs to list
@@ -58,7 +59,8 @@ public class ListMaker {
                 String thisArtist = musicCursor.getString(artistColumn);
                 long album_id = musicCursor.getLong(albumIdColumn);
                 String path = musicCursor.getString(pathColumn);
-                Song thisSong = new Song(thisId, thisTitle, thisArtist, album_id, path);
+                int duration = musicCursor.getInt(durationColumn);
+                Song thisSong = new Song(thisId, thisTitle, thisArtist, album_id, path, duration);
                 songList.add(thisSong);
                 String thisFolder = thisSong.getFolder();
 

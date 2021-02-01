@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 
 import java.io.InputStream;
+import java.util.Formatter;
 import java.util.Objects;
 
 public class Song {
@@ -22,15 +23,17 @@ public class Song {
     private String artist;
     private String path;
     private String folder;
+    private int duration;
     private long albumId;
     private boolean favorite;
 
-    public Song(long songId, String songTitle, String songArtist, long albumId, String songPath) {
+    public Song(long songId, String songTitle, String songArtist, long albumId, String songPath, int duration) {
         this.id = songId;
         this.title = songTitle;
         this.artist = songArtist;
         this.albumId = albumId;
         this.path = songPath;
+        this.duration = duration;
         this.favorite = false;
     }
 
@@ -51,6 +54,22 @@ public class Song {
     }
     public String getArtist() {
         return artist;
+    }
+    public int getDuration() {
+        return duration;
+    }
+    public String getDurationInTimeFormat() {
+        int totalSeconds = getDuration() / 1000;
+
+        int seconds = totalSeconds % 60;
+        int minutes = (totalSeconds / 60) % 60;
+        int hours   = totalSeconds / 3600;
+
+        if (hours > 0) {
+            return new Formatter().format("%d:%02d:%02d", hours, minutes, seconds).toString();
+        } else {
+            return new Formatter().format("%02d:%02d", minutes, seconds).toString();
+        }
     }
     public long getAlbumId() {
         return albumId;
