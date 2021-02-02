@@ -303,6 +303,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.themeMood:
                         Theme.changeToTheme(MainActivity.this, Theme.THEME_DARK);
+                        musicService.setMenu(true);
                         return true;
                     case R.id.removeBackground:
                         viewPager.setBackground(null);

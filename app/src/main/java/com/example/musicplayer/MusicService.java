@@ -61,6 +61,10 @@ public class MusicService extends Service
     private Random rand;
     boolean isPaused = false;
     public static boolean isPlayed = false;
+    private boolean isMenu = false;
+    public void setMenu(boolean isMenu) {
+        this.isMenu = isMenu;
+    }
 
     NotificationBuilder notificationBuilder;
 
@@ -90,8 +94,11 @@ public class MusicService extends Service
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        if (musicService != null)
+        if (musicService != null && !isMenu)
             handleIntent(intent);
+        else if (isMenu){
+            isMenu = false;
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
