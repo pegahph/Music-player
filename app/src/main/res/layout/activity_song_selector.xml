@@ -37,19 +37,16 @@
             android:src="?attr/background3" />
 
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/shadowVerylight"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="10dp">
+            android:paddingLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:paddingRight="20dp"
+            android:elevation="10dp"
+            android:background="?attr/shadowVerylight">
 
             <TextView
                 android:id="@+id/folderName"
@@ -59,7 +56,6 @@
                 android:textSize="22sp"
                 android:text="FolderName"
                 android:textStyle="bold"
-                android:layout_marginRight="20dp"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"

@@ -16,5 +16,8 @@
         <attr name="moodTitle" format="string" />
         <attr name="background3" format="reference"/>
         <attr name="shadowVerylight" format="color"/>
+        <attr name="seekbarColorTop" format="color"/>
+        <attr name="seekbarColorBottom" format="color"/>
+        <attr name="progressColor" format="color"/>
     </declare-styleable>
 </resources>
