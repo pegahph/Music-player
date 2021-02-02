@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -39,8 +40,8 @@ public class SongSelectorActivity extends AppCompatActivity {
         folderName = (TextView) findViewById(R.id.folderName);
         folderName.setSelected(true);
         songNumbers = findViewById(R.id.songNumbers);
+        albumImage = findViewById(R.id.albumImage);
         theSongs = new ArrayList<>();
-
         Intent in = getIntent();
         String tab = in.getStringExtra("tab");
         assert tab != null;
@@ -65,7 +66,10 @@ public class SongSelectorActivity extends AppCompatActivity {
         }
 
         songFolder = new Folder(sectionAlbumId , sectionName);
-//        albumImage.setImageDrawable(songFolder.getAlbumArtBitmapDrawable());
+        Drawable drawable = songFolder.getAlbumArtBitmapDrawable();
+        if(drawable!= null){
+            albumImage.setImageDrawable(drawable);
+        }
         songSelectorList = (RecyclerView) findViewById(R.id.song_selector_list);
 
         SongAdapter songAdapter = new SongAdapter(theSongs);
@@ -103,4 +107,8 @@ public class SongSelectorActivity extends AppCompatActivity {
     public void controllerClicked(View view) {
         Intent intent = new Intent(SongSelectorActivity.this , SongPlayerPage.class);
         startActivity(intent);    }
+
+    public void backToPrevious(View view) {
+        finish();
+    }
 }

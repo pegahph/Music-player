@@ -21,5 +21,5 @@
     <color name="darkBlueGreen">#1b6759</color>
     <color name="progressColor">#4ea8de</color>
     <color name="white">#fff</color>
-
+    <color name="shadowVerylight">#51212529</color>
 </resources>

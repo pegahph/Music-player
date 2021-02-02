@@ -51,7 +51,7 @@ public class Folder {
         if (albumArt != null) {
             int width = albumArt.getWidth();
             int height = albumArt.getHeight();
-            albumArt = Bitmap.createScaledBitmap(albumArt, width / 5, height / 5, false);
+            albumArt = Bitmap.createScaledBitmap(albumArt, width , height , false);
             return new BitmapDrawable(resources, albumArt);
         }
         else {

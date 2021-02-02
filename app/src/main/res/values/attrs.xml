@@ -14,5 +14,7 @@
         <attr name="background2" format="reference"/>
         <attr name="shadowlight" format="color"/>
         <attr name="moodTitle" format="string" />
+        <attr name="background3" format="reference"/>
+        <attr name="shadowVerylight" format="color"/>
     </declare-styleable>
 </resources>

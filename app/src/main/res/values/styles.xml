@@ -65,6 +65,8 @@
         <item name="background2">@drawable/back_light1</item>
         <item name="shadowlight">#C4E7ECEF</item>
         <item name="moodTitle">Dark mood</item>
+        <item name="background3">@drawable/backlight2</item>
+        <item name="shadowVerylight">#5C8A8A8A</item>
     </style>
     <style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="shadow">#E2212529</item>
@@ -79,5 +81,7 @@
         <item name="background2">@drawable/background6</item>
         <item name="shadowlight">@color/shadowlight</item>
         <item name="moodTitle">Light mood</item>
+        <item name="background3">@drawable/icon2</item>
+        <item name="shadowVerylight">@color/shadowVerylight</item>
     </style>
 </resources>
