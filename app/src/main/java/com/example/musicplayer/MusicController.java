@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -19,7 +20,7 @@ public class MusicController extends FrameLayout {
     private Context context;
     private TheMediaPlayer mediaPlayer;
     private ImageButton prevBtn, playBtn, nextBtn;
-    private ImageButton shuffleBtn, repeatBtn, favoriteBtn;
+    private ImageButton shuffleBtn, repeatBtn, favoriteBtn, addToPlayList;
     private ImageView coverArt, backCover;
     private TextView trackName, artistName, endTimeTextView;
     private boolean isSongPlayerActivity = false;
@@ -51,7 +52,7 @@ public class MusicController extends FrameLayout {
         artistName = aArtistName;
     }
     public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout,
-                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn) {
+                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn, ImageButton addToPlaylist) {
         isSongPlayerActivity = true;
         this.endTimeTextView = aEndTime;
         this.backCover = aBackCover;
@@ -61,6 +62,7 @@ public class MusicController extends FrameLayout {
         this.repeatBtn = repeatBtn;
         this.seekBar = seekBar;
         this.favoriteBtn = favoriteBtn;
+        this.addToPlayList = addToPlaylist;
 
         if (this.shuffleBtn != null) {
             shuffleBtn.requestFocus();
@@ -79,8 +81,12 @@ public class MusicController extends FrameLayout {
             favoriteBtn.setOnClickListener(favoriteListener);
             updateFavorite();
         }
-    }
 
+        if (this.addToPlayList != null) {
+            addToPlaylist.requestFocus();
+            addToPlaylist.setOnClickListener(addToPlaylistListener);
+        }
+    }
     public void setMediaPlayer(TheMediaPlayer mediaPlayer) {
         this.mediaPlayer = mediaPlayer;
         updatePausePlay();
@@ -127,6 +133,12 @@ public class MusicController extends FrameLayout {
         @Override
         public void onClick(View v) {
             favorite();
+        }
+    };
+    private final View.OnClickListener addToPlaylistListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(context, "add to playlist", Toast.LENGTH_SHORT).show();
         }
     };
 
