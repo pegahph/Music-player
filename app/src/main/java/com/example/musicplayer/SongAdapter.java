@@ -28,14 +28,16 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
         private ImageView albumArt;
         private TextView songTitle;
         private TextView songArtist;
+        private TextView songDuration;
         private View thisView;
 
         public SongViewHolder(View itemView) {
             super(itemView);
 
-            albumArt = (ImageView) itemView.findViewById(R.id.album_art);
+//            albumArt = (ImageView) itemView.findViewById(R.id.album_art);
             songTitle = (TextView) itemView.findViewById(R.id.song_title);
             songArtist = (TextView) itemView.findViewById(R.id.song_artist);
+            songDuration = (TextView) itemView.findViewById(R.id.duration);
             thisView = itemView;
         }
 
@@ -43,6 +45,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             Song currentSong = songs.get(position);
             songTitle.setText(currentSong.getTitle());
             songArtist.setText(currentSong.getArtist());
+            songDuration.setText(currentSong.getDurationInTimeFormat());
 //            Drawable albumArtImage = currentSong.getAlbumArtBitmapDrawable();
 //            if (albumArtImage != null)
 //                albumArt.setImageDrawable(albumArtImage);

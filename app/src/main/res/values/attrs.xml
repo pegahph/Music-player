@@ -2,5 +2,14 @@
     <declare-styleable name="AppWidgetAttrs">
         <attr name="appWidgetBackgroundColor" format="color" />
         <attr name="appWidgetTextColor" format="color" />
+        <attr name="shadow" format="color"/>
+        <attr name="tabbar" format="color"/>
+        <attr name="mainColor" format="color"/>
+        <attr name="SubsidiaryColor" format="color"/>
+        <attr name="tabItems" format="color"/>
+        <attr name="actionbarText" format="color"/>
+        <attr name="background" format="reference"/>
+        <attr name="folder_icon" format="reference"/>
+        <attr name="backgroundColor" format="color"/>
     </declare-styleable>
 </resources>

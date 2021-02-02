@@ -4,12 +4,14 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.os.Handler;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Space;
 import android.widget.TextView;
@@ -33,6 +35,9 @@ public class MusicController extends FrameLayout {
     private BlurLayout blurLayout;
     private View grayView;
     private SeekBar seekBar;
+    private ProgressBar progressBar;
+    boolean killMe = false;
+    final Handler updateHandler = new Handler();
     private Song lastSong;
     // search stuff
     private Space searchBarPlaceholder;
@@ -45,6 +50,10 @@ public class MusicController extends FrameLayout {
     public MusicController(@NonNull Context context) {
         super(context);
         this.context = context;
+    }
+
+    public void  getProgressbar(ProgressBar progressBar){
+        this.progressBar = progressBar;
     }
 
     public void getButtons(ImageButton aPrevBtn, ImageButton aPlayBtn, ImageButton aNextBtn) {
@@ -307,6 +316,23 @@ public class MusicController extends FrameLayout {
             this.endTimeTextView.setText(stringForTime(duration));
             this.seekBar.setMax(duration);
         }
+        else {
+            this.progressBar.setMax(duration);
+            updateProgress();
+        }
+    }
+
+    public void updateProgress(){
+        Runnable timerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (!killMe && !isSongPlayerActivity)
+                    progressBar.setProgress(mediaPlayer.getCurrentPosition());
+                    updateHandler.postDelayed(this, 250);
+            }
+        };
+
+        updateHandler.postDelayed(timerRunnable, 250);
     }
 
     public void setTrackName(String trackName) {

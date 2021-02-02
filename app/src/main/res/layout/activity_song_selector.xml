@@ -7,20 +7,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SongSelectorActivity"
-    android:background="@drawable/background7"
-    android:backgroundTint="@color/shadow"
+    android:background="?attr/background"
+    android:backgroundTint="?attr/shadow"
     android:backgroundTintMode="src_over">
 
-    <TextView
-        android:id="@+id/placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Just a placeholder"
-        android:textColor="@color/SubsidiaryColor"
-        android:padding="10dp"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:text="FolderName" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:text="SongsNumber" />
+        </LinearLayout>
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="5dp"
