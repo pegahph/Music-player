@@ -170,4 +170,12 @@ public class PlaylistMaker {
     public static Song getLastSong() {
         return lastSong;
     }
+
+    public static void saveTheme(int position) {
+        mDatabaseHelper.saveTheme(position);
+    }
+
+    public static int getTheme() {
+        return mDatabaseHelper.getTheme();
+    }
 }
