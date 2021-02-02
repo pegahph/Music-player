@@ -194,25 +194,27 @@ public class MusicController extends FrameLayout {
     }
 
     public void setController() {
-        if (Constant.getController() != null) {
-            MusicController lastController = Constant.getController();
-            this.trackName.setText(lastController.trackName.getText());
-            this.artistName.setText(lastController.artistName.getText());
-            this.coverArt.setImageDrawable(lastController.coverArt.getDrawable());
-            if (isSongPlayerActivity)
-            {
-                this.backCover.setImageDrawable(lastController.coverArt.getDrawable());
-                this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
-            }
-        }
         lastSong = PlaylistMaker.getLastSong();
         if (lastSong != null) {
             this.trackName.setText(lastSong.getTitle());
             this.artistName.setText(lastSong.getArtist());
-            this.coverArt.setImageDrawable(lastSong.getAlbumArtBitmapDrawable());
+            changeCover(this.coverArt, lastSong.getAlbumArtBitmapDrawable());
             if (isSongPlayerActivity)
             {
-                this.backCover.setImageDrawable(lastSong.getAlbumArtBitmapDrawable());
+//                changeCover(this.backCover, lastSong.getAlbumArtBitmapDrawable());
+                changeBackCover(lastSong.getAlbumArtBitmapDrawable());
+                this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
+            }
+        }
+        else if (Constant.getController() != null) {
+            MusicController lastController = Constant.getController();
+            this.trackName.setText(lastController.trackName.getText());
+            this.artistName.setText(lastController.artistName.getText());
+            changeCover(this.coverArt, lastController.coverArt.getDrawable());
+            if (isSongPlayerActivity)
+            {
+//                changeCover(this.backCover, lastController.coverArt.getDrawable());
+                changeBackCover(lastController.coverArt.getDrawable());
                 this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
             }
         }
@@ -220,24 +222,17 @@ public class MusicController extends FrameLayout {
     }
 
     public void setCoverArt(Drawable aaCoverArt) {
-        this.coverArt.setImageDrawable(aaCoverArt);
+        changeCover(this.coverArt, aaCoverArt);
     }
 
     public void setBackCoverArt(Drawable aCoverArt) {
         if (isSongPlayerActivity)
         {
-            this.blurLayout.setVisibility(INVISIBLE);
-            this.grayView.setVisibility(INVISIBLE);
-
-            this.backCover.setImageDrawable(aCoverArt);
-            this.blurLayout.invalidate();
-
-            this.blurLayout.setVisibility(VISIBLE);
-            this.grayView.setVisibility(VISIBLE);
+            changeBackCover(aCoverArt);
 
 //            this.blurLayout.startBlur();
 //            this.blurLayout
-            setController();
+//            setController();
         }
     }
     public void setDuration(int duration) {
@@ -282,5 +277,30 @@ public class MusicController extends FrameLayout {
         } else {
             return new Formatter().format("%02d:%02d", minutes, seconds).toString();
         }
+    }
+
+    private void changeCover(ImageView coverArtImageView, Drawable aCoverArt) {
+        if (aCoverArt != null)
+            coverArtImageView.setImageDrawable(aCoverArt);
+        else if (isSongPlayerActivity)
+            coverArtImageView.setImageResource(R.drawable.background6);
+        else
+            coverArtImageView.setImageResource(R.drawable.background5);
+
+    }
+
+    private void changeVisibilityOfTheseGuys(int visibility) {
+        this.blurLayout.setVisibility(visibility);
+        this.grayView.setVisibility(visibility);
+    }
+
+    private void changeBackCover(Drawable aCoverArt) {
+        changeVisibilityOfTheseGuys(INVISIBLE);
+
+        changeCover(this.backCover, aCoverArt);
+
+        this.blurLayout.invalidate();
+
+        changeVisibilityOfTheseGuys(VISIBLE);
     }
 }
