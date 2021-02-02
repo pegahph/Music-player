@@ -160,9 +160,8 @@ public class PlaylistMaker {
         assert recentlyPlayed != null;
         recentlyPlayed.remove(song);
 
-        // TODO: 10 should be 100 and 9 should be 99.
-        if (recentlyPlayed.size() >= 10) {
-            recentlyPlayed.remove(9);
+        if (recentlyPlayed.size() >= 100) {
+            recentlyPlayed.remove(99);
         }
         recentlyPlayed.add(0, song);
         lastSong = song;
