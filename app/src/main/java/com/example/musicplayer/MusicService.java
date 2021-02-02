@@ -208,11 +208,11 @@ public class MusicService extends Service
 
     @Override
     public void onDestroy() {
-        removeAudioFocus();
         //Disable the PhoneStateListener
         if (phoneStateListener != null) {
             telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
         }
+        onAudioFocusChange(2);
         stopForeground(true);
     }
 
@@ -407,11 +407,11 @@ public class MusicService extends Service
             MusicService.this.sendBroadcast(pauseIntent);
             if (requestAudioFocus())
             onAudioFocusChange(AudioManager.AUDIOFOCUS_GAIN);
-            Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
         }
 
         player.start();
-        Toast.makeText(getApplicationContext(),"no",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"no",Toast.LENGTH_SHORT).show();
         isPlayed = true;
         isPaused = false;
         if (notificationBuilder == null)
