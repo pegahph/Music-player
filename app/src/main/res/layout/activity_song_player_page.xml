@@ -39,7 +39,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="85dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
@@ -69,7 +69,9 @@
                     android:visibility="gone"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:hint="Song name"
+                    android:textColor="@color/mainColor"
+                    android:textColorHint="@color/mainColor"/>
 
                 <ImageView
                     android:id="@+id/share_btn"
@@ -119,7 +121,7 @@
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
-                    android:text="ُSong Name"
+                    android:text="Song Name"
                     android:textColor="@color/mainColor"
                     android:textSize="23sp" />
             </LinearLayout>
@@ -205,7 +207,7 @@
 
             <SeekBar
                 android:id="@+id/seekBar"
-                android:layout_width="340dp"
+                android:layout_width="335dp"
                 android:layout_height="58dp"
                 android:splitTrack="false"
                 android:layout_gravity="center"
