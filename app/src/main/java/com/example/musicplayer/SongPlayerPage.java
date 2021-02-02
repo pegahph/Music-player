@@ -79,7 +79,7 @@ public class SongPlayerPage extends AppCompatActivity {
 
 
         mediaPlayer = Constant.getTheMediaPlayer();
-        theController = new MusicController(getApplicationContext());
+        theController = new com.example.musicplayer.MusicController(getApplicationContext());
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);

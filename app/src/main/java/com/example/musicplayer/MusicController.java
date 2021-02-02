@@ -2,9 +2,9 @@ package com.example.musicplayer;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.os.Handler;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -121,7 +121,6 @@ public class MusicController extends FrameLayout {
 
         this.searchBtn.setOnClickListener(doSearchBtnListener);
     }
-
     public void setMediaPlayer(TheMediaPlayer mediaPlayer) {
         this.mediaPlayer = mediaPlayer;
         updatePausePlay();
@@ -195,22 +194,7 @@ public class MusicController extends FrameLayout {
         this.theSearchBar.setVisibility(VISIBLE);
         this.theSearchBar.setText("");
         this.imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
-        this.theSearchBar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                Toast.makeText(context, "beforeTextChanged", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Toast.makeText(context, "onTextChanged", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                Toast.makeText(context, "afterTextChanged", Toast.LENGTH_SHORT).show();
-            }
-        });
+        this.theSearchBar.addTextChangedListener(textWatcher);
         this.shareBtn.setVisibility(GONE);
         this.deleteBtn.setVisibility(GONE);
         changeVisibilityOfTheseGuys(VISIBLE);
@@ -221,7 +205,8 @@ public class MusicController extends FrameLayout {
         changeVisibilityOfTheseGuys(GONE);
         this.searchBarPlaceholder.setVisibility(VISIBLE);
         this.theSearchBar.setVisibility(GONE);
-        // TODO: keyboard nemire paeen!!! bayad bere paeen.
+        this.theSearchBar.removeTextChangedListener(textWatcher);
+            // TODO: keyboard nemire paeen!!! bayad bere paeen.
 //        Keyboard.hide();
         this.imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
@@ -331,23 +316,23 @@ public class MusicController extends FrameLayout {
             this.endTimeTextView.setText(stringForTime(duration));
             this.seekBar.setMax(duration);
         }
-//        else {
-//            this.progressBar.setMax(duration);
-//            updateProgress();
-//        }
-//    }
-//
-//    public void updateProgress(){
-//        Runnable timerRunnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                if (!killMe && !isSongPlayerActivity)
-//                    progressBar.setProgress(mediaPlayer.getCurrentPosition());
-//                    updateHandler.postDelayed(this, 250);
-//            }
-//        };
-//
-//        updateHandler.postDelayed(timerRunnable, 250);
+        else {
+            this.progressBar.setMax(duration);
+            updateProgress();
+        }
+    }
+
+    public void updateProgress(){
+        Runnable timerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (!killMe && !isSongPlayerActivity)
+                    progressBar.setProgress(mediaPlayer.getCurrentPosition());
+                    updateHandler.postDelayed(this, 250);
+            }
+        };
+
+        updateHandler.postDelayed(timerRunnable, 250);
     }
 
     public void setTrackName(String trackName) {
@@ -413,16 +398,47 @@ public class MusicController extends FrameLayout {
 
     // a thing that gets a text and searches in all songs
     private void theSearchThing(String text) {
+        if (text.equals(""))
+            return;
+//        Toast.makeText(context, "songTitleCompared size = " + songTitleCompared.size(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "songArtistCompared size = " + songArtistCompared.size(), Toast.LENGTH_SHORT).show();        songTitleCompared.clear();
+        songArtistCompared.clear();
+        songTitleCompared.clear();
+//        Toast.makeText(context, "songTitleCompared size = " + songTitleCompared.size(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "songArtistCompared size = " + songArtistCompared.size(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
         for (Song song : ListMaker.loadTracks()) {
             String songTitle = song.getTitle();
             String songArtist = song.getArtist();
-            if (songTitle.contains(text)) {
+//            songTitle = "az panjere bebin birono";
+//            text = "ebi";
+//            songArtist = "ebiram";
+            if (songTitle.toLowerCase().contains(text.toLowerCase())) {
                 songTitleCompared.add(song);
             }
-            if (songArtist.contains(text)) {
+            if (songArtist.toLowerCase().contains(text.toLowerCase())) {
                 songArtistCompared.add(song);
             }
         }
+        Toast.makeText(context, "songTitleCompared size = " + songTitleCompared.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "songArtistCompared size = " + songArtistCompared.size(), Toast.LENGTH_SHORT).show();
     }
 
+    TextWatcher textWatcher = new TextWatcher() {
+        String text;
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            text = s.toString();
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (!s.toString().equals(text))
+                theSearchThing(s.toString());
+        }
+    };
 }
