@@ -52,7 +52,11 @@ public class PlaylistMaker {
             {
                 String playlistSongsJson = mDatabaseHelper.getThisPlaylistSongs(key);
                 ArrayList<Song> playlistSongs = gson.fromJson(playlistSongsJson, type);
-                lastList = changeToRealSongs(key, playlistSongs);
+                if (playlistSongs != null){
+                    lastList = changeToRealSongs(key, playlistSongs);
+                } else {
+                    lastList = ListMaker.loadTracks();
+                }
             }
             else if (!keys.contains(key))
             {
