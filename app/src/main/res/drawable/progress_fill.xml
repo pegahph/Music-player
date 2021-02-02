@@ -11,14 +11,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="3dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="3dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -29,14 +29,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="5dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="5dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -47,14 +47,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="8dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="8dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -65,14 +65,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="6dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="6dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -83,14 +83,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp" />
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -101,14 +101,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="9dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="9dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -119,14 +119,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="13dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="13dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -137,14 +137,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -155,14 +155,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="2dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="2dp" android:bottomLeftRadius="2dp"/>
                                         </shape>
                                     </item>
@@ -173,14 +173,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="2dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="2dp" android:bottomRightRadius="2dp"/>
                                         </shape>
                                     </item>
@@ -191,14 +191,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="13dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="13dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -213,14 +213,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -231,14 +231,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="2dp"/>
                                         </shape>
                                     </item>
@@ -249,14 +249,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="18dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp" />
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="18dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -267,14 +267,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="15dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="15dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -285,14 +285,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="11dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="11dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -303,14 +303,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -321,14 +321,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="20dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="20dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -339,14 +339,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="15dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="15dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -357,14 +357,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="22dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="22dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -375,14 +375,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="17dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="17dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -393,14 +393,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="21dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="21dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -411,14 +411,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -429,14 +429,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="18dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="18dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -451,14 +451,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp" />
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -469,14 +469,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="20dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="20dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -487,14 +487,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="25dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="25dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -505,14 +505,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="23dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="23dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -523,14 +523,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="20dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="20dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -541,14 +541,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="25dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="25dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -559,14 +559,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="29dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="29dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -577,14 +577,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="24dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="24dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -595,14 +595,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="19dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="19dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -613,14 +613,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="22dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="22dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -631,14 +631,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="17dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="17dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -649,14 +649,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="24dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="24dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -667,14 +667,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="19dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="19dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -689,14 +689,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="22dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp" />
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="22dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -707,14 +707,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -725,14 +725,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -743,14 +743,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="17dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="17dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -761,14 +761,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="22dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="22dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -779,14 +779,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -797,14 +797,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="20dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="20dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -815,14 +815,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="15dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="15dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -833,14 +833,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="12dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="12dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -851,14 +851,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -869,14 +869,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="18dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="18dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -887,14 +887,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -905,14 +905,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="16dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -927,14 +927,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="13dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="13dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -945,14 +945,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -963,14 +963,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="14dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -981,14 +981,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -999,14 +999,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="13dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="13dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -1017,14 +1017,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="9dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="9dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -1035,14 +1035,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp" />
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="10dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -1053,14 +1053,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="6dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="6dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -1071,14 +1071,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="8dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="8dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -1089,14 +1089,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="5dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="5dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp"/>
                                         </shape>
                                     </item>
@@ -1107,14 +1107,14 @@
                                     <item>
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="3dp"/>
-                                            <solid android:color="@color/progressColor"/>
+                                            <solid android:color="?attr/progressColor"/>
                                             <corners android:radius="3dp"/>
                                         </shape>
                                     </item>
                                     <item android:gravity="bottom">
                                         <shape android:shape="rectangle">
                                             <size  android:width="3dp" android:height="3dp"/>
-                                            <solid android:color="@color/seekbarColorBottom"/>
+                                            <solid android:color="?attr/seekbarColorBottom"/>
                                             <corners android:bottomRightRadius="3dp" android:bottomLeftRadius="3dp"/>
                                         </shape>
                                     </item>
