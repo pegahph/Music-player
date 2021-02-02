@@ -14,7 +14,7 @@ public class Theme {
     {
         sTheme = theme;
         activity.recreate();
-        activity.startActivity(new Intent(activity, activity.getClass()));
+//        activity.startActivity(new Intent(activity, activity.getClass()));
     }
 
     public static void onActivityCreateSetTheme(Activity activity)

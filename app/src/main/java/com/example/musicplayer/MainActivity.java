@@ -305,7 +305,8 @@ public class MainActivity extends AppCompatActivity {
                         Theme.changeToTheme(MainActivity.this, Theme.THEME_DARK);
                         return true;
                     case R.id.removeBackground:
-                        // do your code
+                        viewPager.setBackground(null);
+                        viewPager.setBackgroundColor(R.attr.backgroundColor);
                         return true;
                     default:
                         return false;
