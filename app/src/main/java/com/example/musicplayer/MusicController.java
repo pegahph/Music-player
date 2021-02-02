@@ -2,17 +2,24 @@ package com.example.musicplayer;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.os.Handler;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
+import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Formatter;
 
 import io.alterac.blurkit.BlurLayout;
@@ -21,7 +28,7 @@ public class MusicController extends FrameLayout {
     private Context context;
     private TheMediaPlayer mediaPlayer;
     private ImageButton prevBtn, playBtn, nextBtn;
-    private ImageButton shuffleBtn, repeatBtn, favoriteBtn;
+    private ImageButton shuffleBtn, repeatBtn, favoriteBtn, addToPlayList;
     private ImageView coverArt, backCover;
     private TextView trackName, artistName, endTimeTextView;
     private boolean isSongPlayerActivity = false;
@@ -32,6 +39,13 @@ public class MusicController extends FrameLayout {
     boolean killMe = false;
     final Handler updateHandler = new Handler();
     private Song lastSong;
+    // search stuff
+    private Space searchBarPlaceholder;
+    private EditText theSearchBar;
+    private ImageView searchBtn, shareBtn, deleteBtn;
+    private InputMethodManager imm;
+    private static ArrayList<Song> songTitleCompared = new ArrayList<>();
+    private static ArrayList<Song> songArtistCompared = new ArrayList<>();
 
     public MusicController(@NonNull Context context) {
         super(context);
@@ -60,7 +74,7 @@ public class MusicController extends FrameLayout {
         artistName = aArtistName;
     }
     public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout,
-                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn) {
+                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn, ImageButton addToPlaylist) {
         isSongPlayerActivity = true;
         this.endTimeTextView = aEndTime;
         this.backCover = aBackCover;
@@ -70,6 +84,7 @@ public class MusicController extends FrameLayout {
         this.repeatBtn = repeatBtn;
         this.seekBar = seekBar;
         this.favoriteBtn = favoriteBtn;
+        this.addToPlayList = addToPlaylist;
 
         if (this.shuffleBtn != null) {
             shuffleBtn.requestFocus();
@@ -88,8 +103,24 @@ public class MusicController extends FrameLayout {
             favoriteBtn.setOnClickListener(favoriteListener);
             updateFavorite();
         }
+
+        if (this.addToPlayList != null) {
+            addToPlaylist.requestFocus();
+            addToPlaylist.setOnClickListener(addToPlaylistListener);
+        }
     }
 
+    public void getSearchStuff(Space searchBarPlaceholder, EditText theSearchBar, ImageView searchBtn, ImageView shareBtn, ImageView deleteBtn, InputMethodManager imm) {
+        this.searchBarPlaceholder = searchBarPlaceholder;
+        this.theSearchBar = theSearchBar;
+        this.searchBtn = searchBtn;
+        this.shareBtn = shareBtn;
+        this.deleteBtn = deleteBtn;
+        this.imm = imm;
+
+
+        this.searchBtn.setOnClickListener(doSearchBtnListener);
+    }
     public void setMediaPlayer(TheMediaPlayer mediaPlayer) {
         this.mediaPlayer = mediaPlayer;
         updatePausePlay();
@@ -138,6 +169,53 @@ public class MusicController extends FrameLayout {
             favorite();
         }
     };
+    private final View.OnClickListener addToPlaylistListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(context, "add to playlist", Toast.LENGTH_SHORT).show();
+        }
+    };
+    private final View.OnClickListener doSearchBtnListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            doSearchStuff();
+        }
+    };
+    private final View.OnClickListener undoSearchBtnListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            undoSearchStuff();
+        }
+    };
+
+    private void doSearchStuff() {
+        changeVisibilityOfTheseGuys(GONE);
+        this.searchBarPlaceholder.setVisibility(GONE);
+        this.theSearchBar.setVisibility(VISIBLE);
+        this.theSearchBar.setText("");
+        this.imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        this.theSearchBar.addTextChangedListener(textWatcher);
+        this.shareBtn.setVisibility(GONE);
+        this.deleteBtn.setVisibility(GONE);
+        changeVisibilityOfTheseGuys(VISIBLE);
+        searchBtn.setOnClickListener(undoSearchBtnListener);
+    }
+
+    private void undoSearchStuff() {
+        changeVisibilityOfTheseGuys(GONE);
+        this.searchBarPlaceholder.setVisibility(VISIBLE);
+        this.theSearchBar.setVisibility(GONE);
+        this.theSearchBar.removeTextChangedListener(textWatcher);
+            // TODO: keyboard nemire paeen!!! bayad bere paeen.
+//        Keyboard.hide();
+        this.imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
+        this.shareBtn.setVisibility(VISIBLE);
+        this.deleteBtn.setVisibility(VISIBLE);
+        changeVisibilityOfTheseGuys(VISIBLE);
+        searchBtn.setOnClickListener(doSearchBtnListener);
+
+    }
 
     private void changeRepeat() {
         mediaPlayer.changeRepeatStatus();
@@ -191,25 +269,27 @@ public class MusicController extends FrameLayout {
     }
 
     public void setController() {
-        if (Constant.getController() != null) {
-            MusicController lastController = Constant.getController();
-            this.trackName.setText(lastController.trackName.getText());
-            this.artistName.setText(lastController.artistName.getText());
-            this.coverArt.setImageDrawable(lastController.coverArt.getDrawable());
-            if (isSongPlayerActivity)
-            {
-                this.backCover.setImageDrawable(lastController.coverArt.getDrawable());
-                this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
-            }
-        }
         lastSong = PlaylistMaker.getLastSong();
         if (lastSong != null) {
             this.trackName.setText(lastSong.getTitle());
             this.artistName.setText(lastSong.getArtist());
-            this.coverArt.setImageDrawable(lastSong.getAlbumArtBitmapDrawable());
+            changeCover(this.coverArt, lastSong.getAlbumArtBitmapDrawable());
             if (isSongPlayerActivity)
             {
-                this.backCover.setImageDrawable(lastSong.getAlbumArtBitmapDrawable());
+//                changeCover(this.backCover, lastSong.getAlbumArtBitmapDrawable());
+                changeBackCover(lastSong.getAlbumArtBitmapDrawable());
+                this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
+            }
+        }
+        else if (Constant.getController() != null) {
+            MusicController lastController = Constant.getController();
+            this.trackName.setText(lastController.trackName.getText());
+            this.artistName.setText(lastController.artistName.getText());
+            changeCover(this.coverArt, lastController.coverArt.getDrawable());
+            if (isSongPlayerActivity)
+            {
+//                changeCover(this.backCover, lastController.coverArt.getDrawable());
+                changeBackCover(lastController.coverArt.getDrawable());
                 this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
             }
         }
@@ -217,24 +297,17 @@ public class MusicController extends FrameLayout {
     }
 
     public void setCoverArt(Drawable aaCoverArt) {
-        this.coverArt.setImageDrawable(aaCoverArt);
+        changeCover(this.coverArt, aaCoverArt);
     }
 
     public void setBackCoverArt(Drawable aCoverArt) {
         if (isSongPlayerActivity)
         {
-            this.blurLayout.setVisibility(INVISIBLE);
-            this.grayView.setVisibility(INVISIBLE);
-
-            this.backCover.setImageDrawable(aCoverArt);
-            this.blurLayout.invalidate();
-
-            this.blurLayout.setVisibility(VISIBLE);
-            this.grayView.setVisibility(VISIBLE);
+            changeBackCover(aCoverArt);
 
 //            this.blurLayout.startBlur();
 //            this.blurLayout
-            setController();
+//            setController();
         }
     }
     public void setDuration(int duration) {
@@ -297,4 +370,75 @@ public class MusicController extends FrameLayout {
             return new Formatter().format("%02d:%02d", minutes, seconds).toString();
         }
     }
+
+    private void changeCover(ImageView coverArtImageView, Drawable aCoverArt) {
+        if (aCoverArt != null)
+            coverArtImageView.setImageDrawable(aCoverArt);
+        else if (isSongPlayerActivity)
+            coverArtImageView.setImageResource(R.drawable.background6);
+        else
+            coverArtImageView.setImageResource(R.drawable.background5);
+
+    }
+
+    private void changeVisibilityOfTheseGuys(int visibility) {
+        this.blurLayout.setVisibility(visibility);
+        this.grayView.setVisibility(visibility);
+    }
+
+    private void changeBackCover(Drawable aCoverArt) {
+        changeVisibilityOfTheseGuys(INVISIBLE);
+
+        changeCover(this.backCover, aCoverArt);
+
+        this.blurLayout.invalidate();
+
+        changeVisibilityOfTheseGuys(VISIBLE);
+    }
+
+    // a thing that gets a text and searches in all songs
+    private void theSearchThing(String text) {
+        if (text.equals(""))
+            return;
+//        Toast.makeText(context, "songTitleCompared size = " + songTitleCompared.size(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "songArtistCompared size = " + songArtistCompared.size(), Toast.LENGTH_SHORT).show();        songTitleCompared.clear();
+        songArtistCompared.clear();
+        songTitleCompared.clear();
+//        Toast.makeText(context, "songTitleCompared size = " + songTitleCompared.size(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "songArtistCompared size = " + songArtistCompared.size(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+        for (Song song : ListMaker.loadTracks()) {
+            String songTitle = song.getTitle();
+            String songArtist = song.getArtist();
+//            songTitle = "az panjere bebin birono";
+//            text = "ebi";
+//            songArtist = "ebiram";
+            if (songTitle.toLowerCase().contains(text.toLowerCase())) {
+                songTitleCompared.add(song);
+            }
+            if (songArtist.toLowerCase().contains(text.toLowerCase())) {
+                songArtistCompared.add(song);
+            }
+        }
+        Toast.makeText(context, "songTitleCompared size = " + songTitleCompared.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "songArtistCompared size = " + songArtistCompared.size(), Toast.LENGTH_SHORT).show();
+    }
+
+    TextWatcher textWatcher = new TextWatcher() {
+        String text;
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            text = s.toString();
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (!s.toString().equals(text))
+                theSearchThing(s.toString());
+        }
+    };
 }

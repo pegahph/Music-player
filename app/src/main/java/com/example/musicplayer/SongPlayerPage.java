@@ -3,15 +3,18 @@ package com.example.musicplayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Space;
 import android.widget.TextView;
 
 import java.util.Formatter;
@@ -26,7 +29,7 @@ public class SongPlayerPage extends AppCompatActivity {
     ImageView backCover , forCover;
     TextView songName , songArtist;
     TheMediaPlayer mediaPlayer;
-    ImageButton prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn, favoriteBtn;
+    ImageButton prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn, favoriteBtn, addToPlaylist;
     SeekBar seekBar;
     TextView currentTime, endTime;
     int targetPosition;
@@ -35,7 +38,11 @@ public class SongPlayerPage extends AppCompatActivity {
     Runnable timerRunnable;
     boolean killMe = false;
     final Handler updateHandler = new Handler();
-    // is it added?
+    // search stuff
+    Space searchBarPlaceholder;
+    EditText theSearchBar;
+    ImageView searchBtn, shareBtn, deleteBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +68,23 @@ public class SongPlayerPage extends AppCompatActivity {
         shuffleBtn = (ImageButton) findViewById(R.id.shuffle_button);
         repeatBtn = (ImageButton) findViewById(R.id.repeat_button);
         favoriteBtn = (ImageButton) findViewById(R.id.favourite);
+        addToPlaylist = (ImageButton) findViewById(R.id.add_to_playlist);
+        // share stuff
+        searchBarPlaceholder = (Space) findViewById(R.id.search_bar_placeholder);
+        theSearchBar = (EditText) findViewById(R.id.the_search_bar);
+        searchBtn = (ImageView) findViewById(R.id.search_btn);
+        shareBtn = (ImageView) findViewById(R.id.share_btn);
+        deleteBtn = (ImageView) findViewById(R.id.delete_btn);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+
 
         mediaPlayer = Constant.getTheMediaPlayer();
-        theController = new MusicController(getApplicationContext());
+        theController = new com.example.musicplayer.MusicController(getApplicationContext());
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
-        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn);
+        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn, addToPlaylist);
+        theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, shareBtn, deleteBtn, imm);
         theController.setController();
         Constant.setController(theController);
         mediaPlayer.setClickListener(theController);
