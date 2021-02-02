@@ -2,16 +2,22 @@ package com.example.musicplayer;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Formatter;
 
 import io.alterac.blurkit.BlurLayout;
@@ -28,6 +34,13 @@ public class MusicController extends FrameLayout {
     private View grayView;
     private SeekBar seekBar;
     private Song lastSong;
+    // search stuff
+    private Space searchBarPlaceholder;
+    private EditText theSearchBar;
+    private ImageView searchBtn, shareBtn, deleteBtn;
+    private InputMethodManager imm;
+    private static ArrayList<Song> songTitleCompared = new ArrayList<>();
+    private static ArrayList<Song> songArtistCompared = new ArrayList<>();
 
     public MusicController(@NonNull Context context) {
         super(context);
@@ -87,6 +100,18 @@ public class MusicController extends FrameLayout {
             addToPlaylist.setOnClickListener(addToPlaylistListener);
         }
     }
+
+    public void getSearchStuff(Space searchBarPlaceholder, EditText theSearchBar, ImageView searchBtn, ImageView shareBtn, ImageView deleteBtn, InputMethodManager imm) {
+        this.searchBarPlaceholder = searchBarPlaceholder;
+        this.theSearchBar = theSearchBar;
+        this.searchBtn = searchBtn;
+        this.shareBtn = shareBtn;
+        this.deleteBtn = deleteBtn;
+        this.imm = imm;
+
+
+        this.searchBtn.setOnClickListener(doSearchBtnListener);
+    }
     public void setMediaPlayer(TheMediaPlayer mediaPlayer) {
         this.mediaPlayer = mediaPlayer;
         updatePausePlay();
@@ -141,6 +166,61 @@ public class MusicController extends FrameLayout {
             Toast.makeText(context, "add to playlist", Toast.LENGTH_SHORT).show();
         }
     };
+    private final View.OnClickListener doSearchBtnListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            doSearchStuff();
+        }
+    };
+    private final View.OnClickListener undoSearchBtnListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            undoSearchStuff();
+        }
+    };
+
+    private void doSearchStuff() {
+        changeVisibilityOfTheseGuys(GONE);
+        this.searchBarPlaceholder.setVisibility(GONE);
+        this.theSearchBar.setVisibility(VISIBLE);
+        this.theSearchBar.setText("");
+        this.imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        this.theSearchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                Toast.makeText(context, "beforeTextChanged", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Toast.makeText(context, "onTextChanged", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Toast.makeText(context, "afterTextChanged", Toast.LENGTH_SHORT).show();
+            }
+        });
+        this.shareBtn.setVisibility(GONE);
+        this.deleteBtn.setVisibility(GONE);
+        changeVisibilityOfTheseGuys(VISIBLE);
+        searchBtn.setOnClickListener(undoSearchBtnListener);
+    }
+
+    private void undoSearchStuff() {
+        changeVisibilityOfTheseGuys(GONE);
+        this.searchBarPlaceholder.setVisibility(VISIBLE);
+        this.theSearchBar.setVisibility(GONE);
+        // TODO: keyboard nemire paeen!!! bayad bere paeen.
+//        Keyboard.hide();
+        this.imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
+        this.shareBtn.setVisibility(VISIBLE);
+        this.deleteBtn.setVisibility(VISIBLE);
+        changeVisibilityOfTheseGuys(VISIBLE);
+        searchBtn.setOnClickListener(doSearchBtnListener);
+
+    }
 
     private void changeRepeat() {
         mediaPlayer.changeRepeatStatus();
