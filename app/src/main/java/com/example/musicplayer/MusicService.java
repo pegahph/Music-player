@@ -2,6 +2,7 @@ package com.example.musicplayer;
 
 import android.app.Service;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
@@ -98,19 +99,17 @@ public class MusicService extends Service
     public void onPrepared(MediaPlayer mp) {
         // start playback
         mp.start();
+        Song currentSong = songs.get(songPos);
+        PlaylistMaker.newRecentlyPlayedSong(currentSong);
         isPaused = false;
         isPlayed = true;
-        Song currentSong = songs.get(songPos);
         MusicController thisController = Constant.getController();
         thisController.show();
         thisController.setTrackName(songTitle);
         thisController.setArtistName(songArtist);
         BitmapDrawable currentSongAlbumArt = currentSong.getAlbumArtBitmapDrawable();
-        if (currentSongAlbumArt != null)
-        {
-            thisController.setCoverArt(currentSongAlbumArt);
-            thisController.setBackCoverArt(currentSongAlbumArt);
-        }
+        thisController.setCoverArt(currentSongAlbumArt);
+        thisController.setBackCoverArt(currentSongAlbumArt);
         thisController.setDuration(getDur());
 
         newNotification();
@@ -119,14 +118,12 @@ public class MusicService extends Service
         if (isPaused)
             notificationBuilder.builder(ACTION_PLAY);
 
-        PlaylistMaker.newRecentlyPlayedSong(currentSong);
     }
 
     private void newNotification() {
         if (songs == null) {
             setList(PlaylistMaker.lastList);
             songPos = songs.indexOf(PlaylistMaker.getLastSong());
-            playSong();
         }
         notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
     }
@@ -262,7 +259,10 @@ public class MusicService extends Service
         isPaused = true;
         isPlayed = false;
         if (notificationBuilder == null)
+        {
             newNotification();
+            playSong();
+        }
         notificationBuilder.builder(ACTION_PLAY);
     }
     public void seek(int pos) {
@@ -273,7 +273,10 @@ public class MusicService extends Service
         isPlayed = true;
         isPaused = false;
         if (notificationBuilder == null)
+        {
             newNotification();
+            playSong();
+        }
         notificationBuilder.builder(ACTION_PAUSE);
     }
 
@@ -323,7 +326,8 @@ public class MusicService extends Service
 
     public Song getCurrentSong(){
         if (songs == null) {
-            setList(PlaylistMaker.recentlyPlayed);
+            setList(PlaylistMaker.lastList);
+            songPos = songs.indexOf(PlaylistMaker.getLastSong());
         }
         return songs.get(songPos);
     }
