@@ -73,6 +73,10 @@ public class MusicService extends Service
     private Random rand;
     boolean isPaused = false;
     public static boolean isPlayed = false;
+    private boolean isMenu = false;
+    public void setMenu(boolean isMenu) {
+        this.isMenu = isMenu;
+    }
 
     NotificationBuilder notificationBuilder;
 
@@ -107,8 +111,11 @@ public class MusicService extends Service
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        if (musicService != null)
+        if (musicService != null && !isMenu)
             handleIntent(intent);
+        else if (isMenu){
+            isMenu = false;
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -116,18 +123,19 @@ public class MusicService extends Service
     public void onPrepared(MediaPlayer mp) {
         // start playback
         mp.start();
+        Song currentSong = songs.get(songPos);
+        PlaylistMaker.newRecentlyPlayedSong(currentSong);
         isPaused = false;
         isPlayed = true;
-        Song currentSong = songs.get(songPos);
         MusicController thisController = Constant.getController();
         thisController.show();
         thisController.setTrackName(songTitle);
         thisController.setArtistName(songArtist);
         BitmapDrawable currentSongAlbumArt = currentSong.getAlbumArtBitmapDrawable();
-        if (currentSongAlbumArt != null) {
-            thisController.setCoverArt(currentSongAlbumArt);
-            thisController.setBackCoverArt(currentSongAlbumArt);
-        }
+
+        thisController.setCoverArt(currentSongAlbumArt);
+        thisController.setBackCoverArt(currentSongAlbumArt);
+
         thisController.setDuration(getDur());
 
         newNotification();
@@ -136,14 +144,12 @@ public class MusicService extends Service
         if (isPaused)
             notificationBuilder.builder(ACTION_PLAY);
 
-        PlaylistMaker.newRecentlyPlayedSong(currentSong);
     }
 
     private void newNotification() {
         if (songs == null) {
             setList(PlaylistMaker.lastList);
             songPos = songs.indexOf(PlaylistMaker.getLastSong());
-            playSong();
         }
         notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
     }
@@ -378,7 +384,10 @@ public class MusicService extends Service
         isPlayed = false;
         onAudioFocusChange(3);
         if (notificationBuilder == null)
+        {
             newNotification();
+            playSong();
+        }
         notificationBuilder.builder(ACTION_PLAY);
     }
 
@@ -406,7 +415,10 @@ public class MusicService extends Service
         isPlayed = true;
         isPaused = false;
         if (notificationBuilder == null)
+        {
             newNotification();
+            playSong();
+        }
         notificationBuilder.builder(ACTION_PAUSE);
     }
 
@@ -454,7 +466,8 @@ public class MusicService extends Service
 
     public Song getCurrentSong() {
         if (songs == null) {
-            setList(PlaylistMaker.recentlyPlayed);
+            setList(PlaylistMaker.lastList);
+            songPos = songs.indexOf(PlaylistMaker.getLastSong());
         }
         return songs.get(songPos);
     }

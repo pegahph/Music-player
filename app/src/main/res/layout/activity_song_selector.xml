@@ -9,6 +9,7 @@
     tools:context=".SongSelectorActivity"
     android:background="?attr/background"
     android:backgroundTint="?attr/shadow"
+    android:weightSum="2"
     android:backgroundTintMode="src_over">
 
 
@@ -18,7 +19,7 @@
         android:layout_weight="1">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/albumImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -33,15 +34,19 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/folderName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="20dp"
-                android:text="FolderName" />
+                android:text="FolderName"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:ellipsize="marquee"/>
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/songNumbers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -51,7 +56,6 @@
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="5dp"
         android:id="@+id/song_selector_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"

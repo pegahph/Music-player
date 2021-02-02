@@ -52,7 +52,11 @@ public class PlaylistMaker {
             {
                 String playlistSongsJson = mDatabaseHelper.getThisPlaylistSongs(key);
                 ArrayList<Song> playlistSongs = gson.fromJson(playlistSongsJson, type);
-                lastList = changeToRealSongs(key, playlistSongs);
+                if (playlistSongs != null){
+                    lastList = changeToRealSongs(key, playlistSongs);
+                } else {
+                    lastList = ListMaker.loadTracks();
+                }
             }
             else if (!keys.contains(key))
             {
@@ -156,9 +160,8 @@ public class PlaylistMaker {
         assert recentlyPlayed != null;
         recentlyPlayed.remove(song);
 
-        // TODO: 10 should be 100 and 9 should be 99.
-        if (recentlyPlayed.size() >= 10) {
-            recentlyPlayed.remove(9);
+        if (recentlyPlayed.size() >= 100) {
+            recentlyPlayed.remove(99);
         }
         recentlyPlayed.add(0, song);
         lastSong = song;
@@ -166,5 +169,13 @@ public class PlaylistMaker {
 
     public static Song getLastSong() {
         return lastSong;
+    }
+
+    public static void saveTheme(int position) {
+        mDatabaseHelper.saveTheme(position);
+    }
+
+    public static int getTheme() {
+        return mDatabaseHelper.getTheme();
     }
 }

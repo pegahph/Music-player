@@ -9,13 +9,15 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class SongSelectorActivity extends AppCompatActivity {
 
-    private TextView placeholder;
+    private TextView folderName;
+    private TextView songNumbers;
     private RecyclerView songSelectorList;
     private ArrayList<Song> theSongs;
     private String sectionName;
@@ -24,15 +26,19 @@ public class SongSelectorActivity extends AppCompatActivity {
     private ServiceConnection musicConnection;
     private MusicController controller;
     private TheMediaPlayer mediaPlayer;
+    private Folder songFolder;
+    private ImageView albumImage;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Theme.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_song_selector);
-
-
-
+        getSupportActionBar().hide();
+        folderName = (TextView) findViewById(R.id.folderName);
+        folderName.setSelected(true);
+        songNumbers = findViewById(R.id.songNumbers);
         theSongs = new ArrayList<>();
 
         Intent in = getIntent();
@@ -56,10 +62,10 @@ public class SongSelectorActivity extends AppCompatActivity {
             sectionName = in.getStringExtra("selectedPlaylistName");
 //            sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
             theSongs = PlaylistMaker.loadThisPlaylist(sectionName);
-            placeholder.setText(sectionName);
         }
 
-//        placeholder = (TextView) findViewById(R.id.placeholder);
+        songFolder = new Folder(sectionAlbumId , sectionName);
+//        albumImage.setImageDrawable(songFolder.getAlbumArtBitmapDrawable());
         songSelectorList = (RecyclerView) findViewById(R.id.song_selector_list);
 
         SongAdapter songAdapter = new SongAdapter(theSongs);
@@ -72,6 +78,12 @@ public class SongSelectorActivity extends AppCompatActivity {
         mediaPlayer = Constant.getTheMediaPlayer();
         mediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
         controller = Constant.getController();
+        songNumbers.setText(getSongNumbersString()+ " songs");
+        folderName.setText(sectionName);
+    }
+
+    String getSongNumbersString(){
+        return String.valueOf(theSongs.size());
     }
 
     @Override

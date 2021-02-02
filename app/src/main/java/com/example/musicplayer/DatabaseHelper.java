@@ -74,7 +74,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 String playlistTitle = cursor.getString(cursor.getColumnIndex(KEY_NAME));
-                playlistTitles.add(playlistTitle);
+                if (!playlistTitle.equals("theme")) {
+                    playlistTitles.add(playlistTitle);
+                }
             } while (cursor.moveToNext());
         }
 
@@ -111,5 +113,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return i;
+    }
+
+    public void saveTheme(int position) {
+        String thePosition = Integer.toString(position);
+        String theme = "theme";
+
+        addPlaylist(theme, thePosition);
+    }
+
+    public int getTheme() {
+        String theme = "theme";
+        try {
+            String state = getThisPlaylistSongs(theme);
+            return Integer.parseInt(state);
+        } catch (Exception ignored) {
+            return 0;
+        }
     }
 }

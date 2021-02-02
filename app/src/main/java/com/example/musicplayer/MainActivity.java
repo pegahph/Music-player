@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
     TabLayout tabs;
     ViewPager viewPager;
-    private boolean darkTheme = false;
+
 
 
     // Overriding onCreate function :)
@@ -302,7 +302,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.themeMood:
-                        Theme.changeToTheme(MainActivity.this, Theme.THEME_DARK);
+                        changeposition();
+                        Theme.changeToTheme(MainActivity.this, ThemeApplication.currentPosition);
+                        musicService.setMenu(true);
                         return true;
                     case R.id.removeBackground:
                         viewPager.setBackground(null);
@@ -316,6 +318,14 @@ public class MainActivity extends AppCompatActivity {
         popup.show();
     }
 
+    private void changeposition(){
+        if(ThemeApplication.currentPosition == 1){
+            ThemeApplication.currentPosition = 0;
+        }
+        else {
+            ThemeApplication.currentPosition =1;
+        }
+    }
 
 
     public void getSongList() {

@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/shadowlight">
+        android:background="?attr/shadowlight">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -27,7 +27,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="ُSong Name"
-                android:textColor="@color/mainColor"
+                android:textColor="?attr/mainColor"
                 android:textSize="15sp" />
 
             <TextView
@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:gravity="center"
-                android:textColor="@color/SubsidiaryColor"
+                android:textColor="?attr/SubsidiaryColor"
                 android:text="ُSong Artist"
                 android:singleLine="true"
                 android:ellipsize="marquee"
