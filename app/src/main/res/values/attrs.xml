@@ -10,5 +10,6 @@
         <attr name="actionbarText" format="color"/>
         <attr name="background" format="reference"/>
         <attr name="folder_icon" format="reference"/>
+        <attr name="backgroundColor" format="color"/>
     </declare-styleable>
 </resources>
