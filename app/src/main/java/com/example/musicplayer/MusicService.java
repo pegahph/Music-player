@@ -2,7 +2,10 @@ package com.example.musicplayer;
 
 import android.app.Service;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -11,6 +14,8 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.provider.MediaStore;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -35,9 +40,17 @@ public class MusicService extends Service
     public static final String ACTION_PREVIOUS = "action_previous";
     public static final String ACTION_STOP = "action_stop";
 
+    //Handle incoming phone calls
+    private boolean ongoingCall = false;
+    private PhoneStateListener phoneStateListener;
+    private TelephonyManager telephonyManager;
+
+    private AudioManager audioManager;
+
     private MediaPlayer player;
 
     private MusicService musicService;
+
     public void setMusicService() {
         this.musicService = Constant.getMusicService();
     }
@@ -70,8 +83,12 @@ public class MusicService extends Service
         startPos = 0;
         player = new MediaPlayer();
         rand = new Random();
-
+        // Manage incoming phone calls during playback.
+        // Pause MediaPlayer on incoming call,
+        // Resume on hangup.
+        callStateListener();
         initMusicPlayer();
+        //registerBecomingNoisyReceiver();
     }
 
     @Nullable
@@ -79,6 +96,7 @@ public class MusicService extends Service
     public IBinder onBind(Intent intent) {
         return musicBind;
     }
+
     @Override
     public boolean onUnbind(Intent intent) {
         player.stop();
@@ -106,8 +124,7 @@ public class MusicService extends Service
         thisController.setTrackName(songTitle);
         thisController.setArtistName(songArtist);
         BitmapDrawable currentSongAlbumArt = currentSong.getAlbumArtBitmapDrawable();
-        if (currentSongAlbumArt != null)
-        {
+        if (currentSongAlbumArt != null) {
             thisController.setCoverArt(currentSongAlbumArt);
             thisController.setBackCoverArt(currentSongAlbumArt);
         }
@@ -132,7 +149,7 @@ public class MusicService extends Service
     }
 
     private void handleIntent(Intent intent) {
-        if(intent == null || intent.getAction() == null)
+        if (intent == null || intent.getAction() == null)
             return;
 
         String action = intent.getAction();
@@ -159,26 +176,24 @@ public class MusicService extends Service
         if (player.getCurrentPosition() > 0) {
             mp.reset();
             // repeat off.
-            if (!repeatOn)
-            {
+            if (!repeatOn) {
                 // TODO: what if songs.size() mosavi sefr bashe??
                 // I mean when it will?
-                if ((songPos+1) % songs.size() != startPos)
+                if ((songPos + 1) % songs.size() != startPos)
                     playNext();
-                else
-                {
+                else {
                     playNext();
                 }
             }
             // repeat on, repeat all the songs in the list
             else if (repeatAll) {
                 playNext();
-            }
-            else {
+            } else {
                 playSong();
             }
         }
     }
+
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
         mp.reset();
@@ -187,6 +202,11 @@ public class MusicService extends Service
 
     @Override
     public void onDestroy() {
+        removeAudioFocus();
+        //Disable the PhoneStateListener
+        if (phoneStateListener != null) {
+            telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
         stopForeground(true);
     }
 
@@ -199,8 +219,7 @@ public class MusicService extends Service
     }
 
     public void setList(ArrayList<Song> theSongs) {
-        if (theSongs == null)
-        {
+        if (theSongs == null) {
             theSongs = ListMaker.songList;
         }
         this.songs = theSongs;
@@ -209,9 +228,102 @@ public class MusicService extends Service
 
     @Override
     public void onAudioFocusChange(int focusChange) {
-
+//  Invoked when the audio focus of the system is updated.
+        switch (focusChange) {
+            case AudioManager.AUDIOFOCUS_GAIN:
+                // resume playback
+                if (player == null) initMusicPlayer();
+                else if (!player.isPlaying()) player.start();
+                player.setVolume(1.0f, 1.0f);
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS:
+                // Lost focus for an unbounded amount of time: stop playback and release media player
+                if (player.isPlaying()) player.stop();
+                player.release();
+                player = null;
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                // Lost focus for a short time, but we have to stop
+                // playback. We don't release the media player because playback
+                // is likely to resume
+                if (player.isPlaying()) player.pause();
+                break;
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                // Lost focus for a short time, but it's ok to keep playing
+                // at an attenuated level
+                if (player.isPlaying()) player.setVolume(0.1f, 0.1f);
+                break;
+        }
     }
 
+    //Handle incoming phone calls
+    private void callStateListener() {
+        // Get the telephony manager
+        telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        //Starting listening for PhoneState changes
+        phoneStateListener = new PhoneStateListener() {
+            @Override
+            public void onCallStateChanged(int state, String incomingNumber) {
+                switch (state) {
+                    //if at least one call exists or the phone is ringing
+                    //pause the MediaPlayer
+                    case TelephonyManager.CALL_STATE_OFFHOOK:
+                    case TelephonyManager.CALL_STATE_RINGING:
+                        if (player != null) {
+                            pausePlayer();
+                            ongoingCall = true;
+                        }
+                        break;
+                    case TelephonyManager.CALL_STATE_IDLE:
+                        // Phone idle. Start playing.
+                        if (player != null) {
+                            if (ongoingCall) {
+                                ongoingCall = false;
+                                playSong();
+                            }
+                        }
+                        break;
+                }
+            }
+        };
+        // Register the listener with the telephony manager
+        // Listen for changes to the device call state.
+        telephonyManager.listen(phoneStateListener,
+                PhoneStateListener.LISTEN_CALL_STATE);
+    }
+
+    private boolean requestAudioFocus() {
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            //Focus gained
+            return true;
+        }
+        //Could not gain focus
+        return false;
+    }
+
+    private boolean removeAudioFocus() {
+        return AudioManager.AUDIOFOCUS_REQUEST_GRANTED ==
+                audioManager.abandonAudioFocus(this);
+    }
+
+//    //Becoming noisy
+//    private BroadcastReceiver becomingNoisyReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            //pause audio on ACTION_AUDIO_BECOMING_NOISY
+//            pausePlayer();
+//            Toast.makeText(getApplicationContext(),"on receive",Toast.LENGTH_SHORT).show();
+//            //notificationBuilder.buildNotification();
+//        }
+//    };
+//
+//    private void registerBecomingNoisyReceiver() {
+//        //register after getting audio focus
+//        IntentFilter intentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
+//        registerReceiver(becomingNoisyReceiver, intentFilter);
+//    }
 
     public class MusicBinder extends Binder {
         MusicService getService() {
@@ -251,25 +363,46 @@ public class MusicService extends Service
     public int getPos() {
         return player.getCurrentPosition();
     }
+
     public int getDur() {
         return player.getDuration();
     }
+
     public boolean isPng() {
         return player.isPlaying();
     }
+
     public void pausePlayer() {
         player.pause();
         isPaused = true;
         isPlayed = false;
+        onAudioFocusChange(3);
         if (notificationBuilder == null)
             newNotification();
         notificationBuilder.builder(ACTION_PLAY);
     }
+
     public void seek(int pos) {
         player.seekTo(pos);
     }
+
     public void go() {
+        AudioManager mAudioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
+
+        if (mAudioManager.isMusicActive()) {
+
+            Intent pauseIntent = new Intent("com.android.music.musicservicecommand");
+
+            pauseIntent.putExtra("command", "stop");
+            pauseIntent.putExtra("command", "pause");
+            MusicService.this.sendBroadcast(pauseIntent);
+            if (requestAudioFocus())
+            onAudioFocusChange(AudioManager.AUDIOFOCUS_GAIN);
+            Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
+        }
+
         player.start();
+        Toast.makeText(getApplicationContext(),"no",Toast.LENGTH_SHORT).show();
         isPlayed = true;
         isPaused = false;
         if (notificationBuilder == null)
@@ -279,21 +412,20 @@ public class MusicService extends Service
 
     public void playPrev() {
         songPos--;
-        if (songPos<0) songPos = songs.size()-1;
+        if (songPos < 0) songPos = songs.size() - 1;
         playSong();
     }
+
     public void playNext() {
         if (shuffle) {
             int newSong = songPos;
-            while (newSong == songPos)
-            {
+            while (newSong == songPos) {
                 newSong = rand.nextInt(songs.size());
             }
             songPos = newSong;
-        }
-        else {
+        } else {
             songPos++;
-            if (songPos>=songs.size()) songPos=0;
+            if (songPos >= songs.size()) songPos = 0;
         }
         playSong();
     }
@@ -301,6 +433,7 @@ public class MusicService extends Service
     public void setShuffle() {
         shuffle = !shuffle;
     }
+
     public boolean getShuffle() {
         return shuffle;
     }
@@ -310,18 +443,16 @@ public class MusicService extends Service
             repeatOn = true;
             repeatAll = true;
             Toast.makeText(getApplicationContext(), "repeat all", Toast.LENGTH_SHORT).show();
-        }
-        else if (repeatAll) {
+        } else if (repeatAll) {
             repeatAll = false;
             Toast.makeText(getApplicationContext(), "repeat one", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             repeatOn = false;
             Toast.makeText(getApplicationContext(), "repeat off", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public Song getCurrentSong(){
+    public Song getCurrentSong() {
         if (songs == null) {
             setList(PlaylistMaker.recentlyPlayed);
         }

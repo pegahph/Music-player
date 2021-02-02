@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.Toast;
+import com.example.musicplayer.MusicService;
 
 /**
  * Implementation of App Widget functionality.
