@@ -276,7 +276,7 @@ public class MusicService extends Service
                     case TelephonyManager.CALL_STATE_OFFHOOK:
                     case TelephonyManager.CALL_STATE_RINGING:
                         if (player != null) {
-                            pausePlayer();
+                            player.pause();
                             ongoingCall = true;
                         }
                         break;
@@ -285,7 +285,7 @@ public class MusicService extends Service
                         if (player != null) {
                             if (ongoingCall) {
                                 ongoingCall = false;
-                                playSong();
+                                go();
                             }
                         }
                         break;
