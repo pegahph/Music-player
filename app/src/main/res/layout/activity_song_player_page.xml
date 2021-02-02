@@ -39,7 +39,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="85dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
@@ -65,11 +65,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:elevation="2dp"
                     android:textSize="14sp"
                     android:visibility="gone"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:hint="Song name"
+                    android:textColor="@color/mainColor"
+                    android:textColorHint="@color/mainColor"/>
 
                 <ImageView
                     android:id="@+id/share_btn"
@@ -119,7 +122,7 @@
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
-                    android:text="ُSong Name"
+                    android:text="Song Name"
                     android:textColor="@color/mainColor"
                     android:textSize="23sp" />
             </LinearLayout>
