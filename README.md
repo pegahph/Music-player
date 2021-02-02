@@ -1,3 +1,3 @@
 # Music-player
-android project
 ## a music player app for android devices.
+Contains no ads or unnecessary permissions. 
