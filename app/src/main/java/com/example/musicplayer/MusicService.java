@@ -285,7 +285,7 @@ public class MusicService extends Service
                         if (player != null) {
                             if (ongoingCall) {
                                 ongoingCall = false;
-                                playSong();
+                                go();
                             }
                         }
                         break;
