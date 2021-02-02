@@ -67,9 +67,12 @@
         <item name="moodTitle">Dark mood</item>
         <item name="background3">@drawable/backlight2</item>
         <item name="shadowVerylight">#5CD1D0D0</item>
-        <item name="seekbarColorTop">@color/seekbarColorTop</item>
-        <item name="seekbarColorBottom">@color/seekbarColorBottom</item>
+        <item name="seekbarColorTop">#e2e2df</item>
+        <item name="seekbarColorBottom">#d2d2cf</item>
         <item name="progressColor">@color/progressColor</item>
+        <item name="thumbColor3">#a6808c</item>
+        <item name="thumbColor1">#e5d1d0</item>
+        <item name="thumbColor2">#774c60</item>
     </style>
     <style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="shadow">#E2212529</item>
@@ -89,5 +92,8 @@
         <item name="seekbarColorTop">@color/seekbarColorTop</item>
         <item name="seekbarColorBottom">@color/seekbarColorBottom</item>
         <item name="progressColor">@color/progressColor</item>
+        <item name="thumbColor1">#56CFE1</item>
+        <item name="thumbColor2">#309EDF</item>
+        <item name="thumbColor3">#56CFE1</item>
     </style>
 </resources>
