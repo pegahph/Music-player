@@ -20,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_SONGS = "PlaylistSongs";
     private static final String[] COLUMNS = {KEY_NAME, KEY_SONGS};
     ArrayList<String> playlistTitles;
+    String theme = "";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -112,4 +113,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return i;
     }
+//
+//    public void saveTheme(boolean isDark) {
+//        if (!theme.equals("")) {
+//            updateTheme();
+//            return;
+//        }
+//        String dark = "";
+//        if (isDark) {
+//            dark = "1";
+//        } else {
+//            dark = "0";
+//        }
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put(KEY_NAME, "theme");
+//        values.put(KEY_SONGS, dark);
+//        db.insert(TABLE_NAME, null, values);
+//        db.close();
+//    }
+//
+//    private boolean getTheme() {
+//        if (!theme.equals("")) {
+//            return !theme.equals("0");
+//        } else {
+//            SQLiteDatabase db = this.getReadableDatabase();
+//            Cursor cursor = db.query(TABLE_NAME, // a. table
+//                    COLUMNS, // b. column names
+//                    " " + KEY_NAME +" = ?", // c. selections
+//                    new String[] { "theme" }, // d. selections args
+//                    null, // e. group by
+//                    null, // f. having
+//                    null, // g. order by
+//                    null); // h. limit
+//
+//            String dark = "";
+//            if (cursor != null) {
+//                cursor.moveToFirst();
+//                dark = cursor.getString(cursor.getColumnIndex(KEY_SONGS));
+//                theme = dark;
+//            }
+//            if (!theme.equals("")) {
+//                return !theme.equals("0");}
+//        }
+//
+//    }
 }
