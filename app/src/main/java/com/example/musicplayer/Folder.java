@@ -15,7 +15,7 @@ public class Folder {
     public static Resources resources = Song.resources;
     private long albumId;
     private String folderName;
-
+    int size = 0;
 
     public Folder(long albumId, String folderName) {
         this.albumId = albumId;
@@ -28,6 +28,14 @@ public class Folder {
 
     public String getFolderName() {
         return folderName;
+    }
+
+    public int getSize() {
+        if (size == 0)
+        {
+            size = ListMaker.getThisArtistsSongs(folderName).size();
+        }
+        return size;
     }
 
     public BitmapDrawable getAlbumArtBitmapDrawable() {

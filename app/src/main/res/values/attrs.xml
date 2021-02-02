@@ -11,5 +11,8 @@
         <attr name="background" format="reference"/>
         <attr name="folder_icon" format="reference"/>
         <attr name="backgroundColor" format="color"/>
+        <attr name="background2" format="reference"/>
+        <attr name="shadowlight" format="color"/>
+        <attr name="moodTitle" format="string" />
     </declare-styleable>
 </resources>

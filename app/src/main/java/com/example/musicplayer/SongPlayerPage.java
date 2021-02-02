@@ -47,6 +47,7 @@ public class SongPlayerPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Theme.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_song_player_page);
         getSupportActionBar().hide();
         blurLayout = findViewById(R.id.blurLayout);

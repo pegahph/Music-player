@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType = "centerCrop"
-        app:srcCompat="@drawable/background6" />
+        app:srcCompat="?attr/background2" />
 
     <io.alterac.blurkit.BlurLayout
         android:id="@+id/blurLayout"
@@ -28,7 +28,7 @@
         android:id="@+id/gray_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/shadowlight"/>
+        android:background="?attr/shadowlight"/>
 
 
         <LinearLayout
@@ -122,8 +122,8 @@
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
-                    android:text="Song Name"
-                    android:textColor="@color/mainColor"
+                    android:text="ُSong Name"
+                    android:textColor="?attr/mainColor"
                     android:textSize="23sp" />
             </LinearLayout>
 
@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="ُSong Artist"
-                android:textColor="@color/SubsidiaryColor"
+                android:textColor="?attr/SubsidiaryColor"
                 android:textSize="15dp" />
 
             <Space
@@ -154,7 +154,7 @@
                     android:layout_width="250dp"
                     android:layout_height="250dp"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/background6" />
+                    app:srcCompat="?attr/background2" />
             </androidx.cardview.widget.CardView>
 
             <Space
@@ -229,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:text="00:00"
-                    android:textColor="@color/SubsidiaryColor"
+                    android:textColor="?attr/SubsidiaryColor"
                     android:textSize="15sp" />
 
                 <TextView
@@ -238,7 +238,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:text="00:00"
-                    android:textColor="@color/SubsidiaryColor"
+                    android:textColor="?attr/SubsidiaryColor"
                     android:textSize="15sp" />
             </FrameLayout>
 

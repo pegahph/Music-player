@@ -15,6 +15,7 @@ public class Artist {
     private String artistName;
     public static ContentResolver musicResolver = Song.musicResolver;
     public static Resources resources = Song.resources;
+    int size = 0;
 
 
     public Artist(long albumId, String artistName) {
@@ -28,6 +29,14 @@ public class Artist {
 
     public String getArtistName() {
         return artistName;
+    }
+
+    public int getSize() {
+        if (size == 0)
+        {
+            size = ListMaker.getThisArtistsSongs(artistName).size();
+        }
+        return size;
     }
 
     public BitmapDrawable getAlbumArtBitmapDrawable() {
