@@ -3,11 +3,12 @@ package com.example.musicplayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -74,14 +75,16 @@ public class SongPlayerPage extends AppCompatActivity {
         searchBtn = (ImageView) findViewById(R.id.search_btn);
         shareBtn = (ImageView) findViewById(R.id.share_btn);
         deleteBtn = (ImageView) findViewById(R.id.delete_btn);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
 
 
         mediaPlayer = Constant.getTheMediaPlayer();
-        theController = new MusicController(getApplicationContext());
+        theController = new com.example.musicplayer.MusicController(getApplicationContext());
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
         theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn, addToPlaylist);
+        theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, shareBtn, deleteBtn, imm);
         theController.setController();
         Constant.setController(theController);
         mediaPlayer.setClickListener(theController);
