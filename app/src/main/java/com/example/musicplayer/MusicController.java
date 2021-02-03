@@ -347,7 +347,7 @@ public class MusicController extends FrameLayout {
                 changeBackCover(lastSong.getAlbumArtBitmapDrawable());
                 this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
             }
-            else {
+            else if (lastSong != null) {
                 this.progressBar.setMax(lastSong.getDuration());
                 updateProgress();
             }
