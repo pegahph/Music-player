@@ -125,6 +125,14 @@ public class PlaylistMaker {
     public static ArrayList<Song> loadThisPlaylist(String key) {
         return playlists.get(key);
     }
+
+    public static void addToThisPlaylist(Song song, String playlist) {
+        ArrayList<Song> thePlaylist = loadThisPlaylist(playlist);
+
+        assert thePlaylist != null;
+        thePlaylist.add(0, song);
+    }
+
     public static void newFavoriteSong(Song song) {
         if (favorite == null) {
             if (keys.contains("Favorite tracks"))

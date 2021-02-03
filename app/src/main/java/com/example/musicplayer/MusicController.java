@@ -7,8 +7,9 @@ import android.os.Binder;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowInsets;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -18,7 +19,6 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Space;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -32,8 +32,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Formatter;
+import java.util.HashMap;
 
 import io.alterac.blurkit.BlurLayout;
 
@@ -69,6 +69,7 @@ public class MusicController extends FrameLayout {
     private CardView cardView;
     private static ArrayList<Song> songTitleCompared = new ArrayList<>();
     private static ArrayList<Song> songArtistCompared = new ArrayList<>();
+    private ArrayList<String> keys;
 
     public MusicController(@NonNull Context context) {
         super(context);
@@ -97,7 +98,7 @@ public class MusicController extends FrameLayout {
         artistName = aArtistName;
     }
     public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout,
-                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn, ImageButton addToPlaylist) {
+                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn) {
         isSongPlayerActivity = true;
         this.endTimeTextView = aEndTime;
         this.backCover = aBackCover;
@@ -107,7 +108,6 @@ public class MusicController extends FrameLayout {
         this.repeatBtn = repeatBtn;
         this.seekBar = seekBar;
         this.favoriteBtn = favoriteBtn;
-        this.addToPlayList = addToPlaylist;
 
         if (this.shuffleBtn != null) {
             shuffleBtn.requestFocus();
@@ -127,10 +127,7 @@ public class MusicController extends FrameLayout {
             updateFavorite();
         }
 
-        if (this.addToPlayList != null) {
-            addToPlaylist.requestFocus();
-            addToPlaylist.setOnClickListener(addToPlaylistListener);
-        }
+
     }
 
     public void getSearchStuff(Space searchBarPlaceholder, EditText theSearchBar, ImageView searchBtn,
@@ -152,6 +149,15 @@ public class MusicController extends FrameLayout {
     public void getLyricsStuff(TextView lyricsTextView, Activity activity) {
         this.lyricsTextView = lyricsTextView;
         this.activity = activity;
+    }
+
+    public void getAddToPlaylistStuff(ImageButton addToPlaylist) {
+        this.addToPlayList = addToPlaylist;
+
+        if (this.addToPlayList != null) {
+            addToPlaylist.requestFocus();
+            addToPlaylist.setOnClickListener(addToPlaylistListener);
+        }
     }
 
     public void setMediaPlayer(TheMediaPlayer mediaPlayer) {
@@ -205,7 +211,13 @@ public class MusicController extends FrameLayout {
     private final View.OnClickListener addToPlaylistListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, "add to playlist", Toast.LENGTH_SHORT).show();
+            doAddToPlaylist();
+        }
+    };
+    private final View.OnClickListener notAddToPlaylistListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            undoAddToPlaylist();
         }
     };
     private final View.OnClickListener doSearchBtnListener = new OnClickListener() {
@@ -221,12 +233,26 @@ public class MusicController extends FrameLayout {
         }
     };
 
+    private void doAddToPlaylist() {
+        changeRecyclerViewVisibility(true, true);
+        addToPlayList.setOnClickListener(notAddToPlaylistListener);
+
+        showAllPlaylist();
+
+    }
+    private void undoAddToPlaylist() {
+        changeRecyclerViewVisibility(false, true);
+        addToPlayList.setOnClickListener(addToPlaylistListener);
+
+
+    }
+
     private void doSearchStuff() {
         changeVisibilityOfTheseGuys(INVISIBLE);
         this.searchBarPlaceholder.setVisibility(GONE);
         this.theSearchBar.setVisibility(VISIBLE);
         this.theSearchBar.setText("");
-        changeRecyclerViewVisibility(true);
+        changeRecyclerViewVisibility(true, false);
 //        this.imm.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, InputMethodManager.RESULT_UNCHANGED_HIDDEN);
 
         this.theSearchBar.addTextChangedListener(textWatcher);
@@ -242,7 +268,7 @@ public class MusicController extends FrameLayout {
         changeVisibilityOfTheseGuys(INVISIBLE);
         this.searchBarPlaceholder.setVisibility(VISIBLE);
         this.theSearchBar.setVisibility(GONE);
-        changeRecyclerViewVisibility(false);
+        changeRecyclerViewVisibility(false, false);
         this.theSearchBar.removeTextChangedListener(textWatcher);
             // TODO: keyboard nemire paeen!!! bayad bere paeen.
 //        Keyboard.hide();
@@ -660,14 +686,15 @@ public class MusicController extends FrameLayout {
         this.killMe = newKillMe;
     }
 
-    public void changeRecyclerViewVisibility(boolean visible) {
+    private void changeRecyclerViewVisibility(boolean visible, boolean isAddToPlaylist) {
         if (visible) {
             this.searchRecyclerView.setVisibility(VISIBLE);
             this.trackName.setVisibility(INVISIBLE);
             this.artistName.setVisibility(INVISIBLE);
             this.coverArt.setVisibility(INVISIBLE);
             this.favoriteBtn.setVisibility(INVISIBLE);
-            this.addToPlayList.setVisibility(INVISIBLE);
+            if (!isAddToPlaylist)
+                this.addToPlayList.setVisibility(INVISIBLE);
             this.seekBar.setVisibility(INVISIBLE);
             this.shuffleBtn.setVisibility(INVISIBLE);
             this.prevBtn.setVisibility(INVISIBLE);
@@ -706,5 +733,59 @@ public class MusicController extends FrameLayout {
         mediaPlayer.setSong(pos);
         mediaPlayer.playSong();
 
+    }
+
+    private void showAllPlaylist() {
+        keys = new ArrayList<>(PlaylistMaker.keys);
+        keys.remove("Favorite tracks");
+        keys.remove("Recently played");
+        RecyclerView.Adapter<PlaylistViewHolder> adapter = new RecyclerView.Adapter<PlaylistViewHolder>() {
+            @NonNull
+            @Override
+            public PlaylistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                Context context = parent.getContext();
+                LayoutInflater inflater = LayoutInflater.from(context);
+
+                View artistView = inflater.inflate(R.layout.playlist, parent, false);
+                return new PlaylistViewHolder(artistView);
+            }
+
+            @Override
+            public void onBindViewHolder(@NonNull PlaylistViewHolder holder, int position) {
+                holder.bindView(position, keys);
+            }
+
+            @Override
+            public int getItemCount() {
+                return keys.size();
+            }
+        };
+        searchRecyclerView.setAdapter(adapter);
+        searchRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
+    }
+    public static class PlaylistViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView playlistName;
+        private ImageView playlistArt;
+        private View thisView;
+
+        public PlaylistViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            playlistName = (TextView) itemView.findViewById(R.id.artist_name);
+            playlistArt = (ImageView) itemView.findViewById(R.id.albums_art);
+            thisView = itemView;
+        }
+
+        public void bindView(int position, ArrayList<String> keys) {
+            playlistName.setText(keys.get(position));
+            thisView.setTag(position);
+        }
+    }
+
+    public void addThisSongToThisPlaylist(int position) {
+        Song currentSong = mediaPlayer.getCurrentSong();
+        String playlist = keys.get(position);
+        PlaylistMaker.addToThisPlaylist(currentSong, playlist);
     }
 }

@@ -95,9 +95,10 @@ public class SongPlayerPage extends AppCompatActivity {
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
-        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn, addToPlaylist);
+        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn);
         theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, shareBtn, deleteBtn, imm, searchRecyclerView, currentTime, cardView, volume);
         theController.getLyricsStuff(lyricsTextView, this);
+        theController.getAddToPlaylistStuff(addToPlaylist);
         theController.setController();
         Constant.setController(theController);
         mediaPlayer.setClickListener(theController);
@@ -245,5 +246,11 @@ public class SongPlayerPage extends AppCompatActivity {
     public void songPicked(View view) {
         int position = (int) view.getTag();
         theController.goToAnotherMusic(position);
+    }
+
+    public void playlistSelected(View view) {
+        Toast.makeText(this, "add this song to this playlist" + view.getTag(), Toast.LENGTH_SHORT).show();
+        int playlistNumber = (int) view.getTag();
+        theController.addThisSongToThisPlaylist(playlistNumber);
     }
 }
