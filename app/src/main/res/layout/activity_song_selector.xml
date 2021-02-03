@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SongSelectorActivity"
-    android:background="?attr/background22"
+    android:background="?attr/background"
     android:backgroundTint="?attr/shadow"
     android:weightSum="2"
     android:backgroundTintMode="src_over">

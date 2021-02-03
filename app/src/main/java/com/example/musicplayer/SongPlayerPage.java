@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.Space;
 import android.widget.TextView;
@@ -47,6 +48,8 @@ public class SongPlayerPage extends AppCompatActivity {
     ImageView searchBtn, shareBtn, deleteBtn;
     RecyclerView searchRecyclerView;
     CardView cardView;
+
+    ScrollView scrollView;
 
     private float x1,y1,x2, y2;
     static final int MIN_X_DISTANCE = 200;
@@ -89,6 +92,7 @@ public class SongPlayerPage extends AppCompatActivity {
         volume = (ImageButton) findViewById(R.id.volume);
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         lyricsTextView = (TextView) findViewById(R.id.lyrics_text_view);
+        scrollView = (ScrollView) findViewById(R.id.scroll_view);
 
         mediaPlayer = Constant.getTheMediaPlayer();
         theController = new com.example.musicplayer.MusicController(getApplicationContext());
@@ -233,12 +237,14 @@ public class SongPlayerPage extends AppCompatActivity {
                 Toast.makeText(this, "lyrics is not available", Toast.LENGTH_SHORT).show();
             } else {
                 forCover.setVisibility(View.INVISIBLE);
+                scrollView.setVisibility(View.VISIBLE);
                 lyricsTextView.setVisibility(View.VISIBLE);
                 isCoverVisible = false;
             }
         } else {
             forCover.setVisibility(View.VISIBLE);
             lyricsTextView.setVisibility(View.INVISIBLE);
+            scrollView.setVisibility(View.GONE);
             isCoverVisible = true;
         }
     }
