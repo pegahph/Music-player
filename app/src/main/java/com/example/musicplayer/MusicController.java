@@ -634,4 +634,9 @@ public class MusicController extends FrameLayout {
         this.coverArt.setVisibility(VISIBLE);
         this.lyricsTextView.setVisibility(INVISIBLE);
     }
+
+
+    public void changeKillMe(boolean newKillMe) {
+        this.killMe = newKillMe;
+    }
 }

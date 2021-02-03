@@ -241,11 +241,14 @@ public class MainActivity extends AppCompatActivity {
             Constant.setMusicConnection(musicConnection);
             startService(playIntent);
         }
+        if (controller != null)
+            controller.changeKillMe(false);
     }
     @Override
     protected void onPause() {
         super.onPause();
         paused = true;
+        controller.changeKillMe(true);
     }
     @Override
     protected void onResume() {

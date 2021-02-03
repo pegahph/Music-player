@@ -97,6 +97,18 @@ public class SongSelectorActivity extends AppCompatActivity {
         controller = Constant.getController();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        controller.changeKillMe(false);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        controller.changeKillMe(true);
+    }
+
     public void songPicked(View view) {
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
         musicService.setList(theSongs);
