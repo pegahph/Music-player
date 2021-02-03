@@ -76,26 +76,11 @@
                     android:visibility="gone" />
 
                 <ImageView
-                    android:id="@+id/share_btn"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:layout_marginLeft="10dp"
-                    app:srcCompat="@drawable/ic_baseline_share_24" />
-
-                <ImageView
                     android:id="@+id/search_btn"
                     android:layout_width="27dp"
                     android:layout_height="27dp"
                     android:layout_marginLeft="10dp"
                     app:srcCompat="@drawable/ic_baseline_search_24" />
-
-
-                <ImageView
-                    android:id="@+id/delete_btn"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:layout_marginLeft="10dp"
-                    app:srcCompat="@drawable/ic_twotone_delete_outline_24" />
 
 
             </LinearLayout>
@@ -219,6 +204,7 @@
                             style="@style/Widget.AppCompat.SeekBar.Discrete"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
+                            android:visibility="gone"
                             android:max="10"
                             android:progress="1" />
 
