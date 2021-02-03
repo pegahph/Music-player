@@ -1,11 +1,14 @@
 package com.example.musicplayer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -24,14 +27,15 @@ public class SongPlayerPage extends AppCompatActivity {
     BlurLayout blurLayout;
     MusicService theMusicService;
 //    Song song;
+    View grayView;
     ImageView backCover , forCover;
     TextView songName , songArtist;
     TheMediaPlayer mediaPlayer;
-    ImageButton prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn, favoriteBtn, addToPlaylist;
+    ImageButton prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn, favoriteBtn, addToPlaylist, volume;
     SeekBar seekBar;
     TextView currentTime, endTime, lyricsTextView;
     int targetPosition;
-    boolean isTracking = false;
+    boolean isTracking = false, gray = true;
     MusicController theController;
     Runnable timerRunnable;
     boolean killMe = false, isCoverVisible = true;
@@ -40,6 +44,8 @@ public class SongPlayerPage extends AppCompatActivity {
     Space searchBarPlaceholder;
     EditText theSearchBar;
     ImageView searchBtn, shareBtn, deleteBtn;
+    RecyclerView searchRecyclerView;
+    CardView cardView;
 
     private float x1,y1,x2, y2;
     static final int MIN_X_DISTANCE = 200;
@@ -58,7 +64,7 @@ public class SongPlayerPage extends AppCompatActivity {
         forCover = findViewById(R.id.forCover);
         songName = findViewById(R.id.songName);
         songArtist = findViewById(R.id.songArtist);
-        View grayView = findViewById(R.id.gray_view);
+        grayView = findViewById(R.id.gray_view);
         songName.setSelected(true);
 
         prevBtn = (ImageButton) findViewById(R.id.full_prev_btn);
@@ -77,9 +83,11 @@ public class SongPlayerPage extends AppCompatActivity {
         searchBtn = (ImageView) findViewById(R.id.search_btn);
         shareBtn = (ImageView) findViewById(R.id.share_btn);
         deleteBtn = (ImageView) findViewById(R.id.delete_btn);
+        searchRecyclerView = (RecyclerView) findViewById(R.id.search_recyclerView);
+        cardView = (CardView) findViewById(R.id.card_view);
+        volume = (ImageButton) findViewById(R.id.volume);
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         lyricsTextView = (TextView) findViewById(R.id.lyrics_text_view);
-
 
         mediaPlayer = Constant.getTheMediaPlayer();
         theController = new com.example.musicplayer.MusicController(getApplicationContext());
@@ -87,7 +95,7 @@ public class SongPlayerPage extends AppCompatActivity {
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
         theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn, addToPlaylist);
-        theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, shareBtn, deleteBtn, imm);
+        theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, shareBtn, deleteBtn, imm, searchRecyclerView, currentTime, cardView, volume);
         theController.getLyricsStuff(lyricsTextView, this);
         theController.setController();
         Constant.setController(theController);

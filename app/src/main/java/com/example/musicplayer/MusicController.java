@@ -3,10 +3,12 @@ package com.example.musicplayer;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Binder;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.os.Handler;
 import android.view.View;
+import android.view.WindowInsets;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -19,6 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -57,8 +62,11 @@ public class MusicController extends FrameLayout {
     // search stuff
     private Space searchBarPlaceholder;
     private EditText theSearchBar;
-    private ImageView searchBtn, shareBtn, deleteBtn;
+    private ImageView searchBtn, shareBtn, deleteBtn, volume;
     private InputMethodManager imm;
+    private RecyclerView searchRecyclerView;
+    private TextView currentTime;
+    private CardView cardView;
     private static ArrayList<Song> songTitleCompared = new ArrayList<>();
     private static ArrayList<Song> songArtistCompared = new ArrayList<>();
 
@@ -125,14 +133,18 @@ public class MusicController extends FrameLayout {
         }
     }
 
-    public void getSearchStuff(Space searchBarPlaceholder, EditText theSearchBar, ImageView searchBtn, ImageView shareBtn, ImageView deleteBtn, InputMethodManager imm) {
+    public void getSearchStuff(Space searchBarPlaceholder, EditText theSearchBar, ImageView searchBtn,
+                               ImageView shareBtn, ImageView deleteBtn, InputMethodManager imm, RecyclerView searchRecyclerView, TextView currentTime, CardView cardView, ImageButton volume) {
         this.searchBarPlaceholder = searchBarPlaceholder;
         this.theSearchBar = theSearchBar;
         this.searchBtn = searchBtn;
         this.shareBtn = shareBtn;
         this.deleteBtn = deleteBtn;
         this.imm = imm;
-
+        this.searchRecyclerView = searchRecyclerView;
+        this.currentTime = currentTime;
+        this.cardView = cardView;
+        this.volume = volume;
 
         this.searchBtn.setOnClickListener(doSearchBtnListener);
     }
@@ -210,29 +222,36 @@ public class MusicController extends FrameLayout {
     };
 
     private void doSearchStuff() {
-        changeVisibilityOfTheseGuys(GONE);
+        changeVisibilityOfTheseGuys(INVISIBLE);
         this.searchBarPlaceholder.setVisibility(GONE);
         this.theSearchBar.setVisibility(VISIBLE);
         this.theSearchBar.setText("");
-        this.imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+        changeRecyclerViewVisibility(true);
+//        this.imm.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, InputMethodManager.RESULT_UNCHANGED_HIDDEN);
+
         this.theSearchBar.addTextChangedListener(textWatcher);
         this.shareBtn.setVisibility(GONE);
         this.deleteBtn.setVisibility(GONE);
+        this.blurLayout.invalidate();
         changeVisibilityOfTheseGuys(VISIBLE);
+//        this.blurLayout.invalidate();
         searchBtn.setOnClickListener(undoSearchBtnListener);
     }
 
     private void undoSearchStuff() {
-        changeVisibilityOfTheseGuys(GONE);
+        changeVisibilityOfTheseGuys(INVISIBLE);
         this.searchBarPlaceholder.setVisibility(VISIBLE);
         this.theSearchBar.setVisibility(GONE);
+        changeRecyclerViewVisibility(false);
         this.theSearchBar.removeTextChangedListener(textWatcher);
             // TODO: keyboard nemire paeen!!! bayad bere paeen.
 //        Keyboard.hide();
-        this.imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+//        this.imm.toggleSoftInput(InputMethodManager.RESULT_SHOWN, InputMethodManager.RESULT_UNCHANGED_SHOWN);
+//        this.imm.hideSoftInputFromWindow(new Binder(), 0);
 
         this.shareBtn.setVisibility(VISIBLE);
         this.deleteBtn.setVisibility(VISIBLE);
+        this.blurLayout.invalidate();
         changeVisibilityOfTheseGuys(VISIBLE);
         searchBtn.setOnClickListener(doSearchBtnListener);
 
@@ -446,8 +465,9 @@ public class MusicController extends FrameLayout {
                 songArtistCompared.add(song);
             }
         }
-        Toast.makeText(context, "songTitleCompared size = " + songTitleCompared.size(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(context, "songArtistCompared size = " + songArtistCompared.size(), Toast.LENGTH_SHORT).show();
+        SongAdapter songAdapter = new SongAdapter(songTitleCompared);
+        searchRecyclerView.setAdapter(songAdapter);
+        searchRecyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
 
     TextWatcher textWatcher = new TextWatcher() {
@@ -638,5 +658,43 @@ public class MusicController extends FrameLayout {
 
     public void changeKillMe(boolean newKillMe) {
         this.killMe = newKillMe;
+    }
+
+    public void changeRecyclerViewVisibility(boolean visible) {
+        if (visible) {
+            this.searchRecyclerView.setVisibility(VISIBLE);
+            this.trackName.setVisibility(INVISIBLE);
+            this.artistName.setVisibility(INVISIBLE);
+            this.coverArt.setVisibility(INVISIBLE);
+            this.favoriteBtn.setVisibility(INVISIBLE);
+            this.addToPlayList.setVisibility(INVISIBLE);
+            this.seekBar.setVisibility(INVISIBLE);
+            this.shuffleBtn.setVisibility(INVISIBLE);
+            this.prevBtn.setVisibility(INVISIBLE);
+            this.playBtn.setVisibility(INVISIBLE);
+            this.nextBtn.setVisibility(INVISIBLE);
+            this.repeatBtn.setVisibility(INVISIBLE);
+            this.endTimeTextView.setVisibility(INVISIBLE);
+            this.currentTime.setVisibility(INVISIBLE);
+            this.cardView.setVisibility(INVISIBLE);
+            this.volume.setVisibility(INVISIBLE);
+        } else {
+            this.searchRecyclerView.setVisibility(INVISIBLE);
+            this.trackName.setVisibility(VISIBLE);
+            this.artistName.setVisibility(VISIBLE);
+            this.coverArt.setVisibility(VISIBLE);
+            this.favoriteBtn.setVisibility(VISIBLE);
+            this.addToPlayList.setVisibility(VISIBLE);
+            this.seekBar.setVisibility(VISIBLE);
+            this.shuffleBtn.setVisibility(VISIBLE);
+            this.prevBtn.setVisibility(VISIBLE);
+            this.playBtn.setVisibility(VISIBLE);
+            this.nextBtn.setVisibility(VISIBLE);
+            this.repeatBtn.setVisibility(VISIBLE);
+            this.endTimeTextView.setVisibility(VISIBLE);
+            this.currentTime.setVisibility(VISIBLE);
+            this.cardView.setVisibility(VISIBLE);
+            this.volume.setVisibility(VISIBLE);
+        }
     }
 }

@@ -107,6 +107,7 @@
                     android:id="@+id/search_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
                     android:visibility="invisible" />
 
                 <LinearLayout
@@ -155,6 +156,7 @@
                         android:layout_weight="1" />
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/card_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -192,6 +194,7 @@
                         android:orientation="horizontal">
 
                         <ImageButton
+                            android:id="@+id/volume"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:background="@null"
