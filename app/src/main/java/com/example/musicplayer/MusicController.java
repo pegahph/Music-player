@@ -59,6 +59,7 @@ public class MusicController extends FrameLayout {
     private boolean killMe = false;
     final Handler updateHandler = new Handler();
     private Song lastSong;
+    private TextView repeatOnce;
     // search stuff
     private Space searchBarPlaceholder;
     private EditText theSearchBar;
@@ -98,7 +99,7 @@ public class MusicController extends FrameLayout {
         artistName = aArtistName;
     }
     public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout,
-                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn) {
+                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn , TextView repeatOnce) {
         isSongPlayerActivity = true;
         this.endTimeTextView = aEndTime;
         this.backCover = aBackCover;
@@ -108,6 +109,7 @@ public class MusicController extends FrameLayout {
         this.repeatBtn = repeatBtn;
         this.seekBar = seekBar;
         this.favoriteBtn = favoriteBtn;
+        this.repeatOnce = repeatOnce;
 
         if (this.shuffleBtn != null) {
             shuffleBtn.requestFocus();
@@ -118,7 +120,7 @@ public class MusicController extends FrameLayout {
         if (this.repeatBtn != null) {
             repeatBtn.requestFocus();
             repeatBtn.setOnClickListener(repeatListener);
-//            updateShuffle();
+            updateRepeat();
         }
 
         if (this.favoriteBtn != null) {
@@ -140,6 +142,7 @@ public class MusicController extends FrameLayout {
         this.currentTime = currentTime;
         this.cardView = cardView;
         this.volume = volume;
+
 
         this.searchBtn.setOnClickListener(doSearchBtnListener);
     }
@@ -327,6 +330,7 @@ public class MusicController extends FrameLayout {
             }
             else if(mediaPlayer.repeatState() == 1){
                 repeatBtn.setImageResource(R.drawable.ic_repeat_on);
+                repeatOnce.setVisibility(VISIBLE);
             }
             else {
                 repeatBtn.setImageResource(R.drawable.ic_repeat_on);

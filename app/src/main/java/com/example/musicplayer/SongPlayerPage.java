@@ -51,6 +51,7 @@ public class SongPlayerPage extends AppCompatActivity {
     ImageView searchBtn;
     RecyclerView searchRecyclerView;
     CardView cardView;
+    TextView repeatOnce;
 
     ScrollView scrollView;
 
@@ -70,6 +71,7 @@ public class SongPlayerPage extends AppCompatActivity {
         getSupportActionBar().hide();
         blurLayout = findViewById(R.id.blurLayout);
         theMusicService = Constant.getMusicService();
+        repeatOnce = findViewById(R.id.repeatOnce);
 
         backCover = findViewById(R.id.backCover);
         forCover = findViewById(R.id.forCover);
@@ -104,7 +106,7 @@ public class SongPlayerPage extends AppCompatActivity {
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
-        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn);
+        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn , repeatOnce);
         theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, imm, searchRecyclerView, currentTime, cardView, volume);
         theController.getLyricsStuff(lyricsTextView, this);
         theController.getAddToPlaylistStuff(addToPlaylist);
