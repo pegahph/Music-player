@@ -187,6 +187,7 @@ public class MusicController extends FrameLayout {
     private final View.OnClickListener playListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if (lastSong != null)
             doPauseResume();
         }
     };

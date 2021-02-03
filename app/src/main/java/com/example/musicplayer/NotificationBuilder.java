@@ -40,7 +40,7 @@ public class NotificationBuilder {
         intent.setAction(ACTION_STOP);
         PendingIntent pendingIntent = PendingIntent.getService(context, 1, intent, 0);
         Notification.Builder builder = new Notification.Builder(context)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.background6)
                 .setContentTitle(song.getTitle())
                 .setContentText(song.getArtist())
                 .setLargeIcon(getLargeIcon())
