@@ -165,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/ic_repeat_off"
+                    android:background="@drawable/ic_round_repeat_24"
                     android:scaleType="centerCrop"
                     tools:ignore="NestedWeights" />
             </LinearLayout>
