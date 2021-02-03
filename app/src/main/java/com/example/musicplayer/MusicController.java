@@ -327,6 +327,7 @@ public class MusicController extends FrameLayout {
         if(isSongPlayerActivity){
             if(mediaPlayer.repeatState() == 0){
                 repeatBtn.setImageResource(R.drawable.ic_repeat_off);
+                repeatOnce.setVisibility(INVISIBLE);
             }
             else if(mediaPlayer.repeatState() == 1){
                 repeatBtn.setImageResource(R.drawable.ic_repeat_on);
@@ -334,6 +335,7 @@ public class MusicController extends FrameLayout {
             }
             else {
                 repeatBtn.setImageResource(R.drawable.ic_repeat_on);
+                repeatOnce.setVisibility(INVISIBLE);
             }
         }
     }
