@@ -39,7 +39,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
@@ -63,15 +63,16 @@
                 <EditText
                     android:id="@+id/the_search_bar"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:elevation="2dp"
                     android:ems="10"
                     android:hint="Song name"
+                    android:paddingTop="0dp"
                     android:inputType="textPersonName"
-                    android:textColor="@color/mainColor"
-                    android:textColorHint="@color/mainColor"
-                    android:textSize="14sp"
+                    android:textColor="?attr/mainColor"
+                    android:textColorHint="?attr/mainColor"
+                    android:textSize="15sp"
                     android:visibility="gone" />
 
                 <ImageView
@@ -107,7 +108,7 @@
                     android:id="@+id/search_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"
+                    android:background="?attr/shadow"
                     android:visibility="invisible" />
 
                 <LinearLayout
@@ -160,6 +161,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:background="?attr/colorPrimary"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="40dp">
 
@@ -192,7 +194,7 @@
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1" />
+                        android:layout_weight=".5" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
