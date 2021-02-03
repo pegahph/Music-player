@@ -247,7 +247,7 @@ public class MusicController extends FrameLayout {
             // TODO: keyboard nemire paeen!!! bayad bere paeen.
 //        Keyboard.hide();
 //        this.imm.toggleSoftInput(InputMethodManager.RESULT_SHOWN, InputMethodManager.RESULT_UNCHANGED_SHOWN);
-//        this.imm.hideSoftInputFromWindow(new Binder(), 0);
+        this.imm.hideSoftInputFromWindow(new Binder(), 0);
 
         this.shareBtn.setVisibility(VISIBLE);
         this.deleteBtn.setVisibility(VISIBLE);
@@ -696,5 +696,15 @@ public class MusicController extends FrameLayout {
             this.cardView.setVisibility(VISIBLE);
             this.volume.setVisibility(VISIBLE);
         }
+    }
+
+    public void goToAnotherMusic(int position){
+        ArrayList<Song> tracks = ListMaker.loadTracks();
+        mediaPlayer.setList(tracks);
+        Song selectedSong = songTitleCompared.get(position);
+        int pos = tracks.indexOf(selectedSong);
+        mediaPlayer.setSong(pos);
+        mediaPlayer.playSong();
+
     }
 }

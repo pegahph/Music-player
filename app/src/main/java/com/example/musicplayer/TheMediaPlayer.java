@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class TheMediaPlayer implements MediaPlayerControl {
     private MusicService musicService;
     private Context context;
@@ -82,6 +84,16 @@ public class TheMediaPlayer implements MediaPlayerControl {
     public Song getCurrentSong() {
         return musicService.getCurrentSong();
     }
+    public void setList(ArrayList<Song> theSongs) {
+        musicService.setList(theSongs);
+    }
+    public void setSong(int songIndex) {
+        musicService.setSong(songIndex);
+    }
+    public void playSong() {
+        musicService.playSong();
+    }
+
 
     @Override
     public void start() {

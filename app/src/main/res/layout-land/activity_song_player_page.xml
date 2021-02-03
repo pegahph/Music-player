@@ -141,7 +141,7 @@
                             android:id="@+id/lyrics_text_view"
                             android:layout_width="250dp"
                             android:layout_height="250dp"
-                            android:text="salam"
+                            android:text="lyrics..."
                             android:textAlignment="center"
                             android:visibility="invisible" />
                     </androidx.cardview.widget.CardView>

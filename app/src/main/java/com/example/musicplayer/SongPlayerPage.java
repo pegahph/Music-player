@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Formatter;
 
@@ -230,5 +231,21 @@ public class SongPlayerPage extends AppCompatActivity {
             lyricsTextView.setVisibility(View.INVISIBLE);
             isCoverVisible = true;
         }
+    }
+
+    public void songPicked(View view) {
+        int position = (int) view.getTag();
+        theController.goToAnotherMusic(position);
+
+
+//        musicService.setSong(Integer.parseInt(view.getTag().toString()));
+////        musicService.setMusicController();
+//        musicService.setList(songList);
+//        musicService.playSong();
+//        if (playbackPaused) {
+////            setController();
+//            playbackPaused = false;
+//        }
+////        controller.show(0);
     }
 }
