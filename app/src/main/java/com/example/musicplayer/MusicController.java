@@ -320,6 +320,12 @@ public class MusicController extends FrameLayout {
         }
     }
 
+    public void updateRepeat(){
+        if(isSongPlayerActivity){
+
+        }
+    }
+
     private void doPauseResume() {
         if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
