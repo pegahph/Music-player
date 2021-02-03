@@ -188,13 +188,29 @@
                             android:textColor="?attr/SubsidiaryColor"
                             android:textSize="15dp" />
 
+                        <FrameLayout
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-70dp"
+                            android:layout_marginLeft="-15dp"
+                            android:layout_gravity="left">
+                            <SeekBar
+                                android:id="@+id/Seekbar2"
+                                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:max="10"
+                                android:rotation="270"
+                                android:progress="1" />
+                        </FrameLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginBottom="15dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="0dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -282,8 +298,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
                             android:gravity="center"
                             android:orientation="horizontal">
 
