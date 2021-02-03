@@ -71,6 +71,18 @@ public class MusicService extends Service
     //  repeatOn = true and repeatAll = true  means play all songs and then repeat all of them.
     private boolean repeatOn = false;
     private boolean repeatAll = false;
+
+    public int repeatState() {
+        if (!repeatOn) {
+            return 0;
+        }
+        else if (repeatOn && !repeatAll) {
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
     private Random rand;
     boolean isPaused = false;
     public static boolean isPlayed = false;
