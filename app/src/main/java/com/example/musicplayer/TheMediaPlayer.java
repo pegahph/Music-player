@@ -161,4 +161,12 @@ public class TheMediaPlayer implements MediaPlayerControl {
         Constant.getController().updateFavorite();
     }
 
+    // for swipe stuff
+    public void playNextSong() {
+        playNext();
+    }
+    public void playPreviousSong() {
+        playPrev();
+    }
+
 }

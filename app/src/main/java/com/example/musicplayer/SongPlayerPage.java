@@ -6,11 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 
 import java.util.Formatter;
 
-import io.alterac.blurkit.BlurKit;
 import io.alterac.blurkit.BlurLayout;
 
 public class SongPlayerPage extends AppCompatActivity {
@@ -31,18 +29,21 @@ public class SongPlayerPage extends AppCompatActivity {
     TheMediaPlayer mediaPlayer;
     ImageButton prevBtn, playBtn, nextBtn, shuffleBtn, repeatBtn, favoriteBtn, addToPlaylist;
     SeekBar seekBar;
-    TextView currentTime, endTime;
+    TextView currentTime, endTime, lyricsTextView;
     int targetPosition;
     boolean isTracking = false;
     MusicController theController;
     Runnable timerRunnable;
-    boolean killMe = false;
+    boolean killMe = false, isCoverVisible = true;
     final Handler updateHandler = new Handler();
     // search stuff
     Space searchBarPlaceholder;
     EditText theSearchBar;
     ImageView searchBtn, shareBtn, deleteBtn;
 
+    private float x1,y1,x2, y2;
+    static final int MIN_X_DISTANCE = 200;
+    static final int MIN_Y_DISTANCE = 300;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,7 @@ public class SongPlayerPage extends AppCompatActivity {
         shareBtn = (ImageView) findViewById(R.id.share_btn);
         deleteBtn = (ImageView) findViewById(R.id.delete_btn);
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        lyricsTextView = (TextView) findViewById(R.id.lyrics_text_view);
 
 
         mediaPlayer = Constant.getTheMediaPlayer();
@@ -147,6 +149,44 @@ public class SongPlayerPage extends AppCompatActivity {
         super.onStop();
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                y1 = event.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                y2 = event.getY();
+                float deltaX = x2 - x1;
+                float deltaY = y2 - y1;
+                if (Math.abs(deltaX) > MIN_X_DISTANCE && Math.abs(deltaY) < MIN_Y_DISTANCE) {
+                    if (deltaX > 0) {
+                        mediaPlayer.playPreviousSong();
+                    }
+                    else {
+                        mediaPlayer.playNextSong();
+                    }
+                } else if (Math.abs(deltaX) < MIN_X_DISTANCE && Math.abs(deltaY) > MIN_Y_DISTANCE) {
+                    if (deltaY > 0) {
+                        swipeDown();
+                    }
+                    else {
+                        swipeUp();
+                    }
+                }
+                else
+                {
+                    // consider as something else - a screen tap for example
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
+
     private String stringForTime(int timeMs) {
         int totalSeconds = timeMs / 1000;
 
@@ -162,6 +202,22 @@ public class SongPlayerPage extends AppCompatActivity {
     }
 
     public void backToPrevious(View view) {
-       finish();
+        finish();
+    }
+
+    private void swipeDown() {
+        finish();
+        this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+    private void swipeUp() {
+        if (isCoverVisible) {
+            forCover.setVisibility(View.INVISIBLE);
+            lyricsTextView.setVisibility(View.VISIBLE);
+            isCoverVisible = false;
+        } else {
+            forCover.setVisibility(View.VISIBLE);
+            lyricsTextView.setVisibility(View.INVISIBLE);
+            isCoverVisible = true;
+        }
     }
 }

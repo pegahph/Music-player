@@ -166,6 +166,14 @@
                             android:layout_height="250dp"
                             android:scaleType="centerCrop"
                             app:srcCompat="?attr/background2" />
+
+                        <TextView
+                            android:id="@+id/lyrics_text_view"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:text="salam"
+                            android:textAlignment="center"
+                            android:visibility="invisible" />
                     </androidx.cardview.widget.CardView>
 
                     <Space
