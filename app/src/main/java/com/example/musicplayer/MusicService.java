@@ -147,10 +147,7 @@ public class MusicService extends Service
     }
 
     private void newNotification() {
-        if (songs == null) {
-            setList(PlaylistMaker.lastList);
-            songPos = songs.indexOf(PlaylistMaker.getLastSong());
-        }
+        avoidFromEmptyList();
         notificationBuilder = new NotificationBuilder(getApplicationContext(), songs.get(songPos));
     }
 
@@ -423,6 +420,7 @@ public class MusicService extends Service
     }
 
     public void playPrev() {
+        avoidFromEmptyList();
         songPos--;
         // todo: song is null
         if (songPos < 0) songPos = songs.size() - 1;
@@ -430,6 +428,7 @@ public class MusicService extends Service
     }
 
     public void playNext() {
+        avoidFromEmptyList();
         if (shuffle) {
             int newSong = songPos;
             while (newSong == songPos) {
@@ -466,11 +465,15 @@ public class MusicService extends Service
     }
 
     public Song getCurrentSong() {
+        avoidFromEmptyList();
+        return songs.get(songPos);
+    }
+
+    private void avoidFromEmptyList() {
         if (songs == null) {
             setList(PlaylistMaker.lastList);
             songPos = songs.indexOf(PlaylistMaker.getLastSong());
         }
-        return songs.get(songPos);
     }
 
 }

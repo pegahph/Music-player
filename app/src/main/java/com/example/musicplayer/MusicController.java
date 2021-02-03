@@ -434,19 +434,11 @@ public class MusicController extends FrameLayout {
     private void theSearchThing(String text) {
         if (text.equals(""))
             return;
-//        Toast.makeText(context, "songTitleCompared size = " + songTitleCompared.size(), Toast.LENGTH_SHORT).show();
-//        Toast.makeText(context, "songArtistCompared size = " + songArtistCompared.size(), Toast.LENGTH_SHORT).show();        songTitleCompared.clear();
         songArtistCompared.clear();
         songTitleCompared.clear();
-//        Toast.makeText(context, "songTitleCompared size = " + songTitleCompared.size(), Toast.LENGTH_SHORT).show();
-//        Toast.makeText(context, "songArtistCompared size = " + songArtistCompared.size(), Toast.LENGTH_SHORT).show();
-//        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
         for (Song song : ListMaker.loadTracks()) {
             String songTitle = song.getTitle();
             String songArtist = song.getArtist();
-//            songTitle = "az panjere bebin birono";
-//            text = "ebi";
-//            songArtist = "ebiram";
             if (songTitle.toLowerCase().contains(text.toLowerCase())) {
                 songTitleCompared.add(song);
             }
