@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class MusicService extends Service
@@ -55,7 +56,7 @@ public class MusicService extends Service
         this.musicService = Constant.getMusicService();
     }
 
-    private ArrayList<Song> songs;
+    private ArrayList<Song> songs, shuffleSongs;
     private int songPos;
     private int startPos;
 
@@ -123,7 +124,13 @@ public class MusicService extends Service
     public void onPrepared(MediaPlayer mp) {
         // start playback
         mp.start();
-        Song currentSong = songs.get(songPos);
+        Song currentSong;
+        if (shuffle){
+            currentSong = shuffleSongs.get(songPos);
+        }
+        else {
+            currentSong = songs.get(songPos);
+        }
         PlaylistMaker.newRecentlyPlayedSong(currentSong);
         isPaused = false;
         isPlayed = true;
@@ -337,7 +344,15 @@ public class MusicService extends Service
     public void playSong() {
         player.reset();
         // get song
-        Song playSong = songs.get(songPos);
+        Song playSong;
+        if (shuffle)
+        {
+            playSong = shuffleSongs.get(songPos);
+        }
+        else
+        {
+            playSong = songs.get(songPos);
+        }
 
         songTitle = playSong.getTitle();
         songArtist = playSong.getArtist();
@@ -429,21 +444,25 @@ public class MusicService extends Service
 
     public void playNext() {
         avoidFromEmptyList();
-        if (shuffle) {
-            int newSong = songPos;
-            while (newSong == songPos) {
-                newSong = rand.nextInt(songs.size());
-            }
-            songPos = newSong;
-        } else {
-            songPos++;
-            if (songPos >= songs.size()) songPos = 0;
-        }
+//        if (shuffle) {
+//            int newSong = songPos;
+//            while (newSong == songPos) {
+//                newSong = rand.nextInt(songs.size());
+//            }
+//            songPos = newSong;
+//        } else {
+        songPos++;
+        if (songPos >= songs.size()) songPos = 0;
+//        }
         playSong();
     }
 
     public void setShuffle() {
         shuffle = !shuffle;
+        if (shuffle) {
+            shuffleSongs = new ArrayList<>(songs);
+            Collections.shuffle(shuffleSongs);
+        }
     }
 
     public boolean getShuffle() {
