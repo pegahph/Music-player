@@ -61,7 +61,7 @@
         <item name="actionbarText">#212529</item>
         <item name="background">@drawable/back_light3</item>
         <item name="folder_icon">@drawable/folder_icon_light</item>
-        <item name="backgroundColor">#E7ECEF</item>
+        <item name="backgroundColor">#E9ECED</item>
         <item name="background2">@drawable/back_light1</item>
         <item name="shadowlight">#C4E7ECEF</item>
         <item name="moodTitle">Dark mood</item>
@@ -70,9 +70,8 @@
         <item name="seekbarColorTop">#e2e2df</item>
         <item name="seekbarColorBottom">#d2d2cf</item>
         <item name="progressColor">@color/progressColor</item>
-        <item name="thumbColor3">#a6808c</item>
-        <item name="thumbColor1">#e5d1d0</item>
-        <item name="thumbColor2">#774c60</item>
+        <item name="thumb">@drawable/seekbar_thumb_light</item>
+
     </style>
     <style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="shadow">#E2212529</item>
@@ -92,8 +91,7 @@
         <item name="seekbarColorTop">@color/seekbarColorTop</item>
         <item name="seekbarColorBottom">@color/seekbarColorBottom</item>
         <item name="progressColor">@color/progressColor</item>
-        <item name="thumbColor1">#56CFE1</item>
-        <item name="thumbColor2">#309EDF</item>
-        <item name="thumbColor3">#56CFE1</item>
+        <item name="thumb">@drawable/seekbar_thumb</item>
+
     </style>
 </resources>
