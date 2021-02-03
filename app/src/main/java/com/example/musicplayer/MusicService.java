@@ -424,6 +424,7 @@ public class MusicService extends Service
 
     public void playPrev() {
         songPos--;
+        // todo: song is null
         if (songPos < 0) songPos = songs.size() - 1;
         playSong();
     }

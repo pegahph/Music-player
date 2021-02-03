@@ -20,7 +20,7 @@ public class Theme {
         {
             default:
             case THEME_LIGHT:
-                activity.setTheme(R.style.LightTheme);
+                activity.setTheme(R.style.DarkTheme);
                 break;
             case THEME_DARK:
                 activity.setTheme(R.style.DarkTheme);

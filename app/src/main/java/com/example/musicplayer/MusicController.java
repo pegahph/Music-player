@@ -1,5 +1,6 @@
 package com.example.musicplayer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -19,24 +20,38 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.Formatter;
 
 import io.alterac.blurkit.BlurLayout;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MusicController extends FrameLayout {
     private Context context;
+    private Activity activity;
     private TheMediaPlayer mediaPlayer;
     private ImageButton prevBtn, playBtn, nextBtn;
     private ImageButton shuffleBtn, repeatBtn, favoriteBtn, addToPlayList;
     private ImageView coverArt, backCover;
-    private TextView trackName, artistName, endTimeTextView;
+    private TextView trackName, artistName, endTimeTextView, lyricsTextView;
     private boolean isSongPlayerActivity = false;
     private BlurLayout blurLayout;
     private View grayView;
     private SeekBar seekBar;
     private ProgressBar progressBar;
-    boolean killMe = false;
+    private boolean killMe = false;
     final Handler updateHandler = new Handler();
     private Song lastSong;
     // search stuff
@@ -121,6 +136,12 @@ public class MusicController extends FrameLayout {
 
         this.searchBtn.setOnClickListener(doSearchBtnListener);
     }
+
+    public void getLyricsStuff(TextView lyricsTextView, Activity activity) {
+        this.lyricsTextView = lyricsTextView;
+        this.activity = activity;
+    }
+
     public void setMediaPlayer(TheMediaPlayer mediaPlayer) {
         this.mediaPlayer = mediaPlayer;
         updatePausePlay();
@@ -273,6 +294,7 @@ public class MusicController extends FrameLayout {
         if (lastSong != null) {
             this.trackName.setText(lastSong.getTitle());
             this.artistName.setText(lastSong.getArtist());
+            startLyricsProcess(trackName, artistName);
             changeCover(this.coverArt, lastSong.getAlbumArtBitmapDrawable());
             if (isSongPlayerActivity)
             {
@@ -285,6 +307,7 @@ public class MusicController extends FrameLayout {
             MusicController lastController = Constant.getController();
             this.trackName.setText(lastController.trackName.getText());
             this.artistName.setText(lastController.artistName.getText());
+            startLyricsProcess(trackName, artistName);
             changeCover(this.coverArt, lastController.coverArt.getDrawable());
             if (isSongPlayerActivity)
             {
@@ -341,6 +364,7 @@ public class MusicController extends FrameLayout {
 
     public void setArtistName(String artistName) {
         this.artistName.setText(artistName);
+        startLyricsProcess(this.trackName, this.artistName);
     }
 
     public void setPrevNextListeners(View.OnClickListener next, View.OnClickListener prev) {
@@ -379,6 +403,8 @@ public class MusicController extends FrameLayout {
         else
             coverArtImageView.setImageResource(R.drawable.background5);
 
+        if (isSongPlayerActivity)
+            visibleCoverArt();
     }
 
     private void changeVisibilityOfTheseGuys(int visibility) {
@@ -441,4 +467,171 @@ public class MusicController extends FrameLayout {
                 theSearchThing(s.toString());
         }
     };
+
+    private void startLyricsProcess(TextView trackName, TextView artistName) {
+        if (isSongPlayerActivity)
+        {
+            try {
+                run(trackName, artistName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    void run(TextView trackName, TextView artistName) throws IOException {
+        String trackNameString = trackName.getText().toString();
+        String artistNameString = artistName.getText().toString();
+        final String url = "https://api.musixmatch.com/ws/1.1/";
+
+        OkHttpClient client = new OkHttpClient();
+
+        String mSelectMethod = selectMethod(url, true);
+        String apiKey = addApiKey(mSelectMethod);
+        String searchUrl = search(apiKey, trackNameString, artistNameString);
+        Request request = new Request.Builder()
+                .url(searchUrl)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                call.cancel();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                Gson gson = new Gson();
+//                String json = gson.toJson(response.body().string());
+                String myResponse = response.body().string();
+                String result = getTrackId(myResponse);
+                String selectMethod = selectMethod(url, false);
+                String apiKey = addApiKey(selectMethod);
+                String trackId = addTrackId(apiKey, result);
+                Request request = new Request.Builder()
+                        .url(trackId)
+                        .build();
+                OkHttpClient client2 = new OkHttpClient();
+                client2.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        call.cancel();
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        String myResponse = response.body().string();
+                        final String lyrics = getLyrics(myResponse);
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                int endOfLyrics = lyrics.indexOf("*");
+                                if (endOfLyrics != -1)
+                                    lyricsTextView.setText(lyrics.substring(0, endOfLyrics));
+                                else
+                                    lyricsTextView.setText(lyrics);
+                            }
+                        });
+
+                    }
+                });
+            }
+        });
+
+    }
+
+    public String addApiKey(String url) {
+        String apiKey = "apikey=0ee31d7a19b22e485ac73c9d8353368d";
+        return url + apiKey;
+    }
+
+    public String selectMethod(String url, boolean search) {
+        String method;
+        if (search) {
+            method = "track.search?";
+        } else {
+            method = "track.lyrics.get?";
+        }
+        return url + method;
+    }
+
+    public String search(String url, String trackName, String artistName) {
+        String keys = "q_artist=" + artistName + "&q_track=" + trackName;
+        return url + "&" + keys;
+    }
+
+    public String addTrackId(String url, String trackId){
+        String key = "track_id=" + trackId;
+        return url + "&" + key;
+    }
+
+    public String getLyrics(String result) {
+        try {
+            JSONObject json = new JSONObject(result);
+            JSONObject message = new JSONObject(json.get("message").toString());
+            JSONObject header = new JSONObject(message.get("header").toString());
+            if (header.get("status_code").toString().equals("200"))
+            {
+                JSONObject body = new JSONObject(message.get("body").toString());
+                if (body.has("lyrics")) {
+                    JSONObject lyrics = new JSONObject(body.get("lyrics").toString());
+                    if (lyrics.has("lyrics_body"))
+                    {
+//                        JSONObject lyrics_body = new JSONObject(lyrics.get("lyrics_body").toString());
+                        return lyrics.get("lyrics_body").toString();
+                    }
+                }
+            }
+        } catch (JSONException ignored) {
+            return "error lyrics";
+        }
+        return "no lyrics available";
+    }
+
+    public String getTrackId(String result) {
+        try {
+            JSONObject json = new JSONObject(result);
+//            return json.toString();
+            if (json.has("message")) {
+                JSONObject message = new JSONObject(json.get("message").toString());
+                JSONObject header = new JSONObject(message.get("header").toString());
+                if ((header.get("status_code").toString()).equals("200") && !(header.get("available").toString()).equals("0")) {
+                    JSONObject body = new JSONObject(message.get("body").toString());
+//                    if(track_list.get(0) instanceof String) {
+//                        JSONObject track_object = new JSONObject((String) track_list.get(0));
+//                        if (track_object.has("")) {
+//                            JSONObject track = new JSONObject(json.get("track").toString());
+//                            return track.get("track_id").toString();
+//                        }
+//                    }
+                    if (body.has("track_list")) {
+                        JSONArray track_list = new JSONArray(body.get("track_list").toString());
+                        int i = 0;
+                        try {
+                            while(((JSONObject) track_list.get(i)).has("track")) {
+                                JSONObject track = new JSONObject(((JSONObject) track_list.get(0)).get("track").toString());
+                                if (!track.get("has_lyrics").equals(0)) {
+                                    return track.get("track_id").toString();
+                                }
+                                i++;
+                            }
+                        } catch (Exception ignored) {
+
+                        }
+//                        if (((JSONObject) track_list.get(0)).has("track")) {
+//                            JSONObject track = new JSONObject(((JSONObject) track_list.get(0)).get("track").toString());
+//                            return track.get("track_id").toString();
+//                        }
+                    }
+                }
+            }
+        } catch (JSONException ignored) {
+            return "error";
+        }
+        return "no lyrics id available";
+    }
+
+    private void visibleCoverArt() {
+        this.coverArt.setVisibility(VISIBLE);
+        this.lyricsTextView.setVisibility(INVISIBLE);
+    }
 }

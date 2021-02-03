@@ -88,6 +88,7 @@ public class SongPlayerPage extends AppCompatActivity {
         theController.getDetails(forCover, songName, songArtist);
         theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn, addToPlaylist);
         theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, shareBtn, deleteBtn, imm);
+        theController.getLyricsStuff(lyricsTextView, this);
         theController.setController();
         Constant.setController(theController);
         mediaPlayer.setClickListener(theController);
@@ -210,6 +211,8 @@ public class SongPlayerPage extends AppCompatActivity {
         this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
     private void swipeUp() {
+        if (forCover.getVisibility() == View.VISIBLE)
+            isCoverVisible = true;
         if (isCoverVisible) {
             forCover.setVisibility(View.INVISIBLE);
             lyricsTextView.setVisibility(View.VISIBLE);
