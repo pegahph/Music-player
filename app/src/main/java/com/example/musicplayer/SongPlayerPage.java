@@ -247,4 +247,10 @@ public class SongPlayerPage extends AppCompatActivity {
         int position = (int) view.getTag();
         theController.goToAnotherMusic(position);
     }
+
+    public void playlistSelected(View view) {
+        Toast.makeText(this, "add this song to this playlist" + view.getTag(), Toast.LENGTH_SHORT).show();
+        int playlistNumber = (int) view.getTag();
+        theController.addThisSongToThisPlaylist(playlistNumber);
+    }
 }
