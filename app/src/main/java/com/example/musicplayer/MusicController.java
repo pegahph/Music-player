@@ -97,7 +97,7 @@ public class MusicController extends FrameLayout {
         artistName = aArtistName;
     }
     public void getEndTimeTextView(ImageView aBackCover, TextView aEndTime, BlurLayout blurLayout,
-                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn, ImageButton addToPlaylist) {
+                                   View grayView, ImageButton shuffleBtn, ImageButton repeatBtn, SeekBar seekBar, ImageButton favoriteBtn) {
         isSongPlayerActivity = true;
         this.endTimeTextView = aEndTime;
         this.backCover = aBackCover;
@@ -107,7 +107,6 @@ public class MusicController extends FrameLayout {
         this.repeatBtn = repeatBtn;
         this.seekBar = seekBar;
         this.favoriteBtn = favoriteBtn;
-        this.addToPlayList = addToPlaylist;
 
         if (this.shuffleBtn != null) {
             shuffleBtn.requestFocus();
@@ -127,10 +126,7 @@ public class MusicController extends FrameLayout {
             updateFavorite();
         }
 
-        if (this.addToPlayList != null) {
-            addToPlaylist.requestFocus();
-            addToPlaylist.setOnClickListener(addToPlaylistListener);
-        }
+
     }
 
     public void getSearchStuff(Space searchBarPlaceholder, EditText theSearchBar, ImageView searchBtn,
@@ -152,6 +148,15 @@ public class MusicController extends FrameLayout {
     public void getLyricsStuff(TextView lyricsTextView, Activity activity) {
         this.lyricsTextView = lyricsTextView;
         this.activity = activity;
+    }
+
+    public void getAddToPlaylistStuff(ImageButton addToPlaylist) {
+        this.addToPlayList = addToPlaylist;
+
+        if (this.addToPlayList != null) {
+            addToPlaylist.requestFocus();
+            addToPlaylist.setOnClickListener(addToPlaylistListener);
+        }
     }
 
     public void setMediaPlayer(TheMediaPlayer mediaPlayer) {
@@ -205,7 +210,13 @@ public class MusicController extends FrameLayout {
     private final View.OnClickListener addToPlaylistListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, "add to playlist", Toast.LENGTH_SHORT).show();
+            doAddToPlaylist();
+        }
+    };
+    private final View.OnClickListener notAddToPlaylistListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            undoAddToPlaylist();
         }
     };
     private final View.OnClickListener doSearchBtnListener = new OnClickListener() {
@@ -221,12 +232,21 @@ public class MusicController extends FrameLayout {
         }
     };
 
+    private void doAddToPlaylist() {
+        changeRecyclerViewVisibility(true, true);
+        addToPlayList.setOnClickListener(notAddToPlaylistListener);
+    }
+    private void undoAddToPlaylist() {
+        changeRecyclerViewVisibility(false, true);
+        addToPlayList.setOnClickListener(addToPlaylistListener);
+    }
+
     private void doSearchStuff() {
         changeVisibilityOfTheseGuys(INVISIBLE);
         this.searchBarPlaceholder.setVisibility(GONE);
         this.theSearchBar.setVisibility(VISIBLE);
         this.theSearchBar.setText("");
-        changeRecyclerViewVisibility(true);
+        changeRecyclerViewVisibility(true, false);
 //        this.imm.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, InputMethodManager.RESULT_UNCHANGED_HIDDEN);
 
         this.theSearchBar.addTextChangedListener(textWatcher);
@@ -242,7 +262,7 @@ public class MusicController extends FrameLayout {
         changeVisibilityOfTheseGuys(INVISIBLE);
         this.searchBarPlaceholder.setVisibility(VISIBLE);
         this.theSearchBar.setVisibility(GONE);
-        changeRecyclerViewVisibility(false);
+        changeRecyclerViewVisibility(false, false);
         this.theSearchBar.removeTextChangedListener(textWatcher);
             // TODO: keyboard nemire paeen!!! bayad bere paeen.
 //        Keyboard.hide();
@@ -660,14 +680,15 @@ public class MusicController extends FrameLayout {
         this.killMe = newKillMe;
     }
 
-    public void changeRecyclerViewVisibility(boolean visible) {
+    public void changeRecyclerViewVisibility(boolean visible, boolean isAddToPlaylist) {
         if (visible) {
             this.searchRecyclerView.setVisibility(VISIBLE);
             this.trackName.setVisibility(INVISIBLE);
             this.artistName.setVisibility(INVISIBLE);
             this.coverArt.setVisibility(INVISIBLE);
             this.favoriteBtn.setVisibility(INVISIBLE);
-            this.addToPlayList.setVisibility(INVISIBLE);
+            if (!isAddToPlaylist)
+                this.addToPlayList.setVisibility(INVISIBLE);
             this.seekBar.setVisibility(INVISIBLE);
             this.shuffleBtn.setVisibility(INVISIBLE);
             this.prevBtn.setVisibility(INVISIBLE);
