@@ -283,6 +283,7 @@ public class MusicController extends FrameLayout {
 
     private void changeRepeat() {
         mediaPlayer.changeRepeatStatus();
+        updateRepeat();
     }
 
     private void favorite() {
