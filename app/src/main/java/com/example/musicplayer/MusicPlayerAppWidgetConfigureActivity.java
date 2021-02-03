@@ -8,8 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import com.example.musicplayer.MusicService;
-import android.widget.TextView;
 
 /**
  * The configuration screen for the {@link MusicPlayerAppWidget MusicPlayerAppWidget} AppWidget.
