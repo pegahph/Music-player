@@ -106,7 +106,7 @@ public class SongPlayerPage extends AppCompatActivity {
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
-        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn);
+        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn , repeatOnce);
         theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, imm, searchRecyclerView, currentTime, cardView, volume);
         theController.getLyricsStuff(lyricsTextView, this);
         theController.getAddToPlaylistStuff(addToPlaylist);
