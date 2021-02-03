@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/shadowlight">
+        android:background="@color/shadowlight">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -27,7 +27,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="ُSong Name"
-                android:textColor="?attr/mainColor"
+                android:textColor="@color/mainColor"
                 android:textSize="15sp" />
 
             <TextView
@@ -38,51 +38,55 @@
                 android:layout_weight="1"
                 android:textSize="12sp"
                 android:gravity="center"
-                android:textColor="?attr/SubsidiaryColor"
+                android:textColor="@color/SubsidiaryColor"
                 android:text="ُSong Artist"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"/>
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="25"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:background="@drawable/background5"
-                android:scaleType="center"
-                android:visibility="gone"
-                tools:visibility="visible" />
-<!--            <FrameLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
-<!--                <TextView-->
-<!--                    android:id="@+id/textView2"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="5dp"-->
-<!--                    android:text="00:00"-->
-<!--                    android:textColor="@color/SubsidiaryColor"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_gravity="start"/>-->
+                android:layout_weight="25">
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textView"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginEnd="5dp"-->
-<!--                    android:text="00:00"-->
-<!--                    android:textColor="@color/SubsidiaryColor"-->
-<!--                    android:textSize="12sp"-->
-<!--                    android:layout_gravity="end"/>-->
-<!--            </FrameLayout>-->
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/background5"
+                    android:scaleType="center"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+            </FrameLayout>
+            <!--            <FrameLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content">-->
+            <!--                <TextView-->
+            <!--                    android:id="@+id/textView2"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="5dp"-->
+            <!--                    android:text="00:00"-->
+            <!--                    android:textColor="@color/SubsidiaryColor"-->
+            <!--                    android:textSize="12sp"-->
+            <!--                    android:layout_gravity="start"/>-->
+
+            <!--                <TextView-->
+            <!--                    android:id="@+id/textView"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginEnd="5dp"-->
+            <!--                    android:text="00:00"-->
+            <!--                    android:textColor="@color/SubsidiaryColor"-->
+            <!--                    android:textSize="12sp"-->
+            <!--                    android:layout_gravity="end"/>-->
+            <!--            </FrameLayout>-->
             <ProgressBar
                 android:layout_weight="1"
                 android:id="@+id/progressBar2"
