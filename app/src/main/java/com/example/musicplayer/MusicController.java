@@ -63,7 +63,7 @@ public class MusicController extends FrameLayout {
     // search stuff
     private Space searchBarPlaceholder;
     private EditText theSearchBar;
-    private ImageView searchBtn, shareBtn, deleteBtn, volume;
+    private ImageView searchBtn, volume;
     private InputMethodManager imm;
     private RecyclerView searchRecyclerView;
     private TextView currentTime;
@@ -133,12 +133,10 @@ public class MusicController extends FrameLayout {
     }
 
     public void getSearchStuff(Space searchBarPlaceholder, EditText theSearchBar, ImageView searchBtn,
-                               ImageView shareBtn, ImageView deleteBtn, InputMethodManager imm, RecyclerView searchRecyclerView, TextView currentTime, CardView cardView, ImageButton volume ) {
+                               InputMethodManager imm, RecyclerView searchRecyclerView, TextView currentTime, CardView cardView, ImageButton volume) {
         this.searchBarPlaceholder = searchBarPlaceholder;
         this.theSearchBar = theSearchBar;
         this.searchBtn = searchBtn;
-        this.shareBtn = shareBtn;
-        this.deleteBtn = deleteBtn;
         this.imm = imm;
         this.searchRecyclerView = searchRecyclerView;
         this.currentTime = currentTime;
@@ -260,8 +258,6 @@ public class MusicController extends FrameLayout {
 //        this.imm.toggleSoftInput(InputMethodManager.RESULT_HIDDEN, InputMethodManager.RESULT_UNCHANGED_HIDDEN);
 
         this.theSearchBar.addTextChangedListener(textWatcher);
-        this.shareBtn.setVisibility(GONE);
-        this.deleteBtn.setVisibility(GONE);
         this.blurLayout.invalidate();
         changeVisibilityOfTheseGuys(VISIBLE);
 //        this.blurLayout.invalidate();
@@ -279,8 +275,6 @@ public class MusicController extends FrameLayout {
 //        this.imm.toggleSoftInput(InputMethodManager.RESULT_SHOWN, InputMethodManager.RESULT_UNCHANGED_SHOWN);
         this.imm.hideSoftInputFromWindow(new Binder(), 0);
 
-        this.shareBtn.setVisibility(VISIBLE);
-        this.deleteBtn.setVisibility(VISIBLE);
         this.blurLayout.invalidate();
         changeVisibilityOfTheseGuys(VISIBLE);
         searchBtn.setOnClickListener(doSearchBtnListener);

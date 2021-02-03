@@ -48,7 +48,7 @@ public class SongPlayerPage extends AppCompatActivity {
     // search stuff
     Space searchBarPlaceholder;
     EditText theSearchBar;
-    ImageView searchBtn, shareBtn, deleteBtn;
+    ImageView searchBtn;
     RecyclerView searchRecyclerView;
     CardView cardView;
     TextView repeatOnce;
@@ -94,8 +94,6 @@ public class SongPlayerPage extends AppCompatActivity {
         searchBarPlaceholder = (Space) findViewById(R.id.search_bar_placeholder);
         theSearchBar = (EditText) findViewById(R.id.the_search_bar);
         searchBtn = (ImageView) findViewById(R.id.search_btn);
-        shareBtn = (ImageView) findViewById(R.id.share_btn);
-        deleteBtn = (ImageView) findViewById(R.id.delete_btn);
         searchRecyclerView = (RecyclerView) findViewById(R.id.search_recyclerView);
         cardView = (CardView) findViewById(R.id.card_view);
         volume = (ImageButton) findViewById(R.id.volume);
@@ -108,8 +106,8 @@ public class SongPlayerPage extends AppCompatActivity {
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
-        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn , repeatOnce);
-        theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, shareBtn, deleteBtn, imm, searchRecyclerView, currentTime, cardView, volume);
+        theController.getEndTimeTextView(backCover, endTime, blurLayout, grayView, shuffleBtn, repeatBtn, seekBar, favoriteBtn);
+        theController.getSearchStuff(searchBarPlaceholder, theSearchBar, searchBtn, imm, searchRecyclerView, currentTime, cardView, volume);
         theController.getLyricsStuff(lyricsTextView, this);
         theController.getAddToPlaylistStuff(addToPlaylist);
         theController.setController();
@@ -157,6 +155,8 @@ public class SongPlayerPage extends AppCompatActivity {
 
         updateHandler.postDelayed(timerRunnable, 250);
 
+
+        volume.setOnClickListener(volumeListener);
     }
 
     private void initControls()
@@ -165,10 +165,8 @@ public class SongPlayerPage extends AppCompatActivity {
         {
             volumeSeekbar = (SeekBar)findViewById(R.id.Seekbar2);
             audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            volumeSeekbar.setMax(audioManager
-                    .getStreamMaxVolume(AudioManager.STREAM_MUSIC));
-            volumeSeekbar.setProgress(audioManager
-                    .getStreamVolume(AudioManager.STREAM_MUSIC));
+            volumeSeekbar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+            volumeSeekbar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
 
 
             volumeSeekbar.setOnSeekBarChangeListener(new OnSeekBarChangeListener()
@@ -306,5 +304,27 @@ public class SongPlayerPage extends AppCompatActivity {
         Toast.makeText(this, "add this song to this playlist" + view.getTag(), Toast.LENGTH_SHORT).show();
         int playlistNumber = (int) view.getTag();
         theController.addThisSongToThisPlaylist(playlistNumber);
+    }
+    View.OnClickListener volumeListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            showSeekBar();
+        }
+    };
+
+    View.OnClickListener volumeListener2 = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            hideSeekBar();
+        }
+    };
+    private void showSeekBar() {
+        volumeSeekbar.setVisibility(View.VISIBLE);
+        volume.setOnClickListener(volumeListener2);
+    }
+
+    private void hideSeekBar() {
+        volumeSeekbar.setVisibility(View.INVISIBLE);
+        volume.setOnClickListener(volumeListener);
     }
 }
