@@ -150,7 +150,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="lyrics..."
                                 android:gravity="center"
-                                android:textColor="?attr/mainColor"
+                                android:textColor="#212529"
                                 android:textSize="15dp"
                                 android:textAlignment="center"
                                 android:visibility="invisible" />

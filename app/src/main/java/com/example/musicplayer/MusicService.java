@@ -488,7 +488,7 @@ public class MusicService extends Service
             Toast.makeText(getApplicationContext(), "repeat all", Toast.LENGTH_SHORT).show();
         } else if (repeatAll) {
             repeatAll = false;
-            Toast.makeText(getApplicationContext(), "repeat one", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "repeat once", Toast.LENGTH_SHORT).show();
         } else {
             repeatOn = false;
             Toast.makeText(getApplicationContext(), "repeat off", Toast.LENGTH_SHORT).show();
