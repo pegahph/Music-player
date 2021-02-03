@@ -19,8 +19,6 @@
         <attr name="seekbarColorTop" format="color"/>
         <attr name="seekbarColorBottom" format="color"/>
         <attr name="progressColor" format="color"/>
-        <attr name="thumbColor1" format="color"/>
-        <attr name="thumbColor2" format="color"/>
-        <attr name="thumbColor3" format="color"/>
+        <attr name="thumb" format="reference"/>
     </declare-styleable>
 </resources>

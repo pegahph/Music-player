@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="10dp"
-    android:paddingTop="7dp"
+    android:paddingTop="10dp"
     android:paddingRight="10dp" >
 
     <LinearLayout
@@ -16,12 +16,12 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
-
         <ImageView
             android:id="@+id/albums_art"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:scaleType="centerCrop" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="?attr/folder_icon"/>
 
         <TextView
             android:id="@+id/artist_name"
@@ -34,7 +34,9 @@
             android:singleLine="true"
             android:textColor="?attr/mainColor"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="artist"/>
+
     </LinearLayout>
 
     <View

@@ -39,7 +39,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="70dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
@@ -170,13 +170,23 @@
                             android:scaleType="centerCrop"
                             app:srcCompat="?attr/background2" />
 
-                        <TextView
-                            android:id="@+id/lyrics_text_view"
-                            android:layout_width="250dp"
-                            android:layout_height="250dp"
-                            android:text="lyrics..."
-                            android:textAlignment="center"
-                            android:visibility="invisible" />
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center">
+
+                            <TextView
+                                android:id="@+id/lyrics_text_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="lyrics..."
+                                android:gravity="center"
+                                android:textColor="?attr/mainColor"
+                                android:textSize="15dp"
+                                android:textAlignment="center"
+                                android:visibility="invisible" />
+                        </ScrollView>
+
                     </androidx.cardview.widget.CardView>
 
                     <Space
@@ -235,7 +245,7 @@
                         android:layout_gravity="center"
                         android:progressDrawable="@drawable/seekbar"
                         android:splitTrack="false"
-                        android:thumb="@drawable/seekbar_thumb" />
+                        android:thumb="?attr/thumb" />
 
 
                     <FrameLayout
