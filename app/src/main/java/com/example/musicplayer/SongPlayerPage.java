@@ -322,7 +322,7 @@ public class SongPlayerPage extends AppCompatActivity {
     }
 
     private void hideSeekBar() {
-        volumeSeekbar.setVisibility(View.GONE);
+        volumeSeekbar.setVisibility(View.INVISIBLE);
         volume.setOnClickListener(volumeListener);
     }
 }

@@ -187,6 +187,7 @@
                             style="@style/Widget.AppCompat.SeekBar.Discrete"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
+                            android:visibility="invisible"
                             android:max="10"
                             android:rotation="270"
                             android:progress="1" />
