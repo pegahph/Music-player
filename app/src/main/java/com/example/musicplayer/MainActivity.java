@@ -248,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         paused = true;
+        if (controller != null)
         controller.changeKillMe(true);
     }
     @Override
