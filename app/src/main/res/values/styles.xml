@@ -87,7 +87,7 @@
         <item name="background2">@drawable/background6</item>
         <item name="shadowlight">@color/shadowlight</item>
         <item name="moodTitle">Light mood</item>
-        <item name="background3">@drawable/icon2</item>
+        <item name="background3">@drawable/background5</item>
         <item name="shadowVerylight">@color/shadowVerylight</item>
         <item name="seekbarColorTop">@color/seekbarColorTop</item>
         <item name="seekbarColorBottom">@color/seekbarColorBottom</item>
