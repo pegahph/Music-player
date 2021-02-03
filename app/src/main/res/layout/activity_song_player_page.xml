@@ -161,7 +161,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="?attr/colorPrimary"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="40dp">
 
@@ -185,7 +184,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="lyrics..."
                                 android:gravity="center"
-                                android:textColor="?attr/mainColor"
+                                android:textColor="#212529"
                                 android:textSize="15dp"
                                 android:textAlignment="center"
                                 android:visibility="invisible" />
