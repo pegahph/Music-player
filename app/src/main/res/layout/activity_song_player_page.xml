@@ -45,7 +45,7 @@
                 android:paddingLeft="10dp"
                 android:paddingTop="20dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="20dp">
+                android:paddingBottom="15dp">
 
                 <ImageView
                     android:layout_width="27dp"
@@ -146,20 +146,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="10dp"
                         app:cardCornerRadius="40dp">
 
                         <ImageView
                             android:id="@+id/forCover"
-                            android:layout_width="250dp"
-                            android:layout_height="250dp"
+                            android:layout_width="247dp"
+                            android:layout_height="247dp"
                             android:scaleType="centerCrop"
                             app:srcCompat="?attr/background2" />
 
                         <ScrollView
                             android:id="@+id/scroll_view"
-                            android:layout_width="250dp"
-                            android:layout_height="250dp"
+                            android:layout_width="247dp"
+                            android:layout_height="247dp"
                             android:visibility="gone"
                             android:layout_gravity="center">
 
