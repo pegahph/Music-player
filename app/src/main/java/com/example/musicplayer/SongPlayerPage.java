@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -17,6 +18,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.media.AudioManager;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +54,9 @@ public class SongPlayerPage extends AppCompatActivity {
 
     ScrollView scrollView;
 
+    private SeekBar volumeSeekbar = null;
+    private AudioManager audioManager = null;
+
     private float x1,y1,x2, y2;
     static final int MIN_X_DISTANCE = 200;
     static final int MIN_Y_DISTANCE = 300;
@@ -59,6 +65,7 @@ public class SongPlayerPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Theme.onActivityCreateSetTheme(this);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         setContentView(R.layout.activity_song_player_page);
         getSupportActionBar().hide();
         blurLayout = findViewById(R.id.blurLayout);
@@ -130,6 +137,7 @@ public class SongPlayerPage extends AppCompatActivity {
             }
         });
 
+        initControls();
 
         timerRunnable = new Runnable() {
             @Override
@@ -147,6 +155,44 @@ public class SongPlayerPage extends AppCompatActivity {
 
         updateHandler.postDelayed(timerRunnable, 250);
 
+    }
+
+    private void initControls()
+    {
+        try
+        {
+            volumeSeekbar = (SeekBar)findViewById(R.id.Seekbar2);
+            audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            volumeSeekbar.setMax(audioManager
+                    .getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+            volumeSeekbar.setProgress(audioManager
+                    .getStreamVolume(AudioManager.STREAM_MUSIC));
+
+
+            volumeSeekbar.setOnSeekBarChangeListener(new OnSeekBarChangeListener()
+            {
+                @Override
+                public void onStopTrackingTouch(SeekBar arg0)
+                {
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar arg0)
+                {
+                }
+
+                @Override
+                public void onProgressChanged(SeekBar arg0, int progress, boolean arg2)
+                {
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+                            progress, 0);
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
