@@ -39,7 +39,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
@@ -67,10 +67,11 @@
                     android:elevation="2dp"
                     android:ems="10"
                     android:hint="Song name"
+                    android:paddingTop="0dp"
                     android:inputType="textPersonName"
-                    android:textColor="@color/mainColor"
-                    android:textColorHint="@color/mainColor"
-                    android:textSize="14sp"
+                    android:textColor="?attr/mainColor"
+                    android:textColorHint="?attr/mainColor"
+                    android:textSize="15sp"
                     android:visibility="gone" />
 
                 <ImageView
@@ -106,7 +107,7 @@
                         android:id="@+id/search_recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/colorPrimary"
+                    android:background="?attr/shadow"
                         android:visibility="invisible" />
 
                 <Space
@@ -132,25 +133,36 @@
 
                         <ImageView
                             android:id="@+id/forCover"
-                            android:layout_width="250dp"
-                            android:layout_height="250dp"
+                            android:layout_width="240dp"
+                            android:layout_height="240dp"
                             android:scaleType="centerCrop"
                             app:srcCompat="?attr/background2" />
 
-                        <TextView
-                            android:id="@+id/lyrics_text_view"
-                            android:layout_width="250dp"
-                            android:layout_height="250dp"
-                            android:text="lyrics..."
-                            android:textAlignment="center"
-                            android:visibility="invisible" />
+                        <ScrollView
+                            android:id="@+id/scroll_view"
+                            android:layout_width="240dp"
+                            android:layout_height="240dp"
+                            android:visibility="gone"
+                            android:layout_gravity="center">
+
+                            <TextView
+                                android:id="@+id/lyrics_text_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="lyrics..."
+                                android:gravity="center"
+                                android:textColor="?attr/mainColor"
+                                android:textSize="15dp"
+                                android:textAlignment="center"
+                                android:visibility="invisible" />
+                        </ScrollView>
                     </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="15dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -234,7 +246,7 @@
                             android:layout_gravity="center"
                             android:progressDrawable="@drawable/seekbar"
                             android:splitTrack="false"
-                            android:thumb="@drawable/seekbar_thumb" />
+                            android:thumb="?attr/thumb" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
