@@ -93,6 +93,9 @@ public class TheMediaPlayer implements MediaPlayerControl {
     public void playSong() {
         musicService.playSong();
     }
+    public int repeatState() {
+        return musicService.repeatState();
+    }
 
 
     @Override
