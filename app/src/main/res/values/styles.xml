@@ -59,7 +59,7 @@
         <item name="SubsidiaryColor">#485059</item>
         <item name="tabItems">#4F5861</item>
         <item name="actionbarText">#212529</item>
-        <item name="background">@drawable/back_light3</item>
+        <item name="background22">@drawable/back_light3</item>
         <item name="folder_icon">@drawable/folder_icon_light</item>
         <item name="backgroundColor">#E7ECEF</item>
         <item name="background2">@drawable/back_light1</item>
@@ -81,7 +81,7 @@
         <item name="SubsidiaryColor">#08F7FE</item>
         <item name="tabItems">#ECECEC</item>
         <item name="actionbarText">@color/white</item>
-        <item name="background">@drawable/background7</item>
+        <item name="background22">@drawable/background7</item>
         <item name="folder_icon">@drawable/folder_icon_dark</item>
         <item name="backgroundColor">#212529</item>
         <item name="background2">@drawable/background6</item>
