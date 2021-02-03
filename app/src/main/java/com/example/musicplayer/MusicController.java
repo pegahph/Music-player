@@ -328,7 +328,15 @@ public class MusicController extends FrameLayout {
 
     public void updateRepeat(){
         if(isSongPlayerActivity){
-
+            if(mediaPlayer.repeatState() == 0){
+                repeatBtn.setImageResource(R.drawable.ic_repeat_off);
+            }
+            else if(mediaPlayer.repeatState() == 1){
+                repeatBtn.setImageResource(R.drawable.ic_repeat_on);
+            }
+            else {
+                repeatBtn.setImageResource(R.drawable.ic_repeat_on);
+            }
         }
     }
 
