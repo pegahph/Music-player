@@ -333,13 +333,24 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1" />
 
-                            <ImageButton
-                                android:id="@+id/repeat_button"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:background="@null"
-                                android:scaleType="centerCrop"
-                                app:srcCompat="@drawable/ic_repeat_off" />
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageButton
+                                    android:id="@+id/repeat_button"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:background="@null"
+                                    android:scaleType="centerCrop"
+                                    app:srcCompat="@drawable/ic_repeat_off" />
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/repeatOnce"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1"
+                                    android:layout_gravity="center"
+                                    android:visibility="gone"/>
+                            </FrameLayout>
                         </LinearLayout>
                     </LinearLayout>
 
