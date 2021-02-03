@@ -220,12 +220,21 @@ public class SongPlayerPage extends AppCompatActivity {
         this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
     private void swipeUp() {
+        String s1 = "error lyrics";
+        String s2 = "no lyrics available";
+        String s3 = "lyrics...";
         if (forCover.getVisibility() == View.VISIBLE)
             isCoverVisible = true;
         if (isCoverVisible) {
-            forCover.setVisibility(View.INVISIBLE);
-            lyricsTextView.setVisibility(View.VISIBLE);
-            isCoverVisible = false;
+            String lyrics = lyricsTextView.getText().toString();
+            if (lyrics.equals(s1) || lyrics.equals(s2) || lyrics.equals(s3))
+            {
+                Toast.makeText(this, "lyrics is not available", Toast.LENGTH_SHORT).show();
+            } else {
+                forCover.setVisibility(View.INVISIBLE);
+                lyricsTextView.setVisibility(View.VISIBLE);
+                isCoverVisible = false;
+            }
         } else {
             forCover.setVisibility(View.VISIBLE);
             lyricsTextView.setVisibility(View.INVISIBLE);
@@ -236,16 +245,5 @@ public class SongPlayerPage extends AppCompatActivity {
     public void songPicked(View view) {
         int position = (int) view.getTag();
         theController.goToAnotherMusic(position);
-
-
-//        musicService.setSong(Integer.parseInt(view.getTag().toString()));
-////        musicService.setMusicController();
-//        musicService.setList(songList);
-//        musicService.playSong();
-//        if (playbackPaused) {
-////            setController();
-//            playbackPaused = false;
-//        }
-////        controller.show(0);
     }
 }
