@@ -302,6 +302,10 @@ public class MusicController extends FrameLayout {
                 changeBackCover(lastSong.getAlbumArtBitmapDrawable());
                 this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
             }
+            else {
+                this.progressBar.setMax(lastSong.getDuration());
+                updateProgress();
+            }
         }
         else if (Constant.getController() != null) {
             MusicController lastController = Constant.getController();
@@ -314,6 +318,10 @@ public class MusicController extends FrameLayout {
 //                changeCover(this.backCover, lastController.coverArt.getDrawable());
                 changeBackCover(lastController.coverArt.getDrawable());
                 this.endTimeTextView.setText(stringForTime(mediaPlayer.getDuration()));
+            }
+            else {
+                this.progressBar.setMax(lastSong.getDuration());
+                updateProgress();
             }
         }
         updatePausePlay();
