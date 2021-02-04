@@ -60,9 +60,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean musicBound = false;
     private MusicController controller;
     private boolean paused=false, playbackPaused=false;
-    private int lastCurrentPos = 0;
-    private int lastDuration = 0;
     private TheMediaPlayer theMediaPlayer;
+    private boolean backgroundMood = true;
     String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE , Manifest.permission.READ_PHONE_STATE};
     TabLayout tabs;
     ViewPager viewPager;
@@ -77,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tabs = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view_pager);
+
 
         ListMaker.musicResolver = getContentResolver();
         ListMaker.resources = getResources();
@@ -282,9 +282,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         View menuItemView = findViewById(R.id.Theme);
         switch (item.getItemId()) {
-            case R.id.action_shuffle:
-                musicService.setShuffle();
-                break;
             case R.id.action_end:
                 stopService(playIntent);
                 musicService = null;
@@ -301,6 +298,11 @@ public class MainActivity extends AppCompatActivity {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.theme_menu, popup.getMenu());
+        if(backgroundMood){
+            popup.getMenu().getItem(1).setTitle("Remove Background");
+        }else{
+            popup.getMenu().getItem(1).setTitle("set Background");
+        }
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -311,9 +313,22 @@ public class MainActivity extends AppCompatActivity {
                         musicService.setMenu(true);
                         return true;
                     case R.id.removeBackground:
-                        viewPager.setBackground(null);
-                        viewPager.setBackgroundColor(R.attr.backgroundColor);
-                        return true;
+                        if(backgroundMood) {
+                            viewPager.setBackground(null);
+                            viewPager.setBackgroundColor(R.attr.backgroundColor);
+                            backgroundMood = false;
+                        }
+                        else {
+                            if(ThemeApplication.currentPosition == 0){
+                            viewPager.setBackgroundResource(R.drawable.back_light3);
+                        }
+                         else {
+                             viewPager.setBackgroundResource(R.drawable.background7);
+                           }
+                         backgroundMood = true;
+                        }
+
+                         return true;
                     default:
                         return false;
                 }

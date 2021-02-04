@@ -4,5 +4,5 @@
     <item android:id="@+id/themeMood"
         android:title= "?attr/moodTitle" />
     <item android:id="@+id/removeBackground"
-        android:title="Remove Background"/>
+        android:title="Remove Background" />
 </menu>
