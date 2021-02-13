@@ -15,7 +15,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     // we are using this ArrayList to store the Songs.
     private ArrayList<Song> songList;
     // and we are gonna show them in a ListView.
-//    private RecyclerView songRV;
     private MusicService musicService;
     private Intent playIntent;
     private boolean musicBound = false;
@@ -66,20 +64,12 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabs;
     ViewPager viewPager;
 
-
-
     // Overriding onCreate function :)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Theme.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_main);
-        tabs = findViewById(R.id.tabs);
-        viewPager = findViewById(R.id.view_pager);
-
-
-        ListMaker.musicResolver = getContentResolver();
-        ListMaker.resources = getResources();
 //      permissions
         if(checkAndRequestPermissions()){
             startApp();
@@ -88,28 +78,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startApp(){
-//        tabs
-        ThePagerAdapter pagerAdapter = new ThePagerAdapter(getSupportFragmentManager(), tabs.getTabCount());
-        viewPager.setAdapter(pagerAdapter);
-        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
+        ListMaker.musicResolver = getContentResolver();
+        ListMaker.resources = getResources();
+//      connect TabLayout and ViewPager. they will change together.
+        tabs = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.view_pager);
+        connectTabsAndViewPager(tabs, viewPager);
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
-//        songView = (ListView) findViewById(R.id.songList);
-//        songRV = (RecyclerView) findViewById(R.id.song_recycler_view);
         songList = new ArrayList<>();
         getSongList();
         // sort the data
@@ -308,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.themeMood:
-                        changeposition();
+                        changePosition();
                         Theme.changeToTheme(MainActivity.this, ThemeApplication.currentPosition);
                         musicService.setMenu(true);
                         return true;
@@ -337,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
         popup.show();
     }
 
-    private void changeposition(){
+    private void changePosition(){
         if(ThemeApplication.currentPosition == 1){
             ThemeApplication.currentPosition = 0;
         }
@@ -349,39 +324,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void getSongList() {
         songList = ListMaker.loadTracks();
-    }
-
-    private Bitmap CropBitmap(Bitmap bm) {
-        return Bitmap.createBitmap(bm, bm.getWidth()/4, 0, bm.getWidth()/4, bm.getHeight());
-    }
-
-    private Bitmap darkenBitMap(Bitmap bm) {
-        Bitmap output = Bitmap.createBitmap(bm.getWidth(),bm.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-        Paint p = new Paint(Color.RED);
-        //ColorFilter filter = new LightingColorFilter(0xFFFFFFFF , 0x00222222); // lighten
-        ColorFilter filter = new LightingColorFilter(0xFF7F7F7F, 0x00000000);    // darken
-        p.setColorFilter(filter);
-        canvas.drawBitmap(bm, new Matrix(), p);
-
-        return Bitmap.createScaledBitmap(output, 720, 1280, true);
-        //return Bitmap.createBitmap(output, 0,0,720,1280);
-    }
-
-    private Bitmap getArtistImage(String albumid) {
-        Bitmap artwork = null;
-        try {
-            Uri sArtworkUri = Uri
-                    .parse("content://media/external/audio/albumart");
-            Uri uri = ContentUris.withAppendedId(sArtworkUri, Long.valueOf(albumid));
-            ContentResolver res = this.getContentResolver();
-            InputStream in = res.openInputStream(uri);
-            artwork = BitmapFactory.decodeStream(in);
-
-        } catch (Exception e) {
-            Log.e("Exception", e.toString());
-        }
-        return artwork;
     }
 
     public void songPicked(View view) {
@@ -463,6 +405,29 @@ public class MainActivity extends AppCompatActivity {
     public void controllerClicked(View view) {
         Intent intent = new Intent(MainActivity.this , SongPlayerPage.class);
         startActivity(intent);
+    }
+
+    private void connectTabsAndViewPager(TabLayout tabLayout, final ViewPager viewPager) {
+        ThePagerAdapter pagerAdapter = new ThePagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pagerAdapter);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
     }
 
 }
