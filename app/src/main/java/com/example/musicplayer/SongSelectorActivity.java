@@ -44,24 +44,22 @@ public class SongSelectorActivity extends AppCompatActivity {
         Intent in = getIntent();
         String tab = in.getStringExtra("tab");
         assert tab != null;
-        if (tab.equals("Artist"))
-        {
-            sectionName = in.getStringExtra("selectedArtistName");
-            sectionAlbumId = in.getLongExtra("selectedArtistAlbumId", 0);
-            theSongs = ListMaker.getThisArtistsSongs(sectionName);
-        }
-        else if (tab.equals("Folder"))
-        {
-            sectionName = in.getStringExtra("selectedFolderName");
-            sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
-            theSongs = ListMaker.getThisFolderSongs(sectionName);
-        }
-
-        else if (tab.equals("Playlist"))
-        {
-            sectionName = in.getStringExtra("selectedPlaylistName");
+        switch (tab) {
+            case "Artist":
+                sectionName = in.getStringExtra("selectedArtistName");
+                sectionAlbumId = in.getLongExtra("selectedArtistAlbumId", 0);
+                theSongs = ListMaker.getThisArtistsSongs(sectionName);
+                break;
+            case "Folder":
+                sectionName = in.getStringExtra("selectedFolderName");
+                sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
+                theSongs = ListMaker.getThisFolderSongs(sectionName);
+                break;
+            case "Playlist":
+                sectionName = in.getStringExtra("selectedPlaylistName");
 //            sectionAlbumId = in.getLongExtra("selectedFolderAlbumId", 0);
-            theSongs = PlaylistMaker.loadThisPlaylist(sectionName);
+                theSongs = PlaylistMaker.loadThisPlaylist(sectionName);
+                break;
         }
 
         songFolder = new Folder(sectionAlbumId , sectionName);
@@ -80,12 +78,12 @@ public class SongSelectorActivity extends AppCompatActivity {
         mediaPlayer = Constant.getTheMediaPlayer();
         mediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
         controller = Constant.getController();
-        songNumbers.setText(getSongNumbersString()+ " songs");
+        songNumbers.setText(String.format("%s songs", getSongNumbersString()));
         folderName.setText(sectionName);
     }
 
-    String getSongNumbersString(){
-        return String.valueOf(theSongs.size());
+    private String getSongNumbersString(){
+        return Integer.toString(theSongs.size());
     }
 
     @Override
