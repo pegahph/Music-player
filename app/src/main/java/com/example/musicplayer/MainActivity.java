@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private void startApp(){
         ListMaker.musicResolver = getContentResolver();
         ListMaker.resources = getResources();
+
 //      connect TabLayout and ViewPager. they will change together.
         tabs = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.view_pager);
@@ -75,12 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         loadAllTracksForTracksTab();
 
-        PlaylistMaker.createDatabase(getApplicationContext());
-        PlaylistMaker.loadPlaylists();
-//        SongAdapter songAdapter = new SongAdapter(songList);
-//        songRV.setAdapter(songAdapter);
-//        songRV.setLayoutManager(new LinearLayoutManager(this));
-
+        loadDataFromDatabase();
     }
 
     private boolean checkAndRequestPermissions() {
@@ -167,7 +163,6 @@ public class MainActivity extends AppCompatActivity {
             Constant.setMusicService(musicService);
             musicService.setMusicService();
 
-//            musicService.setList(songList);
             musicBound = true;
             Constant.setMusicBound(musicBound);
 
@@ -177,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
             }
             theMediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
             controller = Constant.getController();
-//            setController();
         }
 
         @Override
@@ -194,7 +188,6 @@ public class MainActivity extends AppCompatActivity {
             playIntent = new Intent(this, MusicService.class);
             playIntent.setAction(MusicService.ACTION_PLAY);
             bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
-            Constant.setMusicConnection(musicConnection);
             startService(playIntent);
         }
         if (controller != null)
@@ -374,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        PlaylistMaker.savePlaylists();
+        saveDataInDatabase();
         stopService(playIntent);
         musicService = null;
         super.onDestroy();
@@ -421,6 +414,15 @@ public class MainActivity extends AppCompatActivity {
                 return s1.getTitle().compareTo(s2.getTitle());
             }
         });
+    }
+
+    private void loadDataFromDatabase() {
+        PlaylistMaker.createDatabase(getApplicationContext());
+        PlaylistMaker.loadPlaylists();
+    }
+
+    private void saveDataInDatabase() {
+        PlaylistMaker.savePlaylists();
     }
 
 }

@@ -24,7 +24,6 @@ public class SongSelectorActivity extends AppCompatActivity {
     private String sectionName;
     private long sectionAlbumId;
     private MusicService musicService;
-    private ServiceConnection musicConnection;
     private MusicController controller;
     private TheMediaPlayer mediaPlayer;
     private Folder songFolder;
@@ -77,7 +76,6 @@ public class SongSelectorActivity extends AppCompatActivity {
         songSelectorList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         musicService = Constant.getMusicService();
-        musicConnection = Constant.getMusicConnection();
 
         mediaPlayer = Constant.getTheMediaPlayer();
         mediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);

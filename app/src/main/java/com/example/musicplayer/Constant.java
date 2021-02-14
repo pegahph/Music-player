@@ -3,14 +3,6 @@ package com.example.musicplayer;
 import android.content.ServiceConnection;
 
 public class Constant {
-    public static ServiceConnection musicConnection;
-    public static ServiceConnection getMusicConnection() {
-        return musicConnection;
-    }
-    public static void setMusicConnection(ServiceConnection musicConnection) {
-        Constant.musicConnection = musicConnection;
-    }
-
     public static MusicService musicService;
     public static MusicService getMusicService() {
         return musicService;
