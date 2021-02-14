@@ -242,10 +242,10 @@ public class MusicService extends Service
 
     public void setList(ArrayList<Song> theSongs) {
         if (theSongs == null) {
-            theSongs = ListMaker.songList;
+            theSongs = ListMaker.loadTracks();
         }
         this.songs = theSongs;
-        PlaylistMaker.lastList = this.songs;
+        PlaylistMaker.setLastList(this.songs);
     }
 
     @Override
@@ -499,7 +499,7 @@ public class MusicService extends Service
 
     private void avoidFromEmptyList() {
         if (songs == null) {
-            setList(PlaylistMaker.lastList);
+            setList(PlaylistMaker.getLastList());
             songPos = songs.indexOf(PlaylistMaker.getLastSong());
         }
     }

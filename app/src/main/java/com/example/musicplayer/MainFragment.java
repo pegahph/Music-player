@@ -21,9 +21,7 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         songList = ListMaker.loadTracks();
         RecyclerView songRV = (RecyclerView) view.findViewById(R.id.song_recycler_view);
-//        songRV.setHasFixedSize(true);
         SongAdapter songAdapter = new SongAdapter(songList);
-//        songAdapter.setHasStableIds(true);
         songRV.setAdapter(songAdapter);
         songRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 

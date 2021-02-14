@@ -9,9 +9,9 @@ import android.provider.MediaStore;
 import java.util.ArrayList;
 
 public class ListMaker {
-    static ArrayList<Song> songList = new ArrayList<>();
-    static ArrayList<Artist> artistList = new ArrayList<>();
-    static ArrayList<Folder> folderList = new ArrayList<>();
+    private static ArrayList<Song> songList = new ArrayList<>();
+    private static ArrayList<Artist> artistList = new ArrayList<>();
+    private static ArrayList<Folder> folderList = new ArrayList<>();
     static ContentResolver musicResolver;
     static Resources resources;
 

@@ -14,7 +14,7 @@ public class PlaylistMaker {
     public static HashMap<String, ArrayList<Song>> playlists;
     public static ArrayList<Song> favorite;
     public static ArrayList<Song> recentlyPlayed;
-    public static ArrayList<Song> lastList;
+    private static ArrayList<Song> lastList;
     private static Song lastSong;
     private static DatabaseHelper mDatabaseHelper;
 
@@ -186,4 +186,13 @@ public class PlaylistMaker {
     public static int getTheme() {
         return mDatabaseHelper.getTheme();
     }
+
+    public static ArrayList<Song> getLastList() {
+        return lastList;
+    }
+
+    public static void setLastList(ArrayList<Song> lastList) {
+        PlaylistMaker.lastList = lastList;
+    }
+
 }

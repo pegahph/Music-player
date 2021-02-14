@@ -8,26 +8,15 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import android.Manifest;
 import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,7 +25,6 @@ import android.widget.FrameLayout;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -85,15 +73,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         connectTabsAndViewPager(tabs, viewPager);
 
-        songList = new ArrayList<>();
-        getSongList();
-        // sort the data
-        Collections.sort(songList, new Comparator<Song>() {
-            @Override
-            public int compare(Song s1, Song s2) {
-                return s1.getTitle().compareTo(s2.getTitle());
-            }
-        });
+        loadAllTracksForTracksTab();
+
         PlaylistMaker.createDatabase(getApplicationContext());
         PlaylistMaker.loadPlaylists();
 //        SongAdapter songAdapter = new SongAdapter(songList);
@@ -103,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean checkAndRequestPermissions() {
-        List<String> permissionsNeeded = new ArrayList<String>();
+        List<String> permissionsNeeded = new ArrayList<>();
         for (String permission: permissions){
             if(ContextCompat.checkSelfPermission(this,permission)!= PackageManager.PERMISSION_GRANTED){
                 permissionsNeeded.add(permission);
@@ -321,14 +302,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void getSongList() {
         songList = ListMaker.loadTracks();
     }
 
     public void songPicked(View view) {
         musicService.setSong(Integer.parseInt(view.getTag().toString()));
-//        musicService.setMusicController();
         musicService.setList(songList);
         musicService.playSong();
         if (playbackPaused) {
@@ -341,8 +320,8 @@ public class MainActivity extends AppCompatActivity {
     public void artistSelected(View view) {
         Intent songSelectorIntent = new Intent(MainActivity.this, SongSelectorActivity.class);
 
-        long albumId = 0;
-        String name = "";
+        long albumId;
+        String name;
 
         if (view.getTag() instanceof Artist)
         {
@@ -356,14 +335,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(songSelectorIntent);
         }
         else
-            Toast.makeText(this, "playlist clicked", Toast.LENGTH_SHORT).show();;
+            Toast.makeText(this, "playlist clicked", Toast.LENGTH_SHORT).show();
     }
 
     public void folderSelected(View view) {
         Intent songSelectorIntent = new Intent(MainActivity.this, SongSelectorActivity.class);
 
-        long albumId = 0;
-        String name = "";
+        long albumId;
+        String name;
         Folder selectedFolder = (Folder) view.getTag();
         name = selectedFolder.getFolderName();
         albumId = selectedFolder.getAlbumId();
@@ -379,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
         Intent songSelectorIntent = new Intent(MainActivity.this, SongSelectorActivity.class);
 
         long albumId = 0;
-        String name = "";
+        String name;
         ArrayList<String> keys = PlaylistMaker.keys;
         int position = (int) view.getTag();
 
@@ -428,6 +407,20 @@ public class MainActivity extends AppCompatActivity {
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+    }
+
+    private void loadAllTracksForTracksTab() {
+        if (songList == null) {
+            songList = new ArrayList<>();
+        }
+        getSongList();
+        // sort the data
+        Collections.sort(songList, new Comparator<Song>() {
+            @Override
+            public int compare(Song s1, Song s2) {
+                return s1.getTitle().compareTo(s2.getTitle());
+            }
+        });
     }
 
 }
