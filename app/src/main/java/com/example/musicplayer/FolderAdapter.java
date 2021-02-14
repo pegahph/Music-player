@@ -65,7 +65,7 @@ public class FolderAdapter extends RecyclerView.Adapter<FolderAdapter.FolderView
 //                folderArt.setImageDrawable(folderArtImage);
 //            else
 //                folderArt.setImageResource(R.drawable.icon2);
-            thisView.setTag(currentFolder);
+            thisView.setTag(position);
         }
     }
 }

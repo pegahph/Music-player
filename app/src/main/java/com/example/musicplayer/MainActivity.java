@@ -309,20 +309,15 @@ public class MainActivity extends AppCompatActivity {
 
         long albumId;
         String name;
+        int position = Integer.parseInt(view.getTag().toString());
+        Artist selectedArtist = ListMaker.loadArtists().get(position);
+        name = selectedArtist.getArtistName();
+        albumId = selectedArtist.getAlbumId();
+        songSelectorIntent.putExtra("tab", "Artist");
+        songSelectorIntent.putExtra("selectedArtistName", name);
+        songSelectorIntent.putExtra("selectedArtistAlbumId", albumId);
 
-        if (view.getTag() instanceof Artist)
-        {
-            Artist selectedArtist = (Artist) view.getTag();
-            name = selectedArtist.getArtistName();
-            albumId = selectedArtist.getAlbumId();
-            songSelectorIntent.putExtra("tab", "Artist");
-            songSelectorIntent.putExtra("selectedArtistName", name);
-            songSelectorIntent.putExtra("selectedArtistAlbumId", albumId);
-
-            startActivity(songSelectorIntent);
-        }
-        else
-            Toast.makeText(this, "playlist clicked", Toast.LENGTH_SHORT).show();
+        startActivity(songSelectorIntent);
     }
 
     public void folderSelected(View view) {
@@ -330,7 +325,8 @@ public class MainActivity extends AppCompatActivity {
 
         long albumId;
         String name;
-        Folder selectedFolder = (Folder) view.getTag();
+        int position = Integer.parseInt(view.getTag().toString());
+        Folder selectedFolder = ListMaker.loadFolders().get(position);
         name = selectedFolder.getFolderName();
         albumId = selectedFolder.getAlbumId();
         songSelectorIntent.putExtra("tab", "Folder");

@@ -65,7 +65,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 //                artistsArt.setImageDrawable(albumArtImage);
 //            else
 //                artistsArt.setImageResource(R.drawable.icon2);
-            thisView.setTag(currentArtist);
+            thisView.setTag(position);
         }
     }
 }
