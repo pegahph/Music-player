@@ -190,15 +190,13 @@ public class MainActivity extends AppCompatActivity {
             bindService(playIntent, musicConnection, Context.BIND_AUTO_CREATE);
             startService(playIntent);
         }
-        if (controller != null)
-            controller.changeKillMe(false);
+        changeControllerKillMe(false);
     }
     @Override
     protected void onPause() {
         super.onPause();
         paused = true;
-        if (controller != null)
-        controller.changeKillMe(true);
+        changeControllerKillMe(true);
     }
     @Override
     protected void onResume() {
@@ -210,13 +208,11 @@ public class MainActivity extends AppCompatActivity {
             }
             theMediaPlayer.setControllerLayout((FrameLayout) findViewById(R.id.top_half), controller);
             controller = Constant.getController();
-//            theMediaPlayer.setController(MainActivity.this, findViewById(R.id.view_pager), false, controller);
             paused = false;
         }
     }
     @Override
     protected void onStop() {
-//        Constant.getController().hide();
         super.onStop();
     }
 
@@ -304,10 +300,8 @@ public class MainActivity extends AppCompatActivity {
         musicService.setList(songList);
         musicService.playSong();
         if (playbackPaused) {
-//            setController();
             playbackPaused = false;
         }
-//        controller.show(0);
     }
 
     public void artistSelected(View view) {
@@ -423,6 +417,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveDataInDatabase() {
         PlaylistMaker.savePlaylists();
+    }
+
+    private void changeControllerKillMe(boolean b) {
+        if (controller != null)
+            controller.changeKillMe(b);
     }
 
 }
