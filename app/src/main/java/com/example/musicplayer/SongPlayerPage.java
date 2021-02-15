@@ -31,7 +31,6 @@ import io.alterac.blurkit.BlurLayout;
 public class SongPlayerPage extends AppCompatActivity {
     BlurLayout blurLayout;
     MusicService theMusicService;
-//    Song song;
     View grayView;
     ImageView backCover , forCover;
     TextView songName , songArtist;
@@ -58,7 +57,8 @@ public class SongPlayerPage extends AppCompatActivity {
     private SeekBar volumeSeekbar = null;
     private AudioManager audioManager = null;
 
-    private float x1,y1,x2, y2;
+    private float x1;
+    private float y1;
     static final int MIN_X_DISTANCE = 200;
     static final int MIN_Y_DISTANCE = 300;
 
@@ -80,29 +80,29 @@ public class SongPlayerPage extends AppCompatActivity {
         grayView = findViewById(R.id.gray_view);
         songName.setSelected(true);
 
-        prevBtn = (ImageButton) findViewById(R.id.full_prev_btn);
-        playBtn = (ImageButton) findViewById(R.id.full_play_btn);
-        nextBtn = (ImageButton) findViewById(R.id.full_next_btn);
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        endTime = (TextView) findViewById(R.id.end_time);
-        currentTime = (TextView) findViewById(R.id.current_time);
-        shuffleBtn = (ImageButton) findViewById(R.id.shuffle_button);
-        repeatBtn = (ImageButton) findViewById(R.id.repeat_button);
-        favoriteBtn = (ImageButton) findViewById(R.id.favourite);
-        addToPlaylist = (ImageButton) findViewById(R.id.add_to_playlist);
+        prevBtn = findViewById(R.id.full_prev_btn);
+        playBtn = findViewById(R.id.full_play_btn);
+        nextBtn = findViewById(R.id.full_next_btn);
+        seekBar = findViewById(R.id.seekBar);
+        endTime = findViewById(R.id.end_time);
+        currentTime = findViewById(R.id.current_time);
+        shuffleBtn = findViewById(R.id.shuffle_button);
+        repeatBtn = findViewById(R.id.repeat_button);
+        favoriteBtn = findViewById(R.id.favourite);
+        addToPlaylist = findViewById(R.id.add_to_playlist);
         // share stuff
-        searchBarPlaceholder = (Space) findViewById(R.id.search_bar_placeholder);
-        theSearchBar = (EditText) findViewById(R.id.the_search_bar);
-        searchBtn = (ImageView) findViewById(R.id.search_btn);
-        searchRecyclerView = (RecyclerView) findViewById(R.id.search_recyclerView);
-        cardView = (CardView) findViewById(R.id.card_view);
-        volume = (ImageButton) findViewById(R.id.volume);
+        searchBarPlaceholder = findViewById(R.id.search_bar_placeholder);
+        theSearchBar = findViewById(R.id.the_search_bar);
+        searchBtn = findViewById(R.id.search_btn);
+        searchRecyclerView = findViewById(R.id.search_recyclerView);
+        cardView = findViewById(R.id.card_view);
+        volume = findViewById(R.id.volume);
         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-        lyricsTextView = (TextView) findViewById(R.id.lyrics_text_view);
-        scrollView = (ScrollView) findViewById(R.id.scroll_view);
+        lyricsTextView = findViewById(R.id.lyrics_text_view);
+        scrollView = findViewById(R.id.scroll_view);
 
         mediaPlayer = Constant.getTheMediaPlayer();
-        theController = new com.example.musicplayer.MusicController(getApplicationContext());
+        theController = new MusicController(getApplicationContext());
         theController.getButtons(prevBtn, playBtn, nextBtn);
         theController.setMediaPlayer(mediaPlayer);
         theController.getDetails(forCover, songName, songArtist);
@@ -220,8 +220,8 @@ public class SongPlayerPage extends AppCompatActivity {
                 y1 = event.getY();
                 break;
             case MotionEvent.ACTION_UP:
-                x2 = event.getX();
-                y2 = event.getY();
+                float x2 = event.getX();
+                float y2 = event.getY();
                 float deltaX = x2 - x1;
                 float deltaY = y2 - y1;
                 if (Math.abs(deltaX) > MIN_X_DISTANCE && Math.abs(deltaY) < MIN_Y_DISTANCE) {
@@ -305,24 +305,24 @@ public class SongPlayerPage extends AppCompatActivity {
         int playlistNumber = (int) view.getTag();
         theController.addThisSongToThisPlaylist(playlistNumber);
     }
+
     View.OnClickListener volumeListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             showSeekBar();
         }
     };
-
     View.OnClickListener volumeListener2 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             hideSeekBar();
         }
     };
+
     private void showSeekBar() {
         volumeSeekbar.setVisibility(View.VISIBLE);
         volume.setOnClickListener(volumeListener2);
     }
-
     private void hideSeekBar() {
         volumeSeekbar.setVisibility(View.INVISIBLE);
         volume.setOnClickListener(volumeListener);
